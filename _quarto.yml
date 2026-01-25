@@ -1,17 +1,43 @@
 project:
   type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - about.qmd
+  resources:
+    - "assets/js/**"
+    - "assets/images/**"
 
 website:
-  title: "today"
+  title: "Daniel Huencho | AI Engineer"
+  favicon: assets/images/favicon.ico
   navbar:
+    background: "#1b2838"
+    foreground: "#e2e8f0"
     left:
       - href: index.qmd
         text: Home
-      - href: dashboard.qmd
-        text: Dashboard
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/dhuencho
+        aria-label: GitHub
+      - icon: linkedin
+        href: https://linkedin.com/in/danielhuencho
+        aria-label: LinkedIn
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    toc: true
+    theme:
+      dark: [cosmo, custom.scss]
+    css: custom.scss
+    toc: false
+    page-layout: full
+    grid:
+      body-width: 1200px
+    include-in-header:
+      - text: |
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
