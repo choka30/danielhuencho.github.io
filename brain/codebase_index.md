@@ -1,9 +1,9 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-25
+> Last updated: 2026-01-25 20:55
 > Total pages: 4
-> Total assets: 0
-> Content status: Placeholder/Empty
+> Total assets: 1 (profile photo)
+> Content status: about.qmd complete, others placeholder
 
 ---
 
@@ -24,7 +24,13 @@
 
 **Purpose:** First impression for recruiters. Hero section with professional photo, headline, and brief bio.
 
-**Current State:** Generic placeholder content ("Hello, world!")
+**Current State:**
+- ✓ YAML front matter added (title: Daniel Huencho)
+- ○ Hero section (placeholder content)
+- ○ Professional headline
+- ○ Bio paragraph
+- ○ Skills highlights
+- ○ Professional photo
 
 **Target Content:**
 - Professional headline (MSc AI @ UCL + 7 years experience)
@@ -33,7 +39,7 @@
 - Links to projects and CV
 - Professional photo
 
-**Status:** `Placeholder` — needs complete rewrite
+**Status:** `Placeholder` — has valid YAML, needs content rewrite
 
 ---
 
@@ -41,20 +47,18 @@
 
 **Purpose:** Detailed professional background. Replaces traditional PDF CV with interactive web version.
 
-**Current State:** Empty file
+**Current State:**
+- ✓ YAML front matter (title, pagetitle, page-layout)
+- ✓ Hero section with photo, name, headline
+- ✓ Summary paragraph
+- ✓ Education section (UCL, PUC MSc, PUC Engineering)
+- ✓ Professional Experience timeline (4 positions)
+- ✓ Technical Skills section with skill tags
+- ✓ Languages section
+- ✓ Conferences & Events section
+- ○ Downloadable CV link (PDF not yet added)
 
-**Target Content:**
-- Education (UCL MSc, PUC Chile MSc Statistics)
-- Professional Experience timeline
-  - Head of Data Science @ Metro de Santiago (2023-2025)
-  - Analytics Translator @ BCI (2022-2023)
-  - Senior Risk Analyst @ Banco de Chile (2021-2022)
-- Technical Skills (Python, Spark, PyTorch, etc.)
-- Research interests (DKL, VAEs, GNNs, Disaster Risk)
-- Publications/projects links
-- Downloadable CV link
-
-**Status:** `Empty` — needs full content
+**Status:** `Complete` — content done, awaiting CV PDF
 
 ---
 
@@ -122,7 +126,7 @@
 
 | File | Purpose | Status |
 |------|---------|--------|
-| profile.jpg | Professional headshot | Missing |
+| my_photo_professional.jpeg | Professional headshot | ✓ Added |
 | hero-bg.jpg | Hero section background | Optional |
 | project-*.png | Project screenshots | Missing |
 
@@ -138,58 +142,39 @@
 
 ### `_quarto.yml` — Site Configuration
 
-**Current:**
+**Current State:**
 ```yaml
 project:
   type: website
-
-website:
-  title: "today"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: dashboard.qmd
-        text: Dashboard
-
-format:
-  html:
-    theme: cosmo
-    css: styles.css
-    toc: true
-```
-
-**Target:**
-```yaml
-project:
-  type: website
+  render:
+    - "*.qmd"   # Required for git worktree detection
 
 website:
   title: "Daniel Huencho | Data Science Portfolio"
   navbar:
+    background: dark
     left:
       - href: index.qmd
         text: Home
       - href: about.qmd
         text: About
-      - text: Projects
-        menu:
-          - href: projects/research-methodology.ipynb
-            text: Research Methods
-          - href: projects/industry-portfolio.qmd
-            text: Industry Experience
     right:
       - icon: github
-        href: https://github.com/danielhuencho
+        href: https://github.com/choka30
       - icon: linkedin
-        href: https://linkedin.com/in/danielhuencho
+        href: https://www.linkedin.com/in/daniel-huencho-mardini-9568489a/
 
 format:
   html:
-    theme: cosmo
-    css: custom.scss
-    toc: true
+    theme:
+      dark: [cosmo, custom.scss]
+    toc: false
+    page-layout: full
 ```
+
+**Status:** `Complete` — properly configured for worktree
+
+**Note:** The `render: ["*.qmd"]` directive is required because Quarto doesn't auto-detect .qmd files in git worktree directories.
 
 ---
 

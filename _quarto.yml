@@ -1,17 +1,28 @@
 project:
   type: website
+  render:
+    - "*.qmd"
 
 website:
-  title: "today"
+  title: "Daniel Huencho | Data Science Portfolio"
   navbar:
+    background: dark
     left:
       - href: index.qmd
         text: Home
-      - href: dashboard.qmd
-        text: Dashboard
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/choka30
+        aria-label: GitHub
+      - icon: linkedin
+        href: https://www.linkedin.com/in/daniel-huencho-mardini-9568489a/
+        aria-label: LinkedIn
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    toc: true
+    theme:
+      dark: [cosmo, custom.scss]
+    toc: false
+    page-layout: full

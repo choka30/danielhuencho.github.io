@@ -84,9 +84,9 @@
 | Site config | `_quarto.yml` | Exists (needs update) |
 | Landing page | `index.qmd` | Exists (placeholder) |
 | CV/About | `about.qmd` | Exists (empty) |
-| Custom styles | `custom.scss` | Missing (create) |
+| Custom styles | `custom.scss` | Exists (ocean blue theme) |
 | Projects folder | `projects/` | Missing (create) |
-| Assets folder | `assets/` | Missing (create) |
+| Assets folder | `assets/` | Exists (images added) |
 | Brain files | `brain/` | Exists (updated) |
 | Claude skills | `.claude/skills/` | Exists (needs update) |
 
@@ -97,19 +97,20 @@
 To reach target state:
 
 ### Files to Create
-- [ ] `custom.scss` - Custom styling
+- [x] `custom.scss` - Custom styling (ocean blue dark theme)
 - [ ] `projects/` directory
 - [ ] `projects/_metadata.yml` - Shared project settings
 - [ ] `projects/research-methodology.ipynb` - Research showcase
 - [ ] `projects/industry-portfolio.qmd` - Industry experience
-- [ ] `assets/` directory
-- [ ] `assets/images/` directory
+- [x] `assets/` directory
+- [x] `assets/images/` directory
+- [x] `assets/images/my_photo_professional.jpeg` - Profile photo
 - [ ] `assets/cv.pdf` - Downloadable CV
 
 ### Files to Update
-- [ ] `_quarto.yml` - Proper title, navigation, theme
-- [ ] `index.qmd` - Daniel's hero section and bio
-- [ ] `about.qmd` - Detailed CV content
+- [x] `_quarto.yml` - Proper title, navigation, theme, render targets
+- [x] `index.qmd` - Added YAML front matter (content still placeholder)
+- [x] `about.qmd` - Detailed CV content added
 
 ### Files to Review/Remove
 - [ ] `dashboard.qmd` - Keep or integrate?
@@ -124,6 +125,11 @@ To reach target state:
 |------|--------|----------|
 | 2026-01-25 | Brain restructure for Quarto portfolio | `brain/`, `CLAUDE.md` |
 | 2026-01-25 | Renamed brain files for content focus | `brain/` |
+| 2026-01-25 | Added render targets to fix worktree detection | `_quarto.yml` |
+| 2026-01-25 | Added YAML front matter to index.qmd | `index.qmd` |
+| 2026-01-25 | Created custom.scss with ocean blue theme | `custom.scss` |
+| 2026-01-25 | Created assets/images/ with profile photo | `assets/images/` |
+| 2026-01-25 | Completed about.qmd CV page | `about.qmd` |
 
 ---
 

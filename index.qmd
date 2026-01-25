@@ -1,4 +1,8 @@
-## Hello, world! 
+---
+title: "Daniel Huencho"
+---
+
+## Hello, world!
 This is my personal webpage built with Quarto.
 
 ### About Me
