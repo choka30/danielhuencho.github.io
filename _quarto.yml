@@ -29,8 +29,7 @@ website:
 
 format:
   html:
-    theme:
-      dark: [cosmo, custom.scss]
+    theme: [cosmo, custom.scss]
     css: custom.scss
     toc: false
     page-layout: full

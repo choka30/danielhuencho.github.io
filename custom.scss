@@ -7,11 +7,11 @@ $bg-primary: #0d1b2a;
 $bg-secondary: #1b2838;
 $bg-card: #1e3a5f;
 
-// Text
-$text-primary: #e2e8f0;
-$text-secondary: #a0aec0;
-$text-accent: #63b3ed;
-$text-muted: #718096;
+// Text (improved contrast - WCAG AA compliant)
+$text-primary: #f1f5f9;      // Brighter white for headings
+$text-secondary: #cbd5e1;    // Improved contrast for body text
+$text-accent: #63b3ed;       // Keep accent blue
+$text-muted: #94a3b8;        // Brighter muted text
 
 // Accents
 $accent-primary: #2c5282;
@@ -41,22 +41,50 @@ $headings-font-weight: 600;
 
 // ===== Base Styles =====
 
-body {
-  background-color: $bg-primary;
-  color: $text-primary;
+// Force dark theme colors (no light mode)
+body,
+html {
+  background-color: $bg-primary !important;
+  color: $text-primary !important;
   line-height: 1.7;
 }
 
+// Ensure all containers use dark background
+.container,
+.container-fluid,
+.page-layout-full,
+#quarto-document-content {
+  background-color: $bg-primary !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
-  color: $text-primary;
+  color: $text-primary !important;
   font-weight: 600;
 }
 
 h2 {
-  border-bottom: 2px solid $accent-primary;
+  color: #f1f5f9 !important;  // Explicit bright white for section titles
+  border-bottom: 2px solid $accent-hover;
   padding-bottom: 0.5rem;
   margin-top: 2.5rem;
   margin-bottom: 1.5rem;
+}
+
+// Ensure Quarto doesn't override heading colors
+.quarto-title-block h1,
+#quarto-content h1,
+#quarto-content h2,
+#quarto-content h3,
+h2.anchored,
+h3.anchored {
+  color: $text-primary !important;
+}
+
+// Section titles need maximum visibility
+main h2,
+.content h2,
+article h2 {
+  color: #f1f5f9 !important;
 }
 
 a {
@@ -153,9 +181,10 @@ a {
 .hero-name {
   font-size: 3rem;
   font-weight: 700;
-  color: $text-primary;
+  color: $text-primary !important;  // Force visibility
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
+  display: block;  // Ensure block display for spans
 }
 
 .hero-headline {
@@ -171,6 +200,11 @@ a {
   color: $text-secondary;
   font-size: 1.1rem;
   line-height: 1.8;
+
+  // Ensure paragraphs inside also get proper color
+  p {
+    color: inherit;
+  }
 }
 
 // ===== Social Links =====
@@ -238,7 +272,7 @@ a {
   display: inline-block;
   padding: 0.4rem 0.9rem;
   background-color: $bg-secondary;
-  border: 1px solid $border-color;
+  border: 1px solid $border-light;
   border-radius: 20px;
   font-size: 0.85rem;
   color: $text-secondary;
@@ -251,22 +285,88 @@ a {
   }
 }
 
+// Expert level - Primary skills (cyan highlight)
+.skill-tag-expert {
+  background-color: rgba(144, 205, 244, 0.2);
+  border-color: $accent-highlight;
+  color: #a5d8ff;
+  font-weight: 500;
+}
+
+// Advanced level - Strong proficiency (blue)
 .skill-tag-advanced {
-  background-color: rgba(66, 153, 225, 0.15);
+  background-color: rgba(66, 153, 225, 0.18);
   border-color: $accent-hover;
-  color: $text-accent;
+  color: #7cc4f5;
 }
 
-.skill-tag-core {
-  background-color: rgba(99, 179, 237, 0.2);
-  border-color: $text-accent;
-  color: $accent-highlight;
-}
-
+// Intermediate level - Working knowledge (green)
 .skill-tag-intermediate {
-  background-color: rgba(72, 187, 120, 0.15);
+  background-color: rgba(72, 187, 120, 0.18);
   border-color: #48bb78;
-  color: #68d391;
+  color: #7ee2a8;
+}
+
+// Keep old class names as aliases for backwards compatibility
+.skill-tag-core {
+  @extend .skill-tag-expert;
+}
+
+// ===== Skills Legend =====
+
+.skills-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background-color: rgba($bg-secondary, 0.5);
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.skills-legend-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-right: 0.5rem;
+}
+
+.skills-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot-expert {
+  background-color: rgba(144, 205, 244, 0.9);
+  border: 2px solid $accent-highlight;
+  box-shadow: 0 0 6px rgba(144, 205, 244, 0.4);
+}
+
+.legend-dot-advanced {
+  background-color: rgba(66, 153, 225, 0.8);
+  border: 2px solid $accent-hover;
+}
+
+.legend-dot-intermediate {
+  background-color: rgba(72, 187, 120, 0.8);
+  border: 2px solid #48bb78;
+}
+
+.legend-label {
+  color: $text-secondary;
 }
 
 // ===== Skill Categories =====
@@ -278,7 +378,7 @@ a {
 .skill-category-title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: $text-muted;
+  color: $text-secondary !important;  // Brighter category titles
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 0.75rem;
@@ -287,12 +387,24 @@ a {
 // ===== Cards =====
 
 .info-card {
-  background-color: rgba($bg-secondary, 0.6);
-  border: 1px solid $border-color;
+  background-color: rgba($bg-secondary, 0.85);
+  border: 1px solid $border-light;
   border-radius: 12px;
   padding: 1.75rem;
   margin-bottom: 1.5rem;
   backdrop-filter: blur(10px);
+
+  // Improved text contrast inside cards
+  color: $text-primary;
+
+  p {
+    color: $text-secondary;
+    line-height: 1.8;
+  }
+
+  strong {
+    color: $text-accent;
+  }
 }
 
 // ===== Timeline (Experience/Education) =====
@@ -531,8 +643,14 @@ a {
 
 // ===== Quarto Overrides =====
 
-.quarto-title {
-  display: none;
+// Hide all title blocks (text appearing over hero image)
+.quarto-title,
+.quarto-title-block,
+.quarto-title-banner,
+header#title-block-header,
+#title-block-header,
+.title-block {
+  display: none !important;
 }
 
 #quarto-content {

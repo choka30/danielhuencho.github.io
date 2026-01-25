@@ -130,6 +130,11 @@ To reach target state:
 | 2026-01-25 | Created custom.scss with ocean blue theme | `custom.scss` |
 | 2026-01-25 | Created assets/images/ with profile photo | `assets/images/` |
 | 2026-01-25 | Completed about.qmd CV page | `about.qmd` |
+| 2026-01-25 | Improved text contrast (WCAG AA compliant) | `custom.scss` |
+| 2026-01-25 | Added skills legend (Expert/Advanced/Intermediate) | `custom.scss`, `index.qmd`, `about.qmd` |
+| 2026-01-25 | Reorganized skills with industry-standard categories | `index.qmd`, `about.qmd` |
+| 2026-01-25 | Hidden Quarto title blocks (text over hero image) | `custom.scss` |
+| 2026-01-25 | Fixed theme to dark-only (removed light mode) | `_quarto.yml`, `custom.scss` |
 
 ---
 

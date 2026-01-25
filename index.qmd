@@ -58,55 +58,67 @@ My research interests lie at the intersection of **deep learning and earth obser
 
 ## Technical Expertise
 
-::: {.skill-category}
-::: {.skill-category-title}
-Machine Learning & AI
-:::
-::: {.skills-container}
-[Deep Learning]{.skill-tag .skill-tag-core}
-[PyTorch]{.skill-tag .skill-tag-core}
-[TensorFlow]{.skill-tag .skill-tag-advanced}
-[Graph Neural Networks]{.skill-tag .skill-tag-core}
-[Variational Autoencoders]{.skill-tag .skill-tag-advanced}
-[Deep Kernel Learning]{.skill-tag .skill-tag-advanced}
-[Computer Vision]{.skill-tag}
-[NLP]{.skill-tag}
-[Bayesian Modeling]{.skill-tag .skill-tag-advanced}
-[Scikit-learn]{.skill-tag}
-[XGBoost]{.skill-tag}
-:::
-:::
+```{=html}
+<div class="skills-legend">
+  <span class="skills-legend-title">Proficiency:</span>
+  <div class="skills-legend-item">
+    <span class="legend-dot legend-dot-expert"></span>
+    <span class="legend-label">Expert</span>
+  </div>
+  <div class="skills-legend-item">
+    <span class="legend-dot legend-dot-advanced"></span>
+    <span class="legend-label">Advanced</span>
+  </div>
+  <div class="skills-legend-item">
+    <span class="legend-dot legend-dot-intermediate"></span>
+    <span class="legend-label">Intermediate</span>
+  </div>
+</div>
+```
 
 ::: {.skill-category}
 ::: {.skill-category-title}
-Data Engineering & Big Data
+Programming Languages
 :::
 ::: {.skills-container}
-[Apache Spark]{.skill-tag .skill-tag-core}
-[PySpark]{.skill-tag .skill-tag-core}
-[Databricks]{.skill-tag .skill-tag-advanced}
-[SQL]{.skill-tag .skill-tag-core}
-[PostgreSQL]{.skill-tag}
-[Cloudera]{.skill-tag}
-[ETL Pipelines]{.skill-tag}
-[Data Modeling]{.skill-tag}
-[SCADA Systems]{.skill-tag}
-:::
-:::
-
-::: {.skill-category}
-::: {.skill-category-title}
-Programming & Tools
-:::
-::: {.skills-container}
-[Python]{.skill-tag .skill-tag-core}
+[Python]{.skill-tag .skill-tag-expert}
+[SQL]{.skill-tag .skill-tag-expert}
 [R]{.skill-tag .skill-tag-advanced}
-[Git]{.skill-tag}
-[Docker]{.skill-tag}
-[AWS]{.skill-tag}
-[Linux]{.skill-tag}
-[Jupyter]{.skill-tag}
-[VS Code]{.skill-tag}
+[Scala]{.skill-tag .skill-tag-intermediate}
+[C++]{.skill-tag .skill-tag-intermediate}
+:::
+:::
+
+::: {.skill-category}
+::: {.skill-category-title}
+Machine Learning & Deep Learning
+:::
+::: {.skills-container}
+[PyTorch]{.skill-tag .skill-tag-expert}
+[Deep Learning]{.skill-tag .skill-tag-expert}
+[Scikit-learn]{.skill-tag .skill-tag-expert}
+[TensorFlow]{.skill-tag .skill-tag-advanced}
+[Graph Neural Networks]{.skill-tag .skill-tag-advanced}
+[XGBoost]{.skill-tag .skill-tag-advanced}
+[Bayesian Modeling]{.skill-tag .skill-tag-advanced}
+[Computer Vision]{.skill-tag .skill-tag-intermediate}
+[NLP]{.skill-tag .skill-tag-intermediate}
+[Generative AI]{.skill-tag .skill-tag-intermediate}
+:::
+:::
+
+::: {.skill-category}
+::: {.skill-category-title}
+Data Engineering & Cloud
+:::
+::: {.skills-container}
+[Apache Spark]{.skill-tag .skill-tag-expert}
+[Databricks]{.skill-tag .skill-tag-advanced}
+[AWS]{.skill-tag .skill-tag-advanced}
+[Docker]{.skill-tag .skill-tag-intermediate}
+[PostgreSQL]{.skill-tag .skill-tag-intermediate}
+[ETL Pipelines]{.skill-tag .skill-tag-advanced}
+[Cloudera]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 
@@ -115,13 +127,12 @@ Programming & Tools
 Domain Expertise
 :::
 ::: {.skills-container}
+[Transportation Analytics]{.skill-tag .skill-tag-expert}
+[Financial Risk Modeling]{.skill-tag .skill-tag-advanced}
 [Earth Observation]{.skill-tag .skill-tag-advanced}
-[Disaster Risk Management]{.skill-tag .skill-tag-advanced}
-[Geospatial Analysis]{.skill-tag}
-[Financial Risk Modeling]{.skill-tag}
-[Transportation Analytics]{.skill-tag}
-[Energy Optimization]{.skill-tag}
-[Urban Resilience]{.skill-tag}
+[Geospatial Analysis]{.skill-tag .skill-tag-advanced}
+[Energy Optimization]{.skill-tag .skill-tag-intermediate}
+[Disaster Risk Assessment]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 

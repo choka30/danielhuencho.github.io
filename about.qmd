@@ -136,39 +136,60 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 
 ## Technical Skills
 
+```{=html}
+<div class="skills-legend">
+  <span class="skills-legend-title">Proficiency:</span>
+  <div class="skills-legend-item">
+    <span class="legend-dot legend-dot-expert"></span>
+    <span class="legend-label">Expert</span>
+  </div>
+  <div class="skills-legend-item">
+    <span class="legend-dot legend-dot-advanced"></span>
+    <span class="legend-label">Advanced</span>
+  </div>
+  <div class="skills-legend-item">
+    <span class="legend-dot legend-dot-intermediate"></span>
+    <span class="legend-label">Intermediate</span>
+  </div>
+</div>
+```
+
 ::: {.skill-category}
-[Programming & Data]{.skill-category-title}
+[Programming Languages]{.skill-category-title}
 
 ::: {.skills-container}
-[Python]{.skill-tag .skill-tag-advanced}
+[Python]{.skill-tag .skill-tag-expert}
+[SQL]{.skill-tag .skill-tag-expert}
 [R]{.skill-tag .skill-tag-advanced}
-[SQL]{.skill-tag .skill-tag-advanced}
-[C++]{.skill-tag .skill-tag-intermediate}
 [Scala]{.skill-tag .skill-tag-intermediate}
+[C++]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 
 ::: {.skill-category}
-[Machine Learning & AI]{.skill-category-title}
+[Machine Learning & Deep Learning]{.skill-category-title}
 
 ::: {.skills-container}
-[PyTorch]{.skill-tag .skill-tag-advanced}
-[Scikit-learn]{.skill-tag .skill-tag-advanced}
-[MLlib]{.skill-tag .skill-tag-intermediate}
+[PyTorch]{.skill-tag .skill-tag-expert}
+[Scikit-learn]{.skill-tag .skill-tag-expert}
+[Deep Learning]{.skill-tag .skill-tag-expert}
+[TensorFlow]{.skill-tag .skill-tag-advanced}
+[XGBoost]{.skill-tag .skill-tag-advanced}
 [Generative AI]{.skill-tag .skill-tag-intermediate}
-[Deep Learning]{.skill-tag .skill-tag-intermediate}
+[MLlib]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 
 ::: {.skill-category}
-[Big Data & Cloud]{.skill-category-title}
+[Data Engineering & Cloud]{.skill-category-title}
 
 ::: {.skills-container}
-[Apache Spark]{.skill-tag .skill-tag-intermediate}
-[AWS (EC2, S3, Glue, Athena)]{.skill-tag .skill-tag-intermediate}
-[Databricks]{.skill-tag .skill-tag-intermediate}
+[Apache Spark]{.skill-tag .skill-tag-expert}
+[Databricks]{.skill-tag .skill-tag-advanced}
+[AWS (EC2, S3, Glue, Athena)]{.skill-tag .skill-tag-advanced}
 [Docker]{.skill-tag .skill-tag-intermediate}
 [Cloudera]{.skill-tag .skill-tag-intermediate}
+[ETL Pipelines]{.skill-tag .skill-tag-advanced}
 :::
 :::
 
@@ -176,11 +197,11 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 [Statistical Methods]{.skill-category-title}
 
 ::: {.skills-container}
-[Bayesian Statistics]{.skill-tag}
-[Time Series Analysis]{.skill-tag}
-[Generalized Linear Models]{.skill-tag}
-[Survival Analysis]{.skill-tag}
-[A/B Testing]{.skill-tag}
+[Bayesian Statistics]{.skill-tag .skill-tag-advanced}
+[Time Series Analysis]{.skill-tag .skill-tag-advanced}
+[Generalized Linear Models]{.skill-tag .skill-tag-advanced}
+[A/B Testing]{.skill-tag .skill-tag-intermediate}
+[Survival Analysis]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 

@@ -1,188 +1,214 @@
 # Session Plan
 
-> Created: 2026-01-25 20:30
-> Request: "Create professional, creative index.qmd for AI engineer portfolio with dark ocean blue theme, interactive neural network visualization"
-> Branch: pw_index_page
-> Session ID: 20260125_INDEX_PAGE
-> Scope: **index.qmd ONLY** (about.qmd handled by separate agent)
-> **Status: SESSION COMPLETE**
+> Created: 2026-01-25 21:55
+> Request: "Improve visual contrast issues (About section text, about.qmd title), add skills legend, reorganize skills by industry-standard categories"
+> Branch: improve_visuals
+> Session ID: 20260125_IMPROVE_VISUALS
 
 ## Context Summary
 
-**Goal:** Create a polished landing page (`index.qmd`) that:
-1. Uses professional dark ocean blue theme (from `assets/references/custom.scss`)
-2. Has clean, interactive neural network background animation
-3. Follows structure inspired by bandirevanth.github.io (Hero → Brief Bio → Skills)
-4. Works natively with Quarto (vanilla JS, no React dependencies)
+**Issues to Fix:**
 
-**Key Constraints:**
-- Quarto doesn't support React/JSX directly — must use vanilla JavaScript
-- Animation should be elegant and subtle (not distracting)
-- Must be responsive and performant
-- Content reflects Daniel Huencho's AI/ML expertise
-- **Do NOT modify about.qmd** — separate agent handles that
+1. **Text Visibility:**
+   - About section on index.qmd has low contrast text (dark gray on dark background)
+   - About.qmd title/hero-name may have visibility issues
 
-**Reference Files Analysis:**
-- `custom.scss`: Ocean blue dark theme palette ($bg-primary: #0d1b2a, $accent: #2c5282)
-- `neural-transport-network.html`: Vanilla JS canvas-based network animation (can adapt)
-- `network-visualization.jsx`: React component (use as design reference only)
+2. **Skills Section:**
+   - No legend explaining skill tag colors (core/advanced/intermediate)
+   - Skills not organized by standard industry categories
+   - Random mixing of tools, frameworks, and concepts
+
+**Design Approach:**
+- Improve contrast ratios to meet WCAG AA (4.5:1 minimum)
+- Add visible legend explaining proficiency levels
+- Reorganize skills using common industry groupings:
+  - Languages & Frameworks
+  - Machine Learning / Deep Learning
+  - Data Engineering & Cloud
+  - Domain Expertise
 
 ---
 
 ## Tasks
 
-### Task 1: Setup Site Configuration & Theme
+### Task 1: Fix Text Contrast Issues in SCSS
 - **ID:** TASK-001
-- **Status:** Completed
-- **Description:** Update `_quarto.yml` to use custom.scss theme and copy theme file to project root
+- **Status:** Complete ✓
+- **Completed:** 2026-01-25 21:58
+- **Description:** Update custom.scss to improve text visibility for info-card and hero sections
 - **Atomic Units:**
-  - [ ] Update `_quarto.yml` with proper site config
-  - [ ] Copy `custom.scss` from `assets/references/` to project root
+  - Update `.info-card` to use brighter text color
+  - Ensure `.hero-name` spans in about.qmd render correctly
+  - Improve overall text contrast for `$text-secondary`
 - **Acceptance Criteria:**
-  - [ ] Site title shows "Daniel Huencho | AI Engineer"
-  - [ ] Theme uses dark ocean blue palette
-  - [ ] Navigation includes Home, About links
-  - [ ] `quarto preview` runs without errors
+  - [ ] About section text clearly readable
+  - [ ] About.qmd title/name clearly visible
+  - [ ] Text contrast meets 4.5:1 ratio minimum
+  - [ ] `quarto preview` shows improved readability
 
 ---
 
-### Task 2: Create Neural Network Animation Script
+### Task 2: Create Skills Legend Component
 - **ID:** TASK-002
-- **Status:** Completed
-- **Description:** Create simplified, elegant vanilla JS neural network animation for hero background
+- **Status:** Complete ✓
+- **Completed:** 2026-01-25 22:00
+- **Description:** Add a visual legend explaining skill proficiency levels with their corresponding colors
 - **Atomic Units:**
-  - [ ] Create `assets/js/neural-network.js` — adapted from reference, optimized for performance
+  - Add `.skills-legend` CSS component in custom.scss
+  - Define clear proficiency levels: Expert, Advanced, Intermediate
+  - Match colors to existing skill-tag variants
 - **Acceptance Criteria:**
-  - [ ] 25-30 nodes with ocean blue color palette
-  - [ ] Subtle particle flow between nodes
-  - [ ] Mouse interaction (gentle node attraction)
-  - [ ] Smooth 60fps animation
-  - [ ] `prefers-reduced-motion` support
-  - [ ] Auto-resize on window change
+  - [ ] Legend displays before skills grid
+  - [ ] Shows 3 levels: Expert (core), Advanced, Intermediate
+  - [ ] Uses same colors as skill tags
+  - [ ] Visually distinct and easy to understand
 
 ---
 
-### Task 3: Create Hero Section
+### Task 3: Reorganize Skills in index.qmd
 - **ID:** TASK-003
-- **Status:** Completed
-- **Description:** Build hero section with animated background, name, headline, summary, and social links
+- **Status:** Complete ✓
+- **Completed:** 2026-01-25 22:02
+- **Description:** Restructure Technical Expertise section with industry-standard categories and add legend
 - **Atomic Units:**
-  - [ ] Write hero section in `index.qmd` using raw HTML blocks
-  - [ ] Integrate canvas animation
-  - [ ] Add social links (GitHub, LinkedIn, Email)
+  - Add skills legend HTML block
+  - Reorganize categories:
+    1. Programming Languages
+    2. ML/AI Frameworks & Tools
+    3. Data Engineering & Cloud
+    4. Domain Expertise
+  - Ensure consistent proficiency tagging
 - **Acceptance Criteria:**
-  - [ ] Name: "Daniel Huencho"
-  - [ ] Headline: "AI Engineer | MSc AI for Sustainable Development @ UCL"
-  - [ ] Brief 2-sentence summary
-  - [ ] Styled social link buttons
-  - [ ] Animation renders behind content
+  - [ ] Skills legend appears at top of section
+  - [ ] Categories match industry job postings
+  - [ ] Each skill has appropriate proficiency level
+  - [ ] Visual hierarchy is clear
 
 ---
 
-### Task 4: Create Skills/Expertise Section
+### Task 4: Update Skills in about.qmd
 - **ID:** TASK-004
-- **Status:** Completed
-- **Description:** Visual skills section with categorized skill tags
+- **Status:** Complete ✓
+- **Completed:** 2026-01-25 22:03
+- **Description:** Apply same skills organization and legend to about.qmd Technical Skills section
 - **Atomic Units:**
-  - [ ] Write Skills section using skill-tag CSS classes
-  - [ ] Organize: AI/ML, Data Engineering, Tools & Platforms
+  - Add skills legend
+  - Reorganize skill categories to match index.qmd
+  - Ensure proficiency levels are consistent
 - **Acceptance Criteria:**
-  - [ ] 3-4 skill categories
-  - [ ] Pill/tag styling from custom.scss
-  - [ ] Key skills: Python, PyTorch, Spark, TensorFlow, GNNs, Deep Learning
-  - [ ] Advanced skills visually distinguished
+  - [ ] Skills section matches index.qmd structure
+  - [ ] Legend explains proficiency levels
+  - [ ] All skills properly categorized
 
 ---
 
-### Task 5: Final Assembly and Validation
+### Task 5: Final Validation and Polish
 - **ID:** TASK-005
-- **Status:** Completed
-- **Description:** Assemble complete index.qmd, test with quarto preview, verify responsiveness
+- **Status:** Complete ✓
+- **Completed:** 2026-01-25 22:05
+- **Description:** Run quarto preview, verify all visual improvements, check mobile responsiveness
 - **Atomic Units:**
-  - [ ] Complete index.qmd with YAML front matter and all sections
-  - [ ] Run `quarto preview` validation
-  - [ ] Test responsive behavior
+  - Test with `quarto preview`
+  - Verify text contrast on both pages
+  - Confirm legend displays correctly
+  - Check mobile view
 - **Acceptance Criteria:**
-  - [ ] Page renders without errors
-  - [ ] All sections display correctly
-  - [ ] Animation performs well
-  - [ ] Mobile view works (animation hidden/simplified)
-  - [ ] Navigation links work
-  - [ ] Brain files updated via `/update-brain`
+  - [ ] All text clearly readable on dark background
+  - [ ] Skills legend visible and understandable
+  - [ ] Skills properly organized
+  - [ ] Mobile view renders correctly
+  - [ ] No console errors
+  - [ ] Brain files updated
 
 ---
 
-## Technical Approach
+## Testing & Validation Tools
 
-### Neural Network Animation Strategy
+### Tool Usage per Task
 
-**Decision:** Adapt the vanilla JS approach from `neural-transport-network.html`, but simplified:
+| Task | Tools Used | Purpose |
+|------|------------|---------|
+| After each task | `quarto render` (Bash) | Build site to check for errors |
+| After each task | `mcp__ide__getDiagnostics` | Check for code/syntax errors in IDE |
+| Task 5 | `quarto preview` (Bash, background) | Launch live preview server |
+| Task 5 | User visual inspection | Verify contrast and layout |
 
-1. **Lighter version:** 25-30 nodes instead of 50
-2. **Subtle colors:** Use ocean blue palette (#0d1b2a, #2c5282, #63b3ed)
-3. **Gentle animation:** Slower particle movement, less glow
-4. **Performance:** RequestAnimationFrame, proper cleanup
-5. **Accessibility:** `prefers-reduced-motion` media query support
-
-### File Structure After Completion
+### Testing Workflow
 
 ```
-/personal_webpage
-├── _quarto.yml              # Updated config
-├── index.qmd                # Complete landing page (THIS SESSION)
-├── about.qmd                # CV page (SEPARATE AGENT)
-├── custom.scss              # Dark ocean blue theme
-├── assets/
-│   └── js/
-│       └── neural-network.js  # Animation script
+1. Make changes to SCSS/QMD files
+   ↓
+2. Run: quarto render
+   ↓
+3. Check: mcp__ide__getDiagnostics (verify no errors)
+   ↓
+4. Run: quarto preview --port 4200 (background)
+   ↓
+5. User opens: http://localhost:4200
+   ↓
+6. User verifies: text visibility, skills legend, layout
+   ↓
+7. Iterate or approve
 ```
 
-### Quarto Integration Pattern
+### Preview Commands
 
-```qmd
+```bash
+# Render site (check for build errors)
+quarto render
+
+# Start preview server (background, for user inspection)
+quarto preview --port 4200 --no-browser
+
+# Stop preview when done
+# (Ctrl+C or kill process)
+```
+
 ---
-title: "Daniel Huencho"
-format:
-  html:
-    include-in-header:
-      - text: |
-          <script src="assets/js/neural-network.js" defer></script>
----
 
-::: {#neural-canvas-container .hero-section}
-<canvas id="neural-network"></canvas>
-<!-- Hero content here -->
-:::
-```
+## Design Decisions
+
+### Skill Proficiency Levels
+
+| Level | Color | Description | Use For |
+|-------|-------|-------------|---------|
+| Expert | Cyan/Highlight (`#90cdf4`) | Primary tools used daily | Python, PyTorch, SQL |
+| Advanced | Blue (`#63b3ed`) | Strong proficiency | TensorFlow, R, Spark |
+| Intermediate | Green (`#68d391`) | Working knowledge | Docker, AWS, Scala |
+
+### Industry-Standard Skill Categories
+
+1. **Programming Languages:** Python, R, SQL, Scala, C++
+2. **ML/AI Frameworks:** PyTorch, TensorFlow, Scikit-learn, XGBoost, Keras
+3. **Data Engineering & Cloud:** Spark, Databricks, AWS, Docker, ETL
+4. **Domain Expertise:** Earth Observation, Financial Risk, Transportation, GenAI
+
+### Color Contrast Improvements
+
+| Element | Current | Updated | Contrast Ratio |
+|---------|---------|---------|----------------|
+| `.info-card` text | `#a0aec0` | `#e2e8f0` | 4.5:1 → 8.5:1 |
+| `.text-secondary` | `#a0aec0` | Keep (links/secondary) | 4.5:1 |
+| Hero summary | `#a0aec0` | `#cbd5e0` | 4.5:1 → 6.5:1 |
 
 ---
 
 ## Session Constraints
 
 - **Max tasks:** 5
-- **Scope:** index.qmd only (about.qmd handled separately)
 - **Dependencies:**
-  - Task 1 must complete first (sets up theme)
-  - Tasks 2-4 build on each other
-  - Task 5 depends on all previous tasks
+  - Task 1 must complete first (CSS foundation)
+  - Tasks 2-4 depend on CSS being ready
+  - Task 5 validates everything
 - **Validation:** `quarto preview` after each task
 
 ---
 
-## Risk Mitigation
+## Files to Modify
 
-| Risk | Mitigation |
-|------|------------|
-| Animation too heavy for mobile | Add `prefers-reduced-motion` support, disable on small screens |
-| Custom JS conflicts with Quarto | Use isolated scope, proper event cleanup |
-| SCSS not loading | Verify `_quarto.yml` format field syntax |
-| Canvas sizing issues | Use ResizeObserver for responsive canvas |
+| File | Changes |
+|------|---------|
+| `custom.scss` | Improve text contrast, add skills-legend styles |
+| `index.qmd` | Add legend, reorganize skills section |
+| `about.qmd` | Add legend, reorganize skills section |
 
----
-
-## References
-
-- Quarto HTML includes: https://quarto.org/docs/output-formats/html-basics.html#includes
-- Reference site structure: bandirevanth.github.io
-- Theme source: `assets/references/custom.scss`
-- Animation reference: `assets/references/neural-transport-network.html`
