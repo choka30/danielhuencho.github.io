@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Daniel Huencho Mardini\nMSc AI for Sustainable Development @ UCL | Former Head of Data Science\n\nWith over seven years of experience delivering impactful data-driven solutions in finance and transportation, I specialize in designing AI systems for predictive maintenance, anomaly detection, and generative AI applications. Currently pursuing my Master’s at University College London, I am passionate about leveraging data and technology to innovate complex systems and create measurable societal value.\n\n\n daniel.mardini.25@ucl.ac.uk  GitHub  LinkedIn  London, UK"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\n\n\n2025 - Present\nUniversity College London (UCL)\nMaster of Science in Artificial Intelligence for Sustainable Development\n\nRelevant modules: Probabilistic Modelling, Foundations of Artificial Intelligence, Deep Representations and Learning.\n\n\n\n2019 - 2020\nPontificia Universidad Católica de Chile\nMaster of Science in Statistics\n\n\nRanked 2nd in cohort, GPA: 3.75 / 4.0\nThesis: Multinomial logit model for route choice behavior in Santiago Metro using Origin-Destination survey data and spatial predictors\nModules: Generalized Linear Models, Time Series, Bayesian Statistics, Machine Learning Applications\n\n\n\n\n2011 - 2018\nPontificia Universidad Católica de Chile\nCivil Engineer of Industry with Diploma in Transportation Engineering\n\nModules: Calculus, Differential Equations, Linear Algebra, Probability & Statistics, Operational Research, Travel Demand Modeling, Transport Network Equilibrium."
+  },
+  {
+    "objectID": "about.html#professional-experience",
+    "href": "about.html#professional-experience",
+    "title": "About",
+    "section": "Professional Experience",
+    "text": "Professional Experience\n\n\n2023 - 2025\nHead of Data Science\nMetro de Santiago, Chile\n\n\nLed a team of 5 Data Scientists and Data Engineers to design and deploy AI-driven solutions using cloud services\nArchitected end-to-end big data pipeline for high-frequency SCADA energy data, addressing complex spatial-temporal challenges\nDeveloped ensemble-based predictive maintenance model for ticket reload machines, optimizing maintenance schedules\nImplemented Generative AI agents to assist Operations Control Center and Maintenance tasks with embedded knowledge base\n\n\n\n\n2022 - 2023\nAnalytics Translator\nBanco de Crédito e Inversiones (BCI), Chile\n\n\nBridged technical data science expertise with business operations, developing strategies for digital banking ecosystem\nLed data-driven profitability initiative using behavioral and financial clustering to identify high-value segments\nDesigned optimized customer journey with A/B testing validation, increasing adoption and reducing churn\nTools: Databricks, R, Python, SQL, Spark, Scala\n\n\n\n\n2021 - 2022\nSenior Risk Management Analyst\nBanco de Chile\n\n\nMonitored provision models for portfolio risk mitigation (CMF regulatory methodology)\nLed migration of data infrastructure to Cloudera on-premises data lake platform\nPresented results in technical and executive committees for strategic decision-making\n\n\n\n\n2018 - 2021\nData Analyst, Planning and Development\nMetro de Santiago, Chile\n\n\nDeveloped ML models to describe and forecast user behavior with R (Rcpp) and Python\nLed development of train passenger density model as key KPI for service level measurement\nStrategic analysis with Chile’s Ministry of Transportation for future Metro line projects\nContributed to research on mobile phone data for mobility pattern detection"
+  },
+  {
+    "objectID": "about.html#technical-skills",
+    "href": "about.html#technical-skills",
+    "title": "About",
+    "section": "Technical Skills",
+    "text": "Technical Skills\n\n  Proficiency:\n  \n    \n    Expert\n  \n  \n    \n    Advanced\n  \n  \n    \n    Intermediate\n  \n\n\nProgramming Languages\n\nPython SQL R Scala C++\n\n\n\nMachine Learning & Deep Learning\n\nPyTorch Scikit-learn Deep Learning TensorFlow XGBoost Generative AI MLlib\n\n\n\nData Engineering & Cloud\n\nApache Spark Databricks AWS (EC2, S3, Glue, Athena) Docker Cloudera ETL Pipelines\n\n\n\nStatistical Methods\n\nBayesian Statistics Time Series Analysis Generalized Linear Models A/B Testing Survival Analysis"
+  },
+  {
+    "objectID": "about.html#languages",
+    "href": "about.html#languages",
+    "title": "About",
+    "section": "Languages",
+    "text": "Languages\n\nSpanish Native Speaker\n\n\nEnglish IELTS 8.0 (C1 - Advanced)"
+  },
+  {
+    "objectID": "about.html#conferences-events",
+    "href": "about.html#conferences-events",
+    "title": "About",
+    "section": "Conferences & Events",
+    "text": "Conferences & Events\n\n2025 | EurIPS, Copenhagen\nVolunteered facilitating logistics and technical support for workshops on AI Efficiency, Sustainability, and Earth Observation.\n\n\n2024 | InnoTrans 2024, Berlin\nRepresented Metro de Santiago at world’s largest transportation technology fair, exploring trends in sustainability, digitalization, and AI.\n\n\n2024 | OpenAI Hackathon & Conference, Latin America\nParticipated in first OpenAI event in Latin America, engaging with advancements in generative AI applications."
+  },
+  {
+    "objectID": "about.html#publications-research",
+    "href": "about.html#publications-research",
+    "title": "About",
+    "section": "Publications & Research",
+    "text": "Publications & Research\n\n2025 | XXII Congreso Chileno de Ingeniería de Transporte\nResearch on Urban Quality of Life Index focusing on environmental and social dynamics surrounding Metro stations.\n\n\n2018-2019 | Mobile Phone Antenna Data Research\nSupported academic research with Eduardo Graells-Garrido on large-scale mobility patterns. arXiv:2204.09482"
+  },
+  {
+    "objectID": "about.html#download-cv",
+    "href": "about.html#download-cv",
+    "title": "About",
+    "section": "Download CV",
+    "text": "Download CV\n Download Full CV (PDF)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Daniel Huencho",
+    "section": "",
+    "text": "AI Engineer | MSc AI for Sustainable Development @ UCL\n    \n      Bridging cutting-edge AI research with real-world impact. 7+ years leading data science initiatives\n      in transportation and finance, now focused on deep learning for disaster risk and earth observation.\n    \n    \n      \n        \n        GitHub\n      \n      \n        \n        LinkedIn\n      \n      \n        \n        Email\n      \n      \n        \n        Resume"
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Daniel Huencho",
+    "section": "About",
+    "text": "About\n\nI’m a data scientist and AI engineer with a passion for applying machine learning to solve complex, real-world challenges. Currently pursuing my MSc in AI for Sustainable Development at University College London (UCL), I bring over seven years of experience leading data science teams across transportation and financial services.\nMost recently, I served as Head of Data Science at Metro de Santiago, where I led a team of five data scientists building GenAI agents for operations and deploying Big Data pipelines that improved energy efficiency through SCADA analytics. Prior to that, I worked as an Analytics Translator at BCI and a Senior Risk Analyst at Banco de Chile, bridging the gap between business strategy and technical implementation.\nMy research interests lie at the intersection of deep learning and earth observation, particularly using methods like Deep Kernel Learning (DKL), Variational Autoencoders (VAEs), and Graph Neural Networks (GNNs) for disaster risk assessment and urban resilience.\n\nView Full Background"
+  },
+  {
+    "objectID": "index.html#technical-expertise",
+    "href": "index.html#technical-expertise",
+    "title": "Daniel Huencho",
+    "section": "Technical Expertise",
+    "text": "Technical Expertise\n\n  Proficiency:\n  \n    \n    Expert\n  \n  \n    \n    Advanced\n  \n  \n    \n    Intermediate\n  \n\n\n\nProgramming Languages\n\n\nPython SQL R Scala C++\n\n\n\n\nMachine Learning & Deep Learning\n\n\nPyTorch Deep Learning Scikit-learn TensorFlow Graph Neural Networks XGBoost Bayesian Modeling Computer Vision NLP Generative AI\n\n\n\n\nData Engineering & Cloud\n\n\nApache Spark Databricks AWS Docker PostgreSQL ETL Pipelines Cloudera\n\n\n\n\nDomain Expertise\n\n\nTransportation Analytics Financial Risk Modeling Earth Observation Geospatial Analysis Energy Optimization Disaster Risk Assessment"
+  },
+  {
+    "objectID": "index.html#highlights",
+    "href": "index.html#highlights",
+    "title": "Daniel Huencho",
+    "section": "Highlights",
+    "text": "Highlights\n\n\n\n2024 – Present\n\n\nMSc AI for Sustainable Development\n\n\nUniversity College London (UCL)\n\n\nResearch focus on deep learning methods for building damage assessment using satellite imagery. Exploring Deep Kernel Learning and Graph Neural Networks for disaster response.\n\n\n\n\n2023 – 2024\n\n\nHead of Data Science\n\n\nMetro de Santiago\n\n\nLed team of 5 data scientists. Deployed GenAI agents for operational efficiency. Built Big Data pipelines achieving 15% energy cost reduction through SCADA analytics.\n\n\n\n\n2022 – 2023\n\n\nAnalytics Translator\n\n\nBCI (Banco de Crédito e Inversiones)\n\n\nBridged business and technical teams. Implemented customer journey optimization using Databricks and Spark. Drove data-informed decision making across the organization.\n\n\n\nView Complete Experience"
+  }
+]

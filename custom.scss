@@ -1,0 +1,692 @@
+/*-- scss:defaults --*/
+
+// ===== Color Palette: Ocean Blue Dark =====
+
+// Backgrounds
+$bg-primary: #0d1b2a;
+$bg-secondary: #1b2838;
+$bg-card: #1e3a5f;
+
+// Text (improved contrast - WCAG AA compliant)
+$text-primary: #f1f5f9;      // Brighter white for headings
+$text-secondary: #cbd5e1;    // Improved contrast for body text
+$text-accent: #63b3ed;       // Keep accent blue
+$text-muted: #94a3b8;        // Brighter muted text
+
+// Accents
+$accent-primary: #2c5282;
+$accent-hover: #4299e1;
+$accent-highlight: #90cdf4;
+$accent-light: #bee3f8;
+
+// Borders
+$border-color: #2d3748;
+$border-light: #4a5568;
+
+// Quarto theme overrides
+$body-bg: $bg-primary;
+$body-color: $text-primary;
+$link-color: $text-accent;
+$link-hover-color: $accent-highlight;
+
+// Navbar
+$navbar-bg: $bg-secondary;
+$navbar-fg: $text-primary;
+
+// Typography
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$headings-font-weight: 600;
+
+/*-- scss:rules --*/
+
+// ===== Base Styles =====
+
+// Force dark theme colors (no light mode)
+body,
+html {
+  background-color: $bg-primary !important;
+  color: $text-primary !important;
+  line-height: 1.7;
+}
+
+// Ensure all containers use dark background
+.container,
+.container-fluid,
+.page-layout-full,
+#quarto-document-content {
+  background-color: $bg-primary !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $text-primary !important;
+  font-weight: 600;
+}
+
+h2 {
+  color: #f1f5f9 !important;  // Explicit bright white for section titles
+  border-bottom: 2px solid $accent-hover;
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+// Ensure Quarto doesn't override heading colors
+.quarto-title-block h1,
+#quarto-content h1,
+#quarto-content h2,
+#quarto-content h3,
+h2.anchored,
+h3.anchored {
+  color: $text-primary !important;
+}
+
+// Section titles need maximum visibility
+main h2,
+.content h2,
+article h2 {
+  color: #f1f5f9 !important;
+}
+
+a {
+  color: $text-accent;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $accent-highlight;
+  }
+}
+
+// ===== Navbar =====
+
+.navbar {
+  background-color: $bg-secondary !important;
+  border-bottom: 1px solid $border-color;
+
+  .navbar-brand {
+    color: $text-primary !important;
+    font-weight: 600;
+  }
+
+  .nav-link {
+    color: $text-secondary !important;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $text-accent !important;
+    }
+  }
+
+  .navbar-nav .nav-link.active {
+    color: $text-accent !important;
+  }
+}
+
+// ===== Hero Section with Neural Network (Index Page) =====
+
+.hero-wrapper {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: -1rem -1rem 2rem -1rem;
+  padding: 2rem;
+}
+
+#neural-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+// ===== Hero Section (About Page) =====
+
+.hero-section {
+  text-align: center;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+// ===== Shared Hero Styles =====
+
+.hero-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid $accent-primary;
+  box-shadow: 0 0 30px rgba(99, 179, 237, 0.2);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 40px rgba(99, 179, 237, 0.35);
+    transform: scale(1.02);
+  }
+}
+
+.hero-name {
+  font-size: 3rem;
+  font-weight: 700;
+  color: $text-primary !important;  // Force visibility
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  display: block;  // Ensure block display for spans
+}
+
+.hero-headline {
+  font-size: 1.3rem;
+  color: $text-accent;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+.hero-summary {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: $text-secondary;
+  font-size: 1.1rem;
+  line-height: 1.8;
+
+  // Ensure paragraphs inside also get proper color
+  p {
+    color: inherit;
+  }
+}
+
+// ===== Social Links =====
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: rgba($bg-secondary, 0.8);
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  color: $text-secondary;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background-color: $accent-primary;
+    border-color: $accent-primary;
+    color: $text-primary;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 82, 130, 0.4);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  i {
+    font-size: 1.1rem;
+  }
+}
+
+// ===== Section Styles =====
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid $accent-primary;
+}
+
+// ===== Skill Tags =====
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  background-color: $bg-secondary;
+  border: 1px solid $border-light;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: $text-secondary;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $accent-primary;
+    border-color: $accent-primary;
+    color: $text-primary;
+  }
+}
+
+// Expert level - Primary skills (cyan highlight)
+.skill-tag-expert {
+  background-color: rgba(144, 205, 244, 0.2);
+  border-color: $accent-highlight;
+  color: #a5d8ff;
+  font-weight: 500;
+}
+
+// Advanced level - Strong proficiency (blue)
+.skill-tag-advanced {
+  background-color: rgba(66, 153, 225, 0.18);
+  border-color: $accent-hover;
+  color: #7cc4f5;
+}
+
+// Intermediate level - Working knowledge (green)
+.skill-tag-intermediate {
+  background-color: rgba(72, 187, 120, 0.18);
+  border-color: #48bb78;
+  color: #7ee2a8;
+}
+
+// Keep old class names as aliases for backwards compatibility
+.skill-tag-core {
+  @extend .skill-tag-expert;
+}
+
+// ===== Skills Legend =====
+
+.skills-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background-color: rgba($bg-secondary, 0.5);
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.skills-legend-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-right: 0.5rem;
+}
+
+.skills-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot-expert {
+  background-color: rgba(144, 205, 244, 0.9);
+  border: 2px solid $accent-highlight;
+  box-shadow: 0 0 6px rgba(144, 205, 244, 0.4);
+}
+
+.legend-dot-advanced {
+  background-color: rgba(66, 153, 225, 0.8);
+  border: 2px solid $accent-hover;
+}
+
+.legend-dot-intermediate {
+  background-color: rgba(72, 187, 120, 0.8);
+  border: 2px solid #48bb78;
+}
+
+.legend-label {
+  color: $text-secondary;
+}
+
+// ===== Skill Categories =====
+
+.skill-category {
+  margin-bottom: 1.75rem;
+}
+
+.skill-category-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $text-secondary !important;  // Brighter category titles
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+// ===== Cards =====
+
+.info-card {
+  background-color: rgba($bg-secondary, 0.85);
+  border: 1px solid $border-light;
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+
+  // Improved text contrast inside cards
+  color: $text-primary;
+
+  p {
+    color: $text-secondary;
+    line-height: 1.8;
+  }
+
+  strong {
+    color: $text-accent;
+  }
+}
+
+// ===== Timeline (Experience/Education) =====
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1.5rem 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, $accent-primary, $accent-hover);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background-color: $accent-hover;
+    border: 2px solid $bg-primary;
+    border-radius: 50%;
+    transform: translateX(-5px);
+  }
+}
+
+.timeline-date {
+  font-size: 0.85rem;
+  color: $text-accent;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-subtitle {
+  font-size: 0.95rem;
+  color: $text-secondary;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+  color: $text-secondary;
+  font-size: 0.95rem;
+
+  ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.25rem;
+  }
+
+  li {
+    margin-bottom: 0.35rem;
+  }
+}
+
+// ===== CTA Buttons =====
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: $accent-primary;
+  color: $text-primary;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background-color: $accent-hover;
+    color: $text-primary;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: $text-accent;
+  border: 1px solid $accent-primary;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background-color: $accent-primary;
+    color: $text-primary;
+  }
+}
+
+// ===== Download Button =====
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: $accent-primary;
+  color: $text-primary;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $accent-hover;
+    color: $text-primary;
+    transform: translateY(-2px);
+  }
+}
+
+// ===== Conference/Publication Items =====
+
+.event-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.event-year {
+  font-size: 0.85rem;
+  color: $text-accent;
+  font-weight: 600;
+}
+
+.event-title {
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.event-description {
+  font-size: 0.9rem;
+  color: $text-secondary;
+}
+
+// ===== Language Pills =====
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.language-name {
+  font-weight: 500;
+  color: $text-primary;
+  min-width: 100px;
+}
+
+.language-level {
+  font-size: 0.9rem;
+  color: $text-secondary;
+}
+
+// ===== Responsive =====
+
+@media (max-width: 768px) {
+  .hero-wrapper {
+    min-height: 70vh;
+    padding: 1rem;
+  }
+
+  .hero-name {
+    font-size: 2.25rem;
+  }
+
+  .hero-headline {
+    font-size: 1.1rem;
+  }
+
+  .hero-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .hero-summary {
+    font-size: 1rem;
+  }
+
+  .social-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  #neural-canvas {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #neural-canvas {
+    display: none;
+  }
+
+  .hero-wrapper {
+    background: linear-gradient(135deg, $bg-primary 0%, $bg-secondary 100%);
+  }
+}
+
+// ===== Quarto Overrides =====
+
+// Hide all title blocks (text appearing over hero image)
+.quarto-title,
+.quarto-title-block,
+.quarto-title-banner,
+header#title-block-header,
+#title-block-header,
+.title-block {
+  display: none !important;
+}
+
+#quarto-content {
+  background-color: $bg-primary;
+}
+
+.page-columns {
+  background-color: $bg-primary;
+}
+
+main {
+  background-color: $bg-primary;
+}
+
+main.content {
+  padding-top: 0;
+}
+
+code {
+  background-color: $bg-secondary;
+  color: $accent-highlight;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+// Hide TOC on home page
+.toc {
+  display: none;
+}
+
+// Full width content
+#quarto-content > * {
+  max-width: 100%;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
