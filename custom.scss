@@ -94,7 +94,7 @@ a {
   }
 }
 
-// ===== Hero Section with Neural Network =====
+// ===== Hero Section with Neural Network (Index Page) =====
 
 .hero-wrapper {
   position: relative;
@@ -123,6 +123,16 @@ a {
   max-width: 800px;
   padding: 2rem;
 }
+
+// ===== Hero Section (About Page) =====
+
+.hero-section {
+  text-align: center;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+// ===== Shared Hero Styles =====
 
 .hero-photo {
   width: 160px;
@@ -198,6 +208,10 @@ a {
     width: 18px;
     height: 18px;
   }
+
+  i {
+    font-size: 1.1rem;
+  }
 }
 
 // ===== Section Styles =====
@@ -247,6 +261,12 @@ a {
   background-color: rgba(99, 179, 237, 0.2);
   border-color: $text-accent;
   color: $accent-highlight;
+}
+
+.skill-tag-intermediate {
+  background-color: rgba(72, 187, 120, 0.15);
+  border-color: #48bb78;
+  color: #68d391;
 }
 
 // ===== Skill Categories =====
@@ -389,6 +409,75 @@ a {
     background-color: $accent-primary;
     color: $text-primary;
   }
+}
+
+// ===== Download Button =====
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: $accent-primary;
+  color: $text-primary;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $accent-hover;
+    color: $text-primary;
+    transform: translateY(-2px);
+  }
+}
+
+// ===== Conference/Publication Items =====
+
+.event-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.event-year {
+  font-size: 0.85rem;
+  color: $text-accent;
+  font-weight: 600;
+}
+
+.event-title {
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.event-description {
+  font-size: 0.9rem;
+  color: $text-secondary;
+}
+
+// ===== Language Pills =====
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.language-name {
+  font-weight: 500;
+  color: $text-primary;
+  min-width: 100px;
+}
+
+.language-level {
+  font-size: 0.9rem;
+  color: $text-secondary;
 }
 
 // ===== Responsive =====

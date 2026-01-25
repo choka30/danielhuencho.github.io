@@ -21,10 +21,10 @@ website:
         text: About
     right:
       - icon: github
-        href: https://github.com/dhuencho
+        href: https://github.com/choka30
         aria-label: GitHub
       - icon: linkedin
-        href: https://linkedin.com/in/danielhuencho
+        href: https://www.linkedin.com/in/daniel-huencho-mardini-9568489a/
         aria-label: LinkedIn
 
 format:

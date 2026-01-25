@@ -1,6 +1,233 @@
 ---
 title: "About"
-description: "Daniel Huencho - Background and Experience"
+description: "Daniel Huencho Mardini - Data Scientist, AI Researcher, and MSc candidate at UCL"
+pagetitle: "About | Daniel Huencho"
 ---
 
-*Content coming soon. This page is being developed separately.*
+::: {.hero-section}
+
+![](./assets/images/my_photo_professional.jpeg){.hero-photo fig-alt="Daniel Huencho Mardini"}
+
+[Daniel Huencho Mardini]{.hero-name}
+
+[MSc AI for Sustainable Development @ UCL | Former Head of Data Science]{.hero-headline}
+
+::: {.hero-summary}
+With over seven years of experience delivering impactful data-driven solutions in finance and transportation, I specialize in designing AI systems for predictive maintenance, anomaly detection, and generative AI applications. Currently pursuing my Master's at University College London, I am passionate about leveraging data and technology to innovate complex systems and create measurable societal value.
+:::
+
+::: {.social-links}
+[{{< fa envelope >}} daniel.mardini.25@ucl.ac.uk](mailto:daniel.mardini.25@ucl.ac.uk){.social-link}
+[{{< fa brands github >}} GitHub](https://github.com/choka30){.social-link}
+[{{< fa brands linkedin >}} LinkedIn](https://www.linkedin.com/in/daniel-huencho-mardini-9568489a/){.social-link}
+[{{< fa map-marker-alt >}} London, UK](https://maps.google.com/?q=London,UK){.social-link}
+:::
+
+:::
+
+## Education
+
+::: {.timeline}
+
+::: {.timeline-item}
+[2025 - Present]{.timeline-date}
+
+[University College London (UCL)]{.timeline-title}
+
+[Master of Science in Artificial Intelligence for Sustainable Development]{.timeline-subtitle}
+
+::: {.timeline-content}
+Relevant modules: Probabilistic Modelling, Foundations of Artificial Intelligence, Deep Representations and Learning.
+:::
+:::
+
+::: {.timeline-item}
+[2019 - 2020]{.timeline-date}
+
+[Pontificia Universidad Católica de Chile]{.timeline-title}
+
+[Master of Science in Statistics]{.timeline-subtitle}
+
+::: {.timeline-content}
+- Ranked 2nd in cohort, GPA: 3.75 / 4.0
+- Thesis: Multinomial logit model for route choice behavior in Santiago Metro using Origin-Destination survey data and spatial predictors
+- Modules: Generalized Linear Models, Time Series, Bayesian Statistics, Machine Learning Applications
+:::
+:::
+
+::: {.timeline-item}
+[2011 - 2018]{.timeline-date}
+
+[Pontificia Universidad Católica de Chile]{.timeline-title}
+
+[Civil Engineer of Industry with Diploma in Transportation Engineering]{.timeline-subtitle}
+
+::: {.timeline-content}
+Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statistics, Operational Research, Travel Demand Modeling, Transport Network Equilibrium.
+:::
+:::
+
+:::
+
+## Professional Experience
+
+::: {.timeline}
+
+::: {.timeline-item}
+[2023 - 2025]{.timeline-date}
+
+[Head of Data Science]{.timeline-title}
+
+[Metro de Santiago, Chile]{.timeline-subtitle}
+
+::: {.timeline-content}
+- Led a team of 5 Data Scientists and Data Engineers to design and deploy AI-driven solutions using cloud services
+- Architected end-to-end big data pipeline for high-frequency SCADA energy data, addressing complex spatial-temporal challenges
+- Developed ensemble-based predictive maintenance model for ticket reload machines, optimizing maintenance schedules
+- Implemented Generative AI agents to assist Operations Control Center and Maintenance tasks with embedded knowledge base
+:::
+:::
+
+::: {.timeline-item}
+[2022 - 2023]{.timeline-date}
+
+[Analytics Translator]{.timeline-title}
+
+[Banco de Crédito e Inversiones (BCI), Chile]{.timeline-subtitle}
+
+::: {.timeline-content}
+- Bridged technical data science expertise with business operations, developing strategies for digital banking ecosystem
+- Led data-driven profitability initiative using behavioral and financial clustering to identify high-value segments
+- Designed optimized customer journey with A/B testing validation, increasing adoption and reducing churn
+- Tools: Databricks, R, Python, SQL, Spark, Scala
+:::
+:::
+
+::: {.timeline-item}
+[2021 - 2022]{.timeline-date}
+
+[Senior Risk Management Analyst]{.timeline-title}
+
+[Banco de Chile]{.timeline-subtitle}
+
+::: {.timeline-content}
+- Monitored provision models for portfolio risk mitigation (CMF regulatory methodology)
+- Led migration of data infrastructure to Cloudera on-premises data lake platform
+- Presented results in technical and executive committees for strategic decision-making
+:::
+:::
+
+::: {.timeline-item}
+[2018 - 2021]{.timeline-date}
+
+[Data Analyst, Planning and Development]{.timeline-title}
+
+[Metro de Santiago, Chile]{.timeline-subtitle}
+
+::: {.timeline-content}
+- Developed ML models to describe and forecast user behavior with R (Rcpp) and Python
+- Led development of train passenger density model as key KPI for service level measurement
+- Strategic analysis with Chile's Ministry of Transportation for future Metro line projects
+- Contributed to research on mobile phone data for mobility pattern detection
+:::
+:::
+
+:::
+
+## Technical Skills
+
+::: {.skill-category}
+[Programming & Data]{.skill-category-title}
+
+::: {.skills-container}
+[Python]{.skill-tag .skill-tag-advanced}
+[R]{.skill-tag .skill-tag-advanced}
+[SQL]{.skill-tag .skill-tag-advanced}
+[C++]{.skill-tag .skill-tag-intermediate}
+[Scala]{.skill-tag .skill-tag-intermediate}
+:::
+:::
+
+::: {.skill-category}
+[Machine Learning & AI]{.skill-category-title}
+
+::: {.skills-container}
+[PyTorch]{.skill-tag .skill-tag-advanced}
+[Scikit-learn]{.skill-tag .skill-tag-advanced}
+[MLlib]{.skill-tag .skill-tag-intermediate}
+[Generative AI]{.skill-tag .skill-tag-intermediate}
+[Deep Learning]{.skill-tag .skill-tag-intermediate}
+:::
+:::
+
+::: {.skill-category}
+[Big Data & Cloud]{.skill-category-title}
+
+::: {.skills-container}
+[Apache Spark]{.skill-tag .skill-tag-intermediate}
+[AWS (EC2, S3, Glue, Athena)]{.skill-tag .skill-tag-intermediate}
+[Databricks]{.skill-tag .skill-tag-intermediate}
+[Docker]{.skill-tag .skill-tag-intermediate}
+[Cloudera]{.skill-tag .skill-tag-intermediate}
+:::
+:::
+
+::: {.skill-category}
+[Statistical Methods]{.skill-category-title}
+
+::: {.skills-container}
+[Bayesian Statistics]{.skill-tag}
+[Time Series Analysis]{.skill-tag}
+[Generalized Linear Models]{.skill-tag}
+[Survival Analysis]{.skill-tag}
+[A/B Testing]{.skill-tag}
+:::
+:::
+
+## Languages
+
+::: {.language-item}
+[Spanish]{.language-name} [Native Speaker]{.language-level}
+:::
+
+::: {.language-item}
+[English]{.language-name} [IELTS 8.0 (C1 - Advanced)]{.language-level}
+:::
+
+## Conferences & Events
+
+::: {.event-item}
+[2025]{.event-year} | [EurIPS, Copenhagen]{.event-title}
+
+[Volunteered facilitating logistics and technical support for workshops on AI Efficiency, Sustainability, and Earth Observation.]{.event-description}
+:::
+
+::: {.event-item}
+[2024]{.event-year} | [InnoTrans 2024, Berlin]{.event-title}
+
+[Represented Metro de Santiago at world's largest transportation technology fair, exploring trends in sustainability, digitalization, and AI.]{.event-description}
+:::
+
+::: {.event-item}
+[2024]{.event-year} | [OpenAI Hackathon & Conference, Latin America]{.event-title}
+
+[Participated in first OpenAI event in Latin America, engaging with advancements in generative AI applications.]{.event-description}
+:::
+
+## Publications & Research
+
+::: {.event-item}
+[2025]{.event-year} | [XXII Congreso Chileno de Ingeniería de Transporte]{.event-title}
+
+[Research on Urban Quality of Life Index focusing on environmental and social dynamics surrounding Metro stations.]{.event-description}
+:::
+
+::: {.event-item}
+[2018-2019]{.event-year} | [Mobile Phone Antenna Data Research]{.event-title}
+
+[Supported academic research with Eduardo Graells-Garrido on large-scale mobility patterns. [arXiv:2204.09482](https://arxiv.org/pdf/2204.09482)]{.event-description}
+:::
+
+## Download CV
+
+[{{< fa file-pdf >}} Download Full CV (PDF)](./assets/CV%20DHM%2020251222.pdf){.btn-download}
