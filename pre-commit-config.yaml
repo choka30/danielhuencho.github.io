@@ -1,0 +1,103 @@
+# Pre-commit hooks configuration
+# Install: poetry run pre-commit install
+# Run all: poetry run pre-commit run --all-files
+# Update hooks: poetry run pre-commit autoupdate
+
+repos:
+  # ===================
+  # General
+  # ===================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=5000']
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: no-commit-to-branch
+        args: ['--branch', 'main', '--branch', 'master']
+
+  # ===================
+  # Python Formatting
+  # ===================
+  - repo: https://github.com/psf/black
+    rev: 24.1.0
+    hooks:
+      - id: black
+        args: ['--line-length=88']
+        language_version: python3.11
+
+  # ===================
+  # Import Sorting
+  # ===================
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ['--profile=black']
+
+  # ===================
+  # Linting
+  # ===================
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.14
+    hooks:
+      - id: ruff
+        args: ['--fix', '--exit-non-zero-on-fix']
+
+  # ===================
+  # Type Checking (Optional)
+  # ===================
+  # Uncomment if using mypy
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: v1.8.0
+  #   hooks:
+  #     - id: mypy
+  #       additional_dependencies:
+  #         - types-requests
+  #         - pandas-stubs
+  #       args: ['--ignore-missing-imports']
+
+  # ===================
+  # Security
+  # ===================
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: '\.env\.example$'
+
+  # ===================
+  # Jupyter Notebooks
+  # ===================
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.7.1
+    hooks:
+      - id: nbstripout
+        description: Strip output from Jupyter notebooks
+
+  # ===================
+  # YAML/TOML Formatting
+  # ===================
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v2.12.0
+    hooks:
+      - id: pretty-format-yaml
+        args: ['--autofix', '--indent=2']
+        exclude: '\.pre-commit-config\.yaml$'
+
+# ===================
+# Configuration
+# ===================
+default_language_version:
+  python: python3.11
+
+ci:
+  autofix_commit_msg: 'style: auto-fix by pre-commit hooks'
+  autoupdate_commit_msg: 'chore: update pre-commit hooks'

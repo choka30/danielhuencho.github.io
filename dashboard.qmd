@@ -1,0 +1,36 @@
+---
+Title: Personal Dashboard
+Date: 2024-06-15
+Format: dashboard
+---
+
+# Welcome to My Personal Dashboard
+
+This dashboard provides an overview of my activities, projects, and interests.
+
+## Recent Activities
+
+- Activity 1: Description of activity 1.
+- Activity 2: Description of activity 2.
+- Activity 3: Description of activity 3.
+
+## Matplotlib Visualization Example
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+# Generate sample data
+x = np.linspace(0, 10, 100)
+y = np.sin(x)       
+
+# Create a plot
+plt.figure(figsize=(8, 5))
+plt.plot(x, y, label='Sine Wave', color='blue')
+plt.title('Sample Sine Wave Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.legend()
+plt.grid(True)
+plt.show()
+```     
+

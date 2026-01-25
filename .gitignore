@@ -1,0 +1,193 @@
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ===========================
+# Virtual Environments
+# ===========================
+.venv/
+venv/
+ENV/
+env/
+
+# ===========================
+# Poetry
+# ===========================
+# poetry.lock is typically committed, uncomment if you don't want it
+# poetry.lock
+
+# ===========================
+# IDE / Editors
+# ===========================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.spyderproject
+.spyproject
+
+# ===========================
+# Jupyter Notebooks
+# ===========================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ===========================
+# Testing / Coverage
+# ===========================
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+pytest_cache/
+coverage.xml
+*.cover
+*.py,cover
+
+# ===========================
+# Type Checking
+# ===========================
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ===========================
+# Secrets & Environment
+# ===========================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+**/service_account*.json
+secrets/
+
+# ===========================
+# Data (Large Files)
+# ===========================
+data/raw/
+data/processed/
+data/models/
+data/optuna/
+data/interim/
+data
+
+# Geospatial formats
+*.tif
+*.tiff
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.geojson
+!tests/fixtures/**/*.geojson
+
+# Tabular data
+*.csv
+!tests/fixtures/**/*.csv
+*.parquet
+*.h5
+*.hdf5
+
+# ===========================
+# ML Models & Checkpoints
+# ===========================
+*.pt
+*.pth
+*.pkl
+*.pickle
+*.joblib
+*.onnx
+checkpoints/
+mlruns/
+wandb/
+
+# ===========================
+# Optuna
+# ===========================
+*.db
+!tests/fixtures/**/*.db
+
+# ===========================
+# Brain Backups (Local Only)
+# ===========================
+.brain-backups/
+
+# ===========================
+# OS Generated
+# ===========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================
+# Logs
+# ===========================
+logs/
+*.log
+
+# ===========================
+# Temporary Files
+# ===========================
+legacy/
+tmp/
+temp/
+*.tmp
+*.temp
+
+# ===========================
+# Quarto
+# ===========================
+# Quarto cache and project files
+/.quarto/
+.quarto/
+
+# Rendered output directory
+_site/
+_book/
+_manuscript/
+
+# Freeze directory (computational cache)
+_freeze/
+
+# Intermediate notebook files
+**/*.quarto_ipynb
+
+# Figure and asset directories generated during render
+*_files/
+
+# Lua language server config (auto-generated)
+.luarc.json
+
+# Quarto publish directory
+_publish/
