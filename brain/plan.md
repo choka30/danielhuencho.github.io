@@ -1,154 +1,188 @@
 # Session Plan
 
-> Created: 2026-01-25
-> Request: "Update CLAUDE.md, brain/ files, and skills for a Quarto-based Data Science portfolio website"
-> Branch: main (personal_webpage project)
-> Session ID: 20260125_BRAIN_RESTRUCTURE
+> Created: 2026-01-25 20:30
+> Request: "Create professional, creative index.qmd for AI engineer portfolio with dark ocean blue theme, interactive neural network visualization"
+> Branch: pw_index_page
+> Session ID: 20260125_INDEX_PAGE
+> Scope: **index.qmd ONLY** (about.qmd handled by separate agent)
+> **Status: SESSION COMPLETE**
 
-## Context Analysis
+## Context Summary
 
-### Current Problem
-The brain architecture was copied from an ML project (Deep Kernel Building Damage Assessment) and doesn't match this Quarto portfolio project. Key mismatches:
+**Goal:** Create a polished landing page (`index.qmd`) that:
+1. Uses professional dark ocean blue theme (from `assets/references/custom.scss`)
+2. Has clean, interactive neural network background animation
+3. Follows structure inspired by bandirevanth.github.io (Hero → Brief Bio → Skills)
+4. Works natively with Quarto (vanilla JS, no React dependencies)
 
-| Component | Current State | Required State |
-|-----------|---------------|----------------|
-| CLAUDE.md | References PyTorch, pytest, ML workflows | Quarto website workflows |
-| brain/general_index.md | Documents src/, notebooks/ structure | Should document Quarto structure |
-| brain/codebase_index.md | Documents ML functions/classes | Should document .qmd pages, components |
-| brain/development_standard.md | Python/ML standards | Quarto/SCSS/content standards |
-| Skills | TDD-focused (pytest) | Content-focused (quarto preview/render) |
+**Key Constraints:**
+- Quarto doesn't support React/JSX directly — must use vanilla JavaScript
+- Animation should be elegant and subtle (not distracting)
+- Must be responsive and performant
+- Content reflects Daniel Huencho's AI/ML expertise
+- **Do NOT modify about.qmd** — separate agent handles that
 
-### Design Principles for Portfolio Brain
-
-1. **Content-Centric**: Track pages, sections, assets instead of functions/classes
-2. **Worktree-Compatible**: plan.md remains session-specific, other files persist
-3. **Quarto-Native**: Commands align with `quarto preview`, `quarto render`
-4. **Portfolio-Focused**: Standards for academic content, not code testing
+**Reference Files Analysis:**
+- `custom.scss`: Ocean blue dark theme palette ($bg-primary: #0d1b2a, $accent: #2c5282)
+- `neural-transport-network.html`: Vanilla JS canvas-based network animation (can adapt)
+- `network-visualization.jsx`: React component (use as design reference only)
 
 ---
 
 ## Tasks
 
-### Task 1: Rewrite CLAUDE.md for Quarto Portfolio
+### Task 1: Setup Site Configuration & Theme
 - **ID:** TASK-001
-- **Status:** Pending
+- **Status:** Completed
+- **Description:** Update `_quarto.yml` to use custom.scss theme and copy theme file to project root
 - **Atomic Units:**
-  - [ ] Create new `CLAUDE.md` with Quarto-specific mission, tech stack, commands
+  - [ ] Update `_quarto.yml` with proper site config
+  - [ ] Copy `custom.scss` from `assets/references/` to project root
 - **Acceptance Criteria:**
-  - [ ] Mission reflects portfolio website goal
-  - [ ] Tech stack shows Quarto, SCSS, Python (for notebooks)
-  - [ ] Quick Start uses `quarto preview`
-  - [ ] Brain integration section preserved
-  - [ ] Skills reference updated for content workflows
+  - [ ] Site title shows "Daniel Huencho | AI Engineer"
+  - [ ] Theme uses dark ocean blue palette
+  - [ ] Navigation includes Home, About links
+  - [ ] `quarto preview` runs without errors
 
 ---
 
-### Task 2: Rewrite brain/general_index.md
+### Task 2: Create Neural Network Animation Script
 - **ID:** TASK-002
-- **Status:** Pending
+- **Status:** Completed
+- **Description:** Create simplified, elegant vanilla JS neural network animation for hero background
 - **Atomic Units:**
-  - [ ] Create new `general_index.md` documenting Quarto project structure
+  - [ ] Create `assets/js/neural-network.js` — adapted from reference, optimized for performance
 - **Acceptance Criteria:**
-  - [ ] Directory tree matches actual + target structure
-  - [ ] Folder types: `[CONTENT]`, `[ASSETS]`, `[CONFIG]`, `[META]`
-  - [ ] Key paths reference Quarto-specific locations
-  - [ ] Target architecture from project_context.md included
+  - [ ] 25-30 nodes with ocean blue color palette
+  - [ ] Subtle particle flow between nodes
+  - [ ] Mouse interaction (gentle node attraction)
+  - [ ] Smooth 60fps animation
+  - [ ] `prefers-reduced-motion` support
+  - [ ] Auto-resize on window change
 
 ---
 
-### Task 3: Rewrite brain/codebase_index.md → content_index.md
+### Task 3: Create Hero Section
 - **ID:** TASK-003
-- **Status:** Pending
+- **Status:** Completed
+- **Description:** Build hero section with animated background, name, headline, summary, and social links
 - **Atomic Units:**
-  - [ ] Rename to `content_index.md` (better reflects Quarto portfolio)
-  - [ ] Document pages, sections, components instead of functions/classes
+  - [ ] Write hero section in `index.qmd` using raw HTML blocks
+  - [ ] Integrate canvas animation
+  - [ ] Add social links (GitHub, LinkedIn, Email)
 - **Acceptance Criteria:**
-  - [ ] Tracks each .qmd page with purpose and status
-  - [ ] Tracks each notebook with intended showcase
-  - [ ] Tracks assets (images, CV PDF)
-  - [ ] Content roadmap replaces implementation roadmap
+  - [ ] Name: "Daniel Huencho"
+  - [ ] Headline: "AI Engineer | MSc AI for Sustainable Development @ UCL"
+  - [ ] Brief 2-sentence summary
+  - [ ] Styled social link buttons
+  - [ ] Animation renders behind content
 
 ---
 
-### Task 4: Rewrite brain/development_standard.md → content_standard.md
+### Task 4: Create Skills/Expertise Section
 - **ID:** TASK-004
-- **Status:** Pending
+- **Status:** Completed
+- **Description:** Visual skills section with categorized skill tags
 - **Atomic Units:**
-  - [ ] Rename to `content_standard.md`
-  - [ ] Replace Python/ML standards with Quarto/content standards
+  - [ ] Write Skills section using skill-tag CSS classes
+  - [ ] Organize: AI/ML, Data Engineering, Tools & Platforms
 - **Acceptance Criteria:**
-  - [ ] YAML front matter standards
-  - [ ] SCSS/CSS styling guidelines
-  - [ ] Image optimization standards
-  - [ ] Notebook best practices for portfolio display
-  - [ ] Commit message format preserved
-  - [ ] Definition of Done adapted for content tasks
+  - [ ] 3-4 skill categories
+  - [ ] Pill/tag styling from custom.scss
+  - [ ] Key skills: Python, PyTorch, Spark, TensorFlow, GNNs, Deep Learning
+  - [ ] Advanced skills visually distinguished
 
 ---
 
-### Task 5: Update Key Skills for Quarto Workflow
+### Task 5: Final Assembly and Validation
 - **ID:** TASK-005
-- **Status:** Pending
+- **Status:** Completed
+- **Description:** Assemble complete index.qmd, test with quarto preview, verify responsiveness
 - **Atomic Units:**
-  - [ ] Update `/task` skill (remove pytest, add quarto preview checks)
-  - [ ] Update `/status` skill (remove test health, add page status)
-  - [ ] Update `/update-brain` skill (adapt for content tracking)
+  - [ ] Complete index.qmd with YAML front matter and all sections
+  - [ ] Run `quarto preview` validation
+  - [ ] Test responsive behavior
 - **Acceptance Criteria:**
-  - [ ] `/task` uses quarto-appropriate validation
-  - [ ] `/status` shows page completion, asset status, build health
-  - [ ] `/update-brain` syncs content_index.md correctly
+  - [ ] Page renders without errors
+  - [ ] All sections display correctly
+  - [ ] Animation performs well
+  - [ ] Mobile view works (animation hidden/simplified)
+  - [ ] Navigation links work
+  - [ ] Brain files updated via `/update-brain`
 
 ---
 
-### Task 6: Reset brain/history_log.md for Fresh Start
-- **ID:** TASK-006
-- **Status:** Pending
-- **Atomic Units:**
-  - [ ] Archive old ML project history
-  - [ ] Reset statistics for portfolio project
-- **Acceptance Criteria:**
-  - [ ] Previous session archived in collapsible section
-  - [ ] Statistics reset to 0
-  - [ ] Ready for first portfolio session
+## Technical Approach
+
+### Neural Network Animation Strategy
+
+**Decision:** Adapt the vanilla JS approach from `neural-transport-network.html`, but simplified:
+
+1. **Lighter version:** 25-30 nodes instead of 50
+2. **Subtle colors:** Use ocean blue palette (#0d1b2a, #2c5282, #63b3ed)
+3. **Gentle animation:** Slower particle movement, less glow
+4. **Performance:** RequestAnimationFrame, proper cleanup
+5. **Accessibility:** `prefers-reduced-motion` media query support
+
+### File Structure After Completion
+
+```
+/personal_webpage
+├── _quarto.yml              # Updated config
+├── index.qmd                # Complete landing page (THIS SESSION)
+├── about.qmd                # CV page (SEPARATE AGENT)
+├── custom.scss              # Dark ocean blue theme
+├── assets/
+│   └── js/
+│       └── neural-network.js  # Animation script
+```
+
+### Quarto Integration Pattern
+
+```qmd
+---
+title: "Daniel Huencho"
+format:
+  html:
+    include-in-header:
+      - text: |
+          <script src="assets/js/neural-network.js" defer></script>
+---
+
+::: {#neural-canvas-container .hero-section}
+<canvas id="neural-network"></canvas>
+<!-- Hero content here -->
+:::
+```
 
 ---
 
 ## Session Constraints
 
-- **Max tasks:** 6
+- **Max tasks:** 5
+- **Scope:** index.qmd only (about.qmd handled separately)
 - **Dependencies:**
-  - Task 1 should be done first (CLAUDE.md sets the tone)
-  - Tasks 2-4 can be parallelized
-  - Task 5 depends on understanding new brain structure
-  - Task 6 is independent
-
-## Architecture Decision: File Naming
-
-**Proposal:** Rename brain files for better semantic clarity:
-
-| Current Name | Proposed Name | Rationale |
-|--------------|---------------|-----------|
-| `codebase_index.md` | `content_index.md` | Portfolio tracks content, not code |
-| `development_standard.md` | `content_standard.md` | Standards are for content creation |
-| `general_index.md` | (keep) | Still describes project structure |
-| `plan.md` | (keep) | Session task planning |
-| `history_log.md` | (keep) | Session history |
-
-**Trade-off:** Renaming requires updating all skill references. Worth it for long-term clarity.
+  - Task 1 must complete first (sets up theme)
+  - Tasks 2-4 build on each other
+  - Task 5 depends on all previous tasks
+- **Validation:** `quarto preview` after each task
 
 ---
 
-## Notes
+## Risk Mitigation
 
-- Skills that don't apply to Quarto (like `/test`) could be repurposed or kept as stubs
-- The worktree workflow still makes sense for parallel content development
-- `quarto preview` replaces `pytest` as the primary validation mechanism
-- Consider adding `/preview` skill specifically for Quarto live preview
+| Risk | Mitigation |
+|------|------------|
+| Animation too heavy for mobile | Add `prefers-reduced-motion` support, disable on small screens |
+| Custom JS conflicts with Quarto | Use isolated scope, proper event cleanup |
+| SCSS not loading | Verify `_quarto.yml` format field syntax |
+| Canvas sizing issues | Use ResizeObserver for responsive canvas |
 
 ---
 
 ## References
 
-- Project context: `project_context.md`
-- Quarto docs: https://quarto.org/docs/websites/
-- Target audience: UK tech recruiters, academic reviewers
+- Quarto HTML includes: https://quarto.org/docs/output-formats/html-basics.html#includes
+- Reference site structure: bandirevanth.github.io
+- Theme source: `assets/references/custom.scss`
+- Animation reference: `assets/references/neural-transport-network.html`

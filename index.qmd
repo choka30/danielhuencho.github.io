@@ -1,19 +1,192 @@
-## Hello, world! 
-This is my personal webpage built with Quarto.
+---
+title: "Daniel Huencho"
+description: "AI Engineer & Data Scientist | MSc AI for Sustainable Development @ UCL"
+pagetitle: "Daniel Huencho | AI Engineer"
+format:
+  html:
+    toc: false
+    page-layout: full
+    include-after-body:
+      - text: |
+          <script src="assets/js/neural-network.js"></script>
+---
 
-### About Me
+```{=html}
+<div class="hero-wrapper">
+  <canvas id="neural-canvas"></canvas>
+  <div class="hero-content">
+    <img src="assets/images/my_photo_professional.jpeg" alt="Daniel Huencho" class="hero-photo">
+    <h1 class="hero-name">Daniel Huencho</h1>
+    <p class="hero-headline">AI Engineer | MSc AI for Sustainable Development @ UCL</p>
+    <p class="hero-summary">
+      Bridging cutting-edge AI research with real-world impact. 7+ years leading data science initiatives
+      in transportation and finance, now focused on deep learning for disaster risk and earth observation.
+    </p>
+    <div class="social-links">
+      <a href="https://github.com/dhuencho" class="social-link" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/danielhuencho" class="social-link" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:daniel.huencho@ucl.ac.uk" class="social-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        Email
+      </a>
+      <a href="about.qmd" class="social-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Resume
+      </a>
+    </div>
+  </div>
+</div>
+```
 
-My name is [Your Name], and I am a [Your Profession/Occupation]. I have a passion for [Your Interests or Hobbies].
+## About
 
-### Projects
+::: {.info-card}
+I'm a data scientist and AI engineer with a passion for applying machine learning to solve complex, real-world challenges. Currently pursuing my **MSc in AI for Sustainable Development at University College London (UCL)**, I bring over seven years of experience leading data science teams across transportation and financial services.
 
-Here are some of my recent projects:
+Most recently, I served as **Head of Data Science at Metro de Santiago**, where I led a team of five data scientists building GenAI agents for operations and deploying Big Data pipelines that improved energy efficiency through SCADA analytics. Prior to that, I worked as an Analytics Translator at BCI and a Senior Risk Analyst at Banco de Chile, bridging the gap between business strategy and technical implementation.
 
-- **Project 1**: A brief description of Project 1.
-- **Project 2**: A brief description of Project 2.
-- **Project 3**: A brief description of Project 3.
+My research interests lie at the intersection of **deep learning and earth observation**, particularly using methods like Deep Kernel Learning (DKL), Variational Autoencoders (VAEs), and Graph Neural Networks (GNNs) for disaster risk assessment and urban resilience.
+:::
 
-dsfsdf
+[View Full Background](about.qmd){.btn-secondary}
 
-### Contact Me  
-You can reach me at ...
+## Technical Expertise
+
+::: {.skill-category}
+::: {.skill-category-title}
+Machine Learning & AI
+:::
+::: {.skills-container}
+[Deep Learning]{.skill-tag .skill-tag-core}
+[PyTorch]{.skill-tag .skill-tag-core}
+[TensorFlow]{.skill-tag .skill-tag-advanced}
+[Graph Neural Networks]{.skill-tag .skill-tag-core}
+[Variational Autoencoders]{.skill-tag .skill-tag-advanced}
+[Deep Kernel Learning]{.skill-tag .skill-tag-advanced}
+[Computer Vision]{.skill-tag}
+[NLP]{.skill-tag}
+[Bayesian Modeling]{.skill-tag .skill-tag-advanced}
+[Scikit-learn]{.skill-tag}
+[XGBoost]{.skill-tag}
+:::
+:::
+
+::: {.skill-category}
+::: {.skill-category-title}
+Data Engineering & Big Data
+:::
+::: {.skills-container}
+[Apache Spark]{.skill-tag .skill-tag-core}
+[PySpark]{.skill-tag .skill-tag-core}
+[Databricks]{.skill-tag .skill-tag-advanced}
+[SQL]{.skill-tag .skill-tag-core}
+[PostgreSQL]{.skill-tag}
+[Cloudera]{.skill-tag}
+[ETL Pipelines]{.skill-tag}
+[Data Modeling]{.skill-tag}
+[SCADA Systems]{.skill-tag}
+:::
+:::
+
+::: {.skill-category}
+::: {.skill-category-title}
+Programming & Tools
+:::
+::: {.skills-container}
+[Python]{.skill-tag .skill-tag-core}
+[R]{.skill-tag .skill-tag-advanced}
+[Git]{.skill-tag}
+[Docker]{.skill-tag}
+[AWS]{.skill-tag}
+[Linux]{.skill-tag}
+[Jupyter]{.skill-tag}
+[VS Code]{.skill-tag}
+:::
+:::
+
+::: {.skill-category}
+::: {.skill-category-title}
+Domain Expertise
+:::
+::: {.skills-container}
+[Earth Observation]{.skill-tag .skill-tag-advanced}
+[Disaster Risk Management]{.skill-tag .skill-tag-advanced}
+[Geospatial Analysis]{.skill-tag}
+[Financial Risk Modeling]{.skill-tag}
+[Transportation Analytics]{.skill-tag}
+[Energy Optimization]{.skill-tag}
+[Urban Resilience]{.skill-tag}
+:::
+:::
+
+## Highlights
+
+::: {.timeline}
+::: {.timeline-item}
+::: {.timeline-date}
+2024 – Present
+:::
+::: {.timeline-title}
+MSc AI for Sustainable Development
+:::
+::: {.timeline-subtitle}
+University College London (UCL)
+:::
+::: {.timeline-content}
+Research focus on deep learning methods for building damage assessment using satellite imagery. Exploring Deep Kernel Learning and Graph Neural Networks for disaster response.
+:::
+:::
+
+::: {.timeline-item}
+::: {.timeline-date}
+2023 – 2024
+:::
+::: {.timeline-title}
+Head of Data Science
+:::
+::: {.timeline-subtitle}
+Metro de Santiago
+:::
+::: {.timeline-content}
+Led team of 5 data scientists. Deployed GenAI agents for operational efficiency. Built Big Data pipelines achieving 15% energy cost reduction through SCADA analytics.
+:::
+:::
+
+::: {.timeline-item}
+::: {.timeline-date}
+2022 – 2023
+:::
+::: {.timeline-title}
+Analytics Translator
+:::
+::: {.timeline-subtitle}
+BCI (Banco de Crédito e Inversiones)
+:::
+::: {.timeline-content}
+Bridged business and technical teams. Implemented customer journey optimization using Databricks and Spark. Drove data-informed decision making across the organization.
+:::
+:::
+:::
+
+[View Complete Experience](about.qmd){.btn-primary}
+
+```{=html}
+<style>
+  /* Page-specific adjustments */
+  .content {
+    padding: 0 2rem 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      padding: 0 1rem 2rem;
+    }
+  }
+</style>
+```
