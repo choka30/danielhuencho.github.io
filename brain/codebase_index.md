@@ -1,9 +1,9 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-25 20:55
+> Last updated: 2026-01-25 22:05
 > Total pages: 4
 > Total assets: 1 (profile photo)
-> Content status: about.qmd complete, others placeholder
+> Content status: index.qmd & about.qmd complete with improved visuals
 
 ---
 
@@ -11,8 +11,8 @@
 
 | Page | File | Purpose | Status |
 |------|------|---------|--------|
-| Home | `index.qmd` | Landing page with hero + bio | Placeholder |
-| About | `about.qmd` | Detailed CV/Resume | Empty |
+| Home | `index.qmd` | Landing page with hero + bio | Complete |
+| About | `about.qmd` | Detailed CV/Resume | Complete |
 | Dashboard | `dashboard.qmd` | Sample visualization | Review needed |
 | Code Example | `pythond-code-example.qmd` | Python demo | Review needed |
 
@@ -25,21 +25,19 @@
 **Purpose:** First impression for recruiters. Hero section with professional photo, headline, and brief bio.
 
 **Current State:**
-- ✓ YAML front matter added (title: Daniel Huencho)
-- ○ Hero section (placeholder content)
-- ○ Professional headline
-- ○ Bio paragraph
-- ○ Skills highlights
-- ○ Professional photo
+- ✓ YAML front matter (title: Daniel Huencho)
+- ✓ Hero section with neural network animation
+- ✓ Professional headline (MSc AI @ UCL)
+- ✓ Bio paragraph in info-card
+- ✓ Skills section with legend (Expert/Advanced/Intermediate)
+- ✓ Industry-standard skill categories
+- ✓ Professional photo
+- ✓ Timeline highlights section
+- ✓ Improved text contrast (WCAG AA)
+- ✓ Title block hidden (no text over hero)
+- ✓ Dark-only theme (no light mode toggle)
 
-**Target Content:**
-- Professional headline (MSc AI @ UCL + 7 years experience)
-- Brief bio paragraph
-- Key skills/expertise highlights
-- Links to projects and CV
-- Professional photo
-
-**Status:** `Placeholder` — has valid YAML, needs content rewrite
+**Status:** `Complete` — fully functional landing page with polished visuals
 
 ---
 
@@ -53,12 +51,16 @@
 - ✓ Summary paragraph
 - ✓ Education section (UCL, PUC MSc, PUC Engineering)
 - ✓ Professional Experience timeline (4 positions)
-- ✓ Technical Skills section with skill tags
+- ✓ Technical Skills section with legend (Expert/Advanced/Intermediate)
+- ✓ Industry-standard skill categories
+- ✓ Statistical Methods section
 - ✓ Languages section
 - ✓ Conferences & Events section
-- ○ Downloadable CV link (PDF not yet added)
+- ✓ Downloadable CV link
+- ✓ Improved text contrast (WCAG AA)
+- ✓ Dark-only theme applied
 
-**Status:** `Complete` — content done, awaiting CV PDF
+**Status:** `Complete` — fully styled and organized with polished visuals
 
 ---
 
