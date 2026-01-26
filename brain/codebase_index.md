@@ -2,7 +2,7 @@
 
 > Last updated: 2026-01-26 15:20
 > Total pages: 7 (Home, About, Projects listing, Iris EDA, Revealjs demo page, Revealjs presentation, + 2 legacy)
-> Total assets: 2 profile photos + 1 thumbnail + 5 generated plots
+> Total assets: 2 profile photos + 1 thumbnail + 5 generated plots + 1 reference PDF
 > Content status: Projects listing with search/tags, 2 demo projects complete, dark theme visual fixes applied
 
 ---
@@ -223,6 +223,14 @@
 | File | Purpose | Status |
 |------|---------|--------|
 | cv.pdf | Downloadable resume | Missing |
+| UNICON_*.pdf | UNICON open dataset paper (electricity/gas/water consumption, multi-campus university) | ✓ Added |
+
+### Data Directory (`data/` — gitignored)
+
+| Folder | Purpose | Status |
+|--------|---------|--------|
+| raw/ | Raw source datasets | ✓ Created |
+| Intermidiate/ | Intermediate processed data | ✓ Created |
 
 ---
 

@@ -28,9 +28,14 @@
 │       ├── index.qmd        # Project description page
 │       └── presentation.qmd # Revealjs slides (3 slides)
 │
+├── data/                    # [DATA] Project datasets (gitignored)
+│   ├── raw/                 # Raw source data
+│   └── Intermidiate/        # Intermediate processed data
+│
 ├── assets/                  # [ASSETS] Static files
 │   ├── images/              # Profile pics, favicon
-│   └── js/                  # Neural network animation
+│   ├── js/                  # Neural network animation
+│   └── UNICON_*.pdf         # UNICON dataset paper (reference)
 │
 ├── brain/                   # [META] AI agent knowledge base
 │   ├── plan.md              # Active session tasks
@@ -101,7 +106,8 @@
 | Projects listing | `projects/index.qmd` | Complete (grid + search + tags) |
 | Iris EDA demo | `projects/iris-eda/index.qmd` | Complete |
 | Revealjs demo | `projects/revealjs-demo/` | Complete (page + presentation) |
-| Assets folder | `assets/` | Exists (images, js) |
+| Assets folder | `assets/` | Exists (images, js, UNICON PDF) |
+| Data folder | `data/` | Exists (gitignored — raw, intermediate) |
 | Brain files | `brain/` | Exists (updated) |
 | Claude skills | `.claude/skills/` | Exists |
 
@@ -170,6 +176,7 @@ To reach target state:
 | 2026-01-26 | Full site validated — quarto render all 6 pages OK | `_site/` |
 | 2026-01-26 | Fixed Iris EDA plots — removed `matplotlib.use('Agg')` + `plt.show()`, plots now render via Jupyter inline backend | `projects/iris-eda/index.qmd` |
 | 2026-01-26 | Fixed listing sort/filter controls — grouped together, dark icon containers, correct CSS nesting under `.quarto-listing` | `custom.scss` |
+| 2026-01-26 | Added data/ directory (gitignored) + UNICON dataset PDF to assets | `data/`, `assets/`, `.gitignore` |
 
 ---
 

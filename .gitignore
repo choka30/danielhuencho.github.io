@@ -191,3 +191,5 @@ _freeze/
 
 # Quarto publish directory
 _publish/
+
+data/
