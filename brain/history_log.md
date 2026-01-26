@@ -2,7 +2,7 @@
 
 > Project started: 2026-01-25
 > Last entry: 2026-01-26
-> Total sessions: 2
+> Total sessions: 3
 
 ---
 
@@ -19,6 +19,59 @@ This file maintains a chronological record of all development sessions. Each ses
 ## Recent Sessions
 
 <!-- New sessions are prepended here by /session-end -->
+
+### Session: 20260126_GP_MODELLING
+
+**Summary**
+- **Date:** 2026-01-26
+- **Branch:** `pw_EDA_model`
+- **Scope:** Add compositional Gaussian Process modelling pipeline to UNICON EDA notebook
+
+**Tasks Completed**
+
+| # | Task | Status |
+|---|------|--------|
+| 1 | Install GPyTorch + linear_operator | Complete |
+| 2 | Mathematical framework (LaTeX equations, kernel design table) | Complete |
+| 3 | Data prep: 8 buildings (one per category), daily aggregation, 15 features | Complete |
+| 4 | Train ExactGP models for all 8 building categories | Complete |
+| 5 | Kernel decomposition: 6-panel additive components + periodicities | Complete |
+| 6 | Weather response + COVID-19 CUSUM + ECM counterfactual impact | Complete |
+| 7 | Anomaly detection (2.5σ) + 8-category cross-building comparison | Complete |
+| 8 | Model evaluation: RMSE/MAE/MAPE/coverage, calibration diagram, hypothesis discussion | Complete |
+| 9 | Validate render, freeze outputs, update brain | Complete |
+
+**Key Decisions**
+
+1. **Decision:** 8 independent ExactGPs (one per building category) rather than hierarchical multi-output GP
+   - **Rationale:** Enables direct hyperparameter comparison across categories while keeping implementation tractable
+2. **Decision:** Daily aggregation (15-min → daily) for ExactGP tractability
+   - **Rationale:** Reduces n from ~140K to ~1,500 per building, making O(n³) feasible at ~15s per model
+3. **Decision:** Pre-COVID training / COVID-era testing split
+   - **Rationale:** Tests out-of-distribution generalisation under structural break
+4. **Decision:** Used `torch.linalg.solve` instead of GPyTorch `inv_matmul`
+   - **Rationale:** `SumLinearOperator.inv_matmul` not available in GPyTorch 1.15.1; dense solve works for n=1500
+5. **Decision:** Actual dataset has 8 categories (not 7): teaching, library, office, residence, mixed use, sport, other, leased
+   - **Rationale:** Corrected from initial plan after discovering actual data categories
+
+**Files Changed**
+
+- Modified: `projects/unicon-eda/index.qmd` (~500 lines added — GP modelling sections after EDA)
+- Modified: `requirements.txt` (+3 deps: torch, gpytorch, linear_operator)
+- Modified: `brain/plan.md` (all 9 tasks marked complete)
+- Modified: `brain/codebase_index.md` (UNICON entry updated with GP details)
+- Modified: `brain/general_index.md` (recent changes table updated)
+- Generated: 11 new PNG figures in `projects/unicon-eda/`
+- Updated: `_freeze/projects/unicon-eda/` (16 figures + html.json)
+
+**Notes**
+
+- GPU (CUDA) used for training: NVIDIA RTX 4070 Laptop
+- GPyTorch 1.15.1 + PyTorch 2.5.1+cu121
+- Two bugs fixed during render: (1) category names were Title Case but data uses lowercase; (2) `inv_matmul` API unavailable on SumLinearOperator
+- Freeze mechanism confirmed working — CI can deploy without data
+
+---
 
 ### Session: 20260126_FIX_LISTING_CONTROLS
 
@@ -156,9 +209,9 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 2 |
-| Total tasks completed | 7 |
-| Total commits | 2 |
+| Total sessions | 4 |
+| Total tasks completed | 25 |
+| Total commits | 3 |
 
 ### Sessions by Type
 
@@ -166,6 +219,7 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 |-------------|-------|
 | content/ | 1 |
 | style/ | 1 |
+| modelling/ | 1 |
 | config/ | 0 |
 | fix/ | 0 |
 

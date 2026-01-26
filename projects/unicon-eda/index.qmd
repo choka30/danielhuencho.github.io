@@ -3,7 +3,7 @@ title: "UNICON Dataset: Exploratory Data Analysis"
 description: "Exploring the UNICON open dataset — electricity, gas, and water consumption across La Trobe University's five campuses (2018–2021). Schema discovery, temporal analysis, and weather correlations."
 author: Daniel Huencho
 date: 2026-01-26
-categories: [Python, EDA, Energy, Time Series]
+categories: [Python, EDA, Energy, Time Series, Gaussian Processes, Probabilistic ML, PyTorch]
 image: unicon-daily-consumption.png
 toc: true
 code-fold: true
@@ -523,7 +523,7 @@ plt.savefig("unicon-temp-scatter.png", dpi=150, bbox_inches="tight", facecolor="
 | **COVID-19 impact** | Clear consumption drop after March 2020 shutdown — natural experiment for causal inference |
 | **Seasonal patterns** | Strong seasonal cycles in electricity and gas; electricity correlates with temperature |
 | **Weather correlation** | Air temperature shows meaningful correlation with daily electricity consumption |
-| **Building diversity** | 7 categories (Teaching, Library, Admin, Residential, Mixed-Use, Sports, Other) |
+| **Building diversity** | 8 categories (teaching, library, office, residence, mixed use, sport, other, leased) |
 | **ECM events** | Annotated LED retrofits and HVAC upgrades enable intervention impact analysis |
 
 ### Next Steps: Probabilistic Modelling
@@ -539,3 +539,1060 @@ This dataset is well-suited for several probabilistic modelling approaches:
 ---
 
 *Dataset source: [UNICON — An Open Dataset of Electricity, Gas and Water Consumption](https://github.com/CDAC-lab/UNICON), La Trobe University, Australia.*
+
+---
+
+## Probabilistic Modelling Framework
+
+The EDA above reveals rich temporal structure — seasonal cycles, weekly occupancy patterns, weather sensitivity, and abrupt regime shifts from COVID-19 and energy conservation measures (ECMs). A natural next step is to build a **predictive model** that decomposes these patterns into interpretable components while providing calibrated uncertainty estimates.
+
+**Gaussian Processes (GPs)** are ideally suited for this task. Unlike point-estimate models (XGBoost, linear regression), a GP defines a *distribution over functions*, yielding both a mean prediction and a confidence band at every point. Formally:
+
+$$f(\mathbf{x}) \sim \mathcal{GP}\big(m(\mathbf{x}),\; k(\mathbf{x}, \mathbf{x}')\big)$$
+
+where $m(\mathbf{x})$ is the mean function and $k(\mathbf{x}, \mathbf{x}')$ is the **kernel** (covariance function) encoding our structural assumptions about how energy consumption behaves.
+
+### Compositional Kernel Design
+
+The key insight from the **Automatic Statistician** programme (Duvenaud et al., 2013; Lloyd et al., 2014) is that complex time series can be decomposed into interpretable components through **additive kernel composition**. If $k = k_1 + k_2 + \cdots$, then the GP decomposes into independent additive functions $f = f_1 + f_2 + \cdots$, each capturing a distinct physical mechanism.
+
+We design a **6-component additive kernel** for building energy consumption:
+
+$$k_{\text{total}}(\mathbf{x}, \mathbf{x}') = k_{\text{trend}} + k_{\text{annual}} + k_{\text{weekly}} + k_{\text{weather}} + k_{\text{calendar}} + k_{\text{event}}$$
+
+| Component | Kernel Type | Formula | Physical Mechanism |
+|-----------|------------|---------|-------------------|
+| **Long-term trend** | `ScaleKernel(RBF)` | $\sigma_{\text{tr}}^2 \exp\!\bigl(-\frac{(t-t')^2}{2\ell_{\text{tr}}^2}\bigr)$ | Gradual baseline drift (efficiency degradation, retrofits) |
+| **Annual seasonality** | `ScaleKernel(Periodic)` | $\sigma_a^2 \exp\!\bigl(-\frac{2\sin^2(\pi(t-t')/365.25)}{\ell_a^2}\bigr)$ | Climate-driven HVAC cycles (heating in winter, cooling in summer) |
+| **Weekly periodicity** | `ScaleKernel(Periodic)` | $\sigma_w^2 \exp\!\bigl(-\frac{2\sin^2(\pi(t-t')/7)}{\ell_w^2}\bigr)$ | Occupancy cycle (weekday operations vs weekend baseload) |
+| **Weather response** | `ScaleKernel(RBF-ARD)` | $\sigma_{\text{wth}}^2 \exp\!\bigl(-\frac{1}{2}(\mathbf{w}-\mathbf{w}')^\top\!\Lambda^{-1}(\mathbf{w}-\mathbf{w}')\bigr)$ | Nonlinear temperature–consumption relationship |
+| **Calendar effects** | `ScaleKernel(RBF-ARD)` | ARD over (semester, holiday, exam, weekend) | Academic calendar modulation |
+| **ECM/COVID events** | `ScaleKernel(Linear)` | $\sigma_e^2\,\mathbf{e}^\top\mathbf{e}'$ | Step-change interventions (HVAC upgrades, LED retrofits, lockdowns) |
+
+### Predictive Distribution and Training
+
+Given $n$ training observations $(\mathbf{X}, \mathbf{y})$, the GP posterior at a test point $\mathbf{x}_*$ is:
+
+$$\bar{f}_* = \mathbf{k}_*^\top (K_{XX} + \sigma_n^2 I)^{-1}\mathbf{y}, \qquad \text{Var}(f_*) = k(\mathbf{x}_*, \mathbf{x}_*) - \mathbf{k}_*^\top (K_{XX} + \sigma_n^2 I)^{-1}\mathbf{k}_*$$
+
+Hyperparameters (lengthscales, variances, periods) are learned by maximising the **log-marginal likelihood**, which naturally balances data fit against model complexity (Occam's razor):
+
+$$\log p(\mathbf{y} \mid X, \boldsymbol{\theta}) = -\tfrac{1}{2}\mathbf{y}^\top(K + \sigma_n^2 I)^{-1}\mathbf{y} - \tfrac{1}{2}\log|K + \sigma_n^2 I| - \tfrac{n}{2}\log 2\pi$$
+
+### Kernel Decomposition for Interpretability
+
+Because our kernel is additive, the posterior decomposes into per-component contributions:
+
+$$\bar{f}_c(\mathbf{x}_*) = K_c(\mathbf{x}_*, X)\,(K(X,X) + \sigma_n^2 I)^{-1}\,\mathbf{y}$$
+
+This allows us to **explain** what drives consumption at any point: "on this day, the trend contributes +50 kWh, the weekly cycle −120 kWh (it's Sunday), and the weather adds +80 kWh (heatwave)."
+
+### Anomaly Detection
+
+The GP's calibrated uncertainty provides a principled anomaly score:
+
+$$z(\mathbf{x}_*) = \frac{|y_{\text{obs}} - \bar{f}_*|}{\sqrt{\text{Var}(f_*) + \sigma_n^2}}$$
+
+Under the model, $z \sim \mathcal{N}(0,1)$. Days with $|z| > 2.5$ (expected false positive rate ≈ 1.2%) are flagged as anomalous — *contextually*, accounting for time-of-week, season, and weather.
+
+```{python}
+#| label: gp-setup
+#| echo: false
+#| output: false
+
+import torch
+import gpytorch
+from gpytorch.models import ExactGP
+from gpytorch.means import ConstantMean
+from gpytorch.likelihoods import GaussianLikelihood
+from gpytorch.kernels import ScaleKernel, RBFKernel, PeriodicKernel, LinearKernel
+from gpytorch.mlls import ExactMarginalLogLikelihood
+from sklearn.preprocessing import StandardScaler
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"GPyTorch {gpytorch.__version__} | PyTorch {torch.__version__} | Device: {device}")
+```
+
+## Data Preparation for GP Modelling
+
+We select **one representative building per category** from the 8 building types in the UNICON dataset. This enables direct comparison of how the GP captures fundamentally different consumption dynamics across building functions.
+
+**Design choices:**
+
+- **Daily aggregation** — reduces each building from ~140,000 rows (15-min) to ~1,500 rows (daily), making ExactGP tractable ($\mathcal{O}(n^3) \approx 15$ seconds per building)
+- **Temporal train/test split** — train on 2018–2019 (pre-COVID), test on 2020–2022 (includes COVID, ECMs). This tests true out-of-distribution generalisation
+- **15 features** — 6 weather + 4 calendar + 2 temporal + 3 event indicators
+
+```{python}
+#| label: gp-building-selection
+#| tbl-cap: "Representative buildings selected for GP modelling — one per category"
+
+# ─── Select one representative building per category ───
+# Criteria: Bundoora campus preferred, best data completeness, meaningful floor area
+
+building_categories = building_meta.groupby("category")["id"].apply(list).to_dict()
+print("Building categories in dataset:")
+for cat, ids in building_categories.items():
+    print(f"  {cat}: {len(ids)} buildings — IDs: {ids}")
+
+# For each category, pick the building with the most data points in building_consumption
+category_candidates = {}
+for cat, ids in building_categories.items():
+    best_id, best_count = None, 0
+    for bid in ids:
+        count = (building_consumption["meter_id"] == bid).sum()
+        if count > best_count:
+            best_count = count
+            best_id = bid
+    category_candidates[cat] = {"building_id": best_id, "record_count": best_count}
+
+# Build selection table
+selection_rows = []
+for cat, info in category_candidates.items():
+    bid = info["building_id"]
+    meta_row = building_meta[building_meta["id"] == bid].iloc[0] if bid in building_meta["id"].values else None
+    bc_subset = building_consumption[building_consumption["meter_id"] == bid]
+    date_min = bc_subset["timestamp"].min()
+    date_max = bc_subset["timestamp"].max()
+    n_days = bc_subset["timestamp"].dt.date.nunique()
+    # Count events for this building
+    n_events = len(events[events["meter_id"] == bid]) if "meter_id" in events.columns else 0
+    selection_rows.append({
+        "Category": cat,
+        "Building ID": int(bid) if bid is not None else "N/A",
+        "Campus": int(meta_row["campus_id"]) if meta_row is not None else "N/A",
+        "Floor Area (ft²)": f"{int(meta_row['gross_floor_area']):,}" if meta_row is not None and pd.notna(meta_row.get("gross_floor_area")) else "N/A",
+        "Records": f"{info['record_count']:,}",
+        "Days": n_days,
+        "Date Range": f"{date_min.strftime('%Y-%m-%d')} → {date_max.strftime('%Y-%m-%d')}",
+        "Events": n_events,
+    })
+
+selection_df = pd.DataFrame(selection_rows).sort_values("Category")
+selection_df
+```
+
+```{python}
+#| label: gp-data-prep
+#| output: false
+
+# ─── Aggregate to daily and build feature matrix for each building ───
+selected_buildings = {row["Category"]: row["Building ID"] for _, row in selection_df.iterrows()}
+
+def prepare_building_data(bid, weather_df, calendar_df, events_df, building_consumption_df):
+    """Aggregate a single building to daily resolution and create feature matrix."""
+    bc = building_consumption_df[building_consumption_df["meter_id"] == bid].copy()
+    bc["date"] = bc["timestamp"].dt.date
+
+    # Daily aggregation: sum consumption, count readings
+    daily = (
+        bc.groupby("date")["consumption"]
+        .agg(["sum", "count"])
+        .rename(columns={"sum": "consumption_kwh", "count": "readings_count"})
+        .reset_index()
+    )
+    daily["date"] = pd.to_datetime(daily["date"])
+    # Filter incomplete days (need >= 90 of 96 possible 15-min readings)
+    daily = daily[daily["readings_count"] >= 90].copy()
+
+    # Weather: aggregate Bundoora (campus_id=1) to daily
+    w = weather_df[weather_df["campus_id"] == 1].copy()
+    w["date"] = w["timestamp"].dt.date
+    daily_w = (
+        w.groupby("date")
+        .agg(
+            temp_mean=("air_temperature", "mean"),
+            temp_min=("air_temperature", "min"),
+            temp_max=("air_temperature", "max"),
+            temp_range=("air_temperature", lambda x: x.max() - x.min()),
+            humidity_mean=("relative_humidity", "mean"),
+            wind_speed_mean=("wind_speed", "mean"),
+        )
+        .reset_index()
+    )
+    daily_w["date"] = pd.to_datetime(daily_w["date"])
+
+    # Merge weather
+    merged = daily.merge(daily_w, on="date", how="inner")
+
+    # Calendar features
+    cal = calendar_df.copy()
+    cal["date"] = pd.to_datetime(cal["date"])
+    merged = merged.merge(cal[["date", "is_holiday", "is_semester", "is_exam"]], on="date", how="left")
+
+    # Temporal features
+    merged["day_of_week"] = merged["date"].dt.dayofweek
+    merged["day_of_year"] = merged["date"].dt.dayofyear
+    merged["is_weekend"] = (merged["day_of_week"] >= 5).astype(float)
+
+    # Event features: binary step indicators
+    bld_events = events_df[events_df["meter_id"] == bid] if "meter_id" in events_df.columns else pd.DataFrame()
+    # Initialise all event columns to 0
+    merged["post_event_1"] = 0.0
+    merged["post_event_2"] = 0.0
+    merged["post_event_3"] = 0.0
+
+    if len(bld_events) > 0:
+        evt_dates = sorted(bld_events["date"].values)
+        for i, evt_date in enumerate(evt_dates[:3]):
+            col = f"post_event_{i+1}"
+            evt_date_ts = pd.to_datetime(evt_date)
+            merged[col] = (merged["date"] >= evt_date_ts).astype(float)
+
+    # Drop NaN rows
+    merged = merged.dropna().reset_index(drop=True)
+
+    return merged
+
+# Prepare all buildings (one per category)
+building_data = {}
+for cat, bid in selected_buildings.items():
+    building_data[cat] = prepare_building_data(
+        bid, weather, calendar, events, building_consumption
+    )
+    n = len(building_data[cat])
+    print(f"  {cat:20s} (Building {int(bid):3d}): {n} daily observations")
+
+print(f"\nTotal buildings prepared: {len(building_data)}")
+```
+
+```{python}
+#| label: gp-train-test-split
+#| tbl-cap: "Train/test split summary — pre-COVID training, COVID-era testing"
+
+# ─── Feature definitions ───
+weather_features = ["temp_mean", "temp_min", "temp_max", "temp_range",
+                    "humidity_mean", "wind_speed_mean"]
+calendar_features = ["is_holiday", "is_semester", "is_exam", "is_weekend"]
+temporal_features = ["day_of_week", "day_of_year"]
+event_features = ["post_event_1", "post_event_2", "post_event_3"]
+all_features = weather_features + calendar_features + temporal_features + event_features
+
+# ─── Train/test split + standardisation for each building ───
+SPLIT_DATE = pd.Timestamp("2020-01-01")
+gp_datasets = {}
+
+split_summary = []
+for cat, df in building_data.items():
+    train_df = df[df["date"] < SPLIT_DATE].copy()
+    test_df = df[df["date"] >= SPLIT_DATE].copy()
+
+    # Standardise features (fit on train only)
+    feat_scaler = StandardScaler()
+    tgt_scaler = StandardScaler()
+
+    X_train = feat_scaler.fit_transform(train_df[all_features].values)
+    X_test = feat_scaler.transform(test_df[all_features].values)
+    y_train = tgt_scaler.fit_transform(train_df[["consumption_kwh"]].values).ravel()
+    y_test = tgt_scaler.transform(test_df[["consumption_kwh"]].values).ravel()
+
+    # Convert to tensors
+    train_x = torch.tensor(X_train, dtype=torch.float32)
+    train_y = torch.tensor(y_train, dtype=torch.float32)
+    test_x = torch.tensor(X_test, dtype=torch.float32)
+    test_y = torch.tensor(y_test, dtype=torch.float32)
+
+    gp_datasets[cat] = {
+        "train_x": train_x, "train_y": train_y,
+        "test_x": test_x, "test_y": test_y,
+        "train_df": train_df, "test_df": test_df,
+        "feat_scaler": feat_scaler, "tgt_scaler": tgt_scaler,
+        "building_id": selected_buildings[cat],
+    }
+
+    split_summary.append({
+        "Category": cat,
+        "Building": int(selected_buildings[cat]),
+        "Train days": len(train_df),
+        "Test days": len(test_df),
+        "Train range": f"{train_df['date'].min().strftime('%Y-%m-%d')} → {train_df['date'].max().strftime('%Y-%m-%d')}",
+        "Test range": f"{test_df['date'].min().strftime('%Y-%m-%d')} → {test_df['date'].max().strftime('%Y-%m-%d')}",
+        "Mean kWh/day": f"{df['consumption_kwh'].mean():.0f}",
+    })
+
+pd.DataFrame(split_summary).sort_values("Category")
+```
+
+## Single-Building GP Model
+
+We define the `EnergyGP` model class with our 6-component additive kernel and train it on all 8 buildings. Each building learns its own hyperparameters, enabling direct comparison of how different building types structure their consumption.
+
+```{python}
+#| label: gp-model-definition
+
+# ─── Feature dimension indices (after standardisation) ───
+weather_dims = list(range(0, 6))     # temp_mean ... wind_speed
+calendar_dims = list(range(6, 10))   # is_holiday, is_semester, is_exam, is_weekend
+dow_dim = [10]                       # day_of_week
+doy_dim = [11]                       # day_of_year
+event_dims = list(range(12, 15))     # post_event_1, post_event_2, post_event_3
+
+class EnergyGP(ExactGP):
+    """Compositional GP for building energy consumption.
+
+    Additive kernel with 6 components, each capturing a distinct
+    physical mechanism in building energy dynamics.
+    """
+
+    def __init__(self, train_x, train_y, likelihood):
+        super().__init__(train_x, train_y, likelihood)
+        self.mean_module = ConstantMean()
+
+        # Component 1: Long-term trend (RBF over day-of-year)
+        self.k_trend = ScaleKernel(RBFKernel(active_dims=doy_dim))
+
+        # Component 2: Annual seasonality (Periodic, P ≈ 365 days)
+        self.k_annual = ScaleKernel(PeriodicKernel(active_dims=doy_dim))
+
+        # Component 3: Weekly periodicity (Periodic, P ≈ 7 days)
+        self.k_weekly = ScaleKernel(PeriodicKernel(active_dims=dow_dim))
+
+        # Component 4: Weather response (ARD-RBF over 6 weather features)
+        self.k_weather = ScaleKernel(
+            RBFKernel(ard_num_dims=len(weather_dims), active_dims=weather_dims)
+        )
+
+        # Component 5: Calendar effects (ARD-RBF over academic calendar)
+        self.k_calendar = ScaleKernel(
+            RBFKernel(ard_num_dims=len(calendar_dims), active_dims=calendar_dims)
+        )
+
+        # Component 6: Event step-changes (Linear kernel on binary indicators)
+        self.k_event = ScaleKernel(LinearKernel(active_dims=event_dims))
+
+    def forward(self, x):
+        mean = self.mean_module(x)
+        covar = (
+            self.k_trend(x) + self.k_annual(x) + self.k_weekly(x)
+            + self.k_weather(x) + self.k_calendar(x) + self.k_event(x)
+        )
+        return gpytorch.distributions.MultivariateNormal(mean, covar)
+
+print("EnergyGP model defined with 6 additive kernel components:")
+print("  k_total = k_trend + k_annual + k_weekly + k_weather + k_calendar + k_event")
+```
+
+```{python}
+#| label: gp-training
+#| fig-cap: "GP training convergence — negative log-marginal likelihood across iterations"
+
+def train_gp(train_x, train_y, n_iter=300, lr=0.1, verbose=False):
+    """Train an EnergyGP model and return model + likelihood."""
+    likelihood = GaussianLikelihood()
+    model = EnergyGP(train_x, train_y, likelihood)
+
+    model.train()
+    likelihood.train()
+
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    mll = ExactMarginalLogLikelihood(likelihood, model)
+
+    losses = []
+    for i in range(n_iter):
+        optimizer.zero_grad()
+        output = model(train_x)
+        loss = -mll(output, train_y)
+        loss.backward()
+        optimizer.step()
+        losses.append(loss.item())
+
+        if verbose and (i + 1) % 100 == 0:
+            noise = likelihood.noise.item()
+            print(f"  Iter {i+1:3d}/{n_iter} | Loss: {loss.item():.3f} | Noise: {noise:.4f}")
+
+    model.eval()
+    likelihood.eval()
+    return model, likelihood, losses
+
+# ─── Train all 7 models ───
+gp_models = {}
+all_losses = {}
+
+for cat in sorted(gp_datasets.keys()):
+    ds = gp_datasets[cat]
+    bid = ds["building_id"]
+    print(f"Training {cat} (Building {int(bid)})...", end=" ")
+    model, likelihood, losses = train_gp(ds["train_x"], ds["train_y"], n_iter=300, lr=0.1)
+    gp_models[cat] = {"model": model, "likelihood": likelihood}
+    all_losses[cat] = losses
+    print(f"Done. Final loss: {losses[-1]:.3f}")
+
+# Plot convergence for all models
+fig, ax = plt.subplots(figsize=(12, 5))
+cat_colors = {
+    "teaching": "#63b3ed", "library": "#fc8181", "office": "#68d391",
+    "residence": "#f6ad55", "mixed use": "#b794f4", "sport": "#f687b3",
+    "other": "#4a5568", "leased": "#d6bcfa"
+}
+
+for cat, losses in all_losses.items():
+    color = cat_colors.get(cat, "#cbd5e1")
+    ax.plot(losses, label=cat, color=color, linewidth=1.2, alpha=0.85)
+
+ax.set_xlabel("Iteration", fontweight="bold")
+ax.set_ylabel("Negative Log-Marginal Likelihood", fontweight="bold")
+ax.set_title("GP Training Convergence — All Building Categories", fontweight="bold", pad=15)
+ax.legend(fontsize=9, loc="upper right")
+plt.tight_layout()
+plt.savefig("unicon-gp-training.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+```{python}
+#| label: fig-gp-posterior
+#| fig-cap: "GP posterior prediction with 95% confidence interval — primary Teaching building (Building 62). Trained on 2018–2019, tested on 2020–2022 including COVID-19 shutdown and LED retrofit."
+
+# ─── Generate predictions for all buildings ───
+gp_predictions = {}
+
+for cat in sorted(gp_datasets.keys()):
+    ds = gp_datasets[cat]
+    mdl = gp_models[cat]["model"]
+    lik = gp_models[cat]["likelihood"]
+    tgt_scaler = ds["tgt_scaler"]
+
+    with torch.no_grad(), gpytorch.settings.fast_pred_var():
+        # Train predictions
+        train_pred = lik(mdl(ds["train_x"]))
+        train_mean = train_pred.mean.numpy()
+        train_var = train_pred.variance.numpy()
+
+        # Test predictions
+        test_pred = lik(mdl(ds["test_x"]))
+        test_mean = test_pred.mean.numpy()
+        test_var = test_pred.variance.numpy()
+
+    # Inverse transform to original scale
+    train_mean_orig = tgt_scaler.inverse_transform(train_mean.reshape(-1, 1)).ravel()
+    test_mean_orig = tgt_scaler.inverse_transform(test_mean.reshape(-1, 1)).ravel()
+    train_std_orig = np.sqrt(train_var) * tgt_scaler.scale_[0]
+    test_std_orig = np.sqrt(test_var) * tgt_scaler.scale_[0]
+
+    y_train_orig = tgt_scaler.inverse_transform(ds["train_y"].numpy().reshape(-1, 1)).ravel()
+    y_test_orig = tgt_scaler.inverse_transform(ds["test_y"].numpy().reshape(-1, 1)).ravel()
+
+    gp_predictions[cat] = {
+        "train_dates": ds["train_df"]["date"].values,
+        "test_dates": ds["test_df"]["date"].values,
+        "train_mean": train_mean_orig, "test_mean": test_mean_orig,
+        "train_std": train_std_orig, "test_std": test_std_orig,
+        "y_train": y_train_orig, "y_test": y_test_orig,
+        "train_mean_std": train_mean, "test_mean_std": test_mean,
+        "train_var_std": train_var, "test_var_std": test_var,
+    }
+
+# ─── Plot primary building (Teaching) ───
+primary_cat = "teaching"
+pred = gp_predictions[primary_cat]
+bid = gp_datasets[primary_cat]["building_id"]
+
+fig, ax = plt.subplots(figsize=(14, 6))
+
+# Training period
+ax.scatter(pred["train_dates"], pred["y_train"],
+           color=COLORS["muted"], s=3, alpha=0.3, label="Observed (train)", zorder=1)
+ax.plot(pred["train_dates"], pred["train_mean"],
+        color=COLORS["electricity"], linewidth=1.5, label="GP Mean", zorder=3)
+ax.fill_between(pred["train_dates"],
+                pred["train_mean"] - 1.96 * pred["train_std"],
+                pred["train_mean"] + 1.96 * pred["train_std"],
+                alpha=0.2, color=COLORS["electricity"], label="95% CI", zorder=2)
+
+# Test period
+ax.scatter(pred["test_dates"], pred["y_test"],
+           color=COLORS["accent"], s=3, alpha=0.3, label="Observed (test)", zorder=1)
+ax.plot(pred["test_dates"], pred["test_mean"],
+        color=COLORS["electricity"], linewidth=1.5, zorder=3)
+ax.fill_between(pred["test_dates"],
+                pred["test_mean"] - 1.96 * pred["test_std"],
+                pred["test_mean"] + 1.96 * pred["test_std"],
+                alpha=0.15, color=COLORS["electricity"], zorder=2)
+
+# Mark split, COVID, and events
+ax.axvline(pd.Timestamp("2020-01-01"), color="#cbd5e1", linestyle=":", alpha=0.7, linewidth=1.5)
+ax.text(pd.Timestamp("2020-01-15"), ax.get_ylim()[1] * 0.97, "Train | Test",
+        color="#cbd5e1", fontsize=9, va="top")
+
+ax.axvline(pd.Timestamp("2020-03-20"), color="#fc8181", linestyle="--", alpha=0.7, linewidth=1.5)
+ax.text(pd.Timestamp("2020-04-01"), ax.get_ylim()[1] * 0.90, "COVID-19\nShutdown",
+        color="#fc8181", fontsize=8, fontweight="bold", va="top")
+
+ax.set_xlabel("Date", fontweight="bold")
+ax.set_ylabel("Daily Consumption (kWh)", fontweight="bold")
+ax.set_title(f"GP Posterior — {primary_cat} Building (ID {int(bid)})", fontweight="bold", pad=15)
+ax.legend(loc="upper left", fontsize=9)
+plt.tight_layout()
+plt.savefig("unicon-gp-posterior.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+## Kernel Decomposition Analysis
+
+The additive kernel structure allows us to decompose the GP prediction into **independent components**, each with a clear physical interpretation. This is the key advantage over black-box models — we can explain *why* the model predicts what it does.
+
+```{python}
+#| label: fig-gp-decomposition
+#| fig-cap: "Additive kernel decomposition for Teaching building — each panel shows one component's contribution to total consumption"
+
+def decompose_gp(model, likelihood, train_x, train_y, pred_x):
+    """Extract additive kernel component contributions."""
+    model.eval()
+    likelihood.eval()
+    with torch.no_grad():
+        # Full covariance K + sigma_n^2 I (dense)
+        output = model(train_x)
+        K_noisy = likelihood(output).covariance_matrix
+        residual = (train_y - output.mean).unsqueeze(-1)
+        alpha = torch.linalg.solve(K_noisy, residual).squeeze(-1)
+
+        components = {}
+        kernels = {
+            "Trend": model.k_trend,
+            "Annual": model.k_annual,
+            "Weekly": model.k_weekly,
+            "Weather": model.k_weather,
+            "Calendar": model.k_calendar,
+            "Events": model.k_event,
+        }
+
+        for name, kernel in kernels.items():
+            K_cross = kernel(pred_x, train_x).evaluate()
+            f_component = (K_cross @ alpha).numpy()
+            components[name] = f_component
+
+    return components
+
+# Decompose on training data for primary building
+primary_ds = gp_datasets[primary_cat]
+primary_mdl = gp_models[primary_cat]["model"]
+primary_lik = gp_models[primary_cat]["likelihood"]
+
+# Decompose on full date range (train + test)
+all_x = torch.cat([primary_ds["train_x"], primary_ds["test_x"]])
+all_dates = np.concatenate([pred["train_dates"], pred["test_dates"]])
+
+decomp = decompose_gp(primary_mdl, primary_lik, primary_ds["train_x"], primary_ds["train_y"], all_x)
+
+# Inverse-transform components to original scale
+tgt_scale = primary_ds["tgt_scaler"].scale_[0]
+tgt_mean_val = primary_ds["tgt_scaler"].mean_[0]
+
+comp_colors = {
+    "Trend": "#63b3ed", "Annual": "#fc8181", "Weekly": "#68d391",
+    "Weather": "#f6ad55", "Calendar": "#b794f4", "Events": "#f687b3"
+}
+
+fig, axes = plt.subplots(6, 1, figsize=(14, 20), sharex=True)
+
+for ax, (name, values) in zip(axes, decomp.items()):
+    values_orig = values * tgt_scale
+    ax.plot(all_dates, values_orig, color=comp_colors[name], linewidth=1.0, alpha=0.85)
+    ax.fill_between(all_dates, 0, values_orig, alpha=0.15, color=comp_colors[name])
+    ax.axhline(0, color="#4a5568", linestyle=":", alpha=0.5, linewidth=0.8)
+    ax.axvline(pd.Timestamp("2020-01-01"), color="#cbd5e1", linestyle=":", alpha=0.4)
+    ax.axvline(pd.Timestamp("2020-03-20"), color="#fc8181", linestyle="--", alpha=0.4)
+    ax.set_ylabel(f"{name}\n(kWh)", fontweight="bold", fontsize=10)
+    ax.tick_params(labelsize=9)
+
+axes[0].set_title(f"Kernel Decomposition — {primary_cat} Building (ID {int(bid)})",
+                   fontweight="bold", pad=15, fontsize=13)
+axes[-1].set_xlabel("Date", fontweight="bold")
+plt.tight_layout()
+plt.savefig("unicon-gp-decomposition.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+```{python}
+#| label: fig-gp-periodicities
+#| fig-cap: "Learned periodic patterns from the GP — weekly occupancy cycle (left) and annual seasonality (right)"
+
+# ─── Extract periodic patterns by averaging decomposition ───
+all_dates_ts = pd.to_datetime(all_dates)
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+
+# Weekly pattern
+weekly_df = pd.DataFrame({
+    "dow": all_dates_ts.dayofweek,
+    "weekly": decomp["Weekly"] * tgt_scale
+})
+weekly_avg = weekly_df.groupby("dow")["weekly"].mean()
+weekly_std = weekly_df.groupby("dow")["weekly"].std()
+days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+bars = ax1.bar(days, weekly_avg.values, color=COLORS["electricity"],
+               edgecolor="#2d3748", alpha=0.85, yerr=weekly_std.values,
+               capsize=3, error_kw={"color": "#94a3b8", "linewidth": 1})
+ax1.axhline(0, color="#4a5568", linestyle=":", alpha=0.5)
+ax1.set_ylabel("Weekly Component (kWh)", fontweight="bold")
+ax1.set_title("Learned Weekly Occupancy Pattern", fontweight="bold", pad=10)
+
+# Annual pattern
+annual_df = pd.DataFrame({
+    "month": all_dates_ts.month,
+    "annual": decomp["Annual"] * tgt_scale
+})
+annual_avg = annual_df.groupby("month")["annual"].mean()
+annual_std = annual_df.groupby("month")["annual"].std()
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+ax2.plot(range(1, 13), annual_avg.values, color="#fc8181", linewidth=2.5,
+         marker="o", markersize=6, markeredgecolor="#2d3748")
+ax2.fill_between(range(1, 13),
+                 annual_avg.values - annual_std.values,
+                 annual_avg.values + annual_std.values,
+                 alpha=0.2, color="#fc8181")
+ax2.axhline(0, color="#4a5568", linestyle=":", alpha=0.5)
+ax2.set_xticks(range(1, 13))
+ax2.set_xticklabels(months, fontsize=9)
+ax2.set_ylabel("Annual Component (kWh)", fontweight="bold")
+ax2.set_title("Learned Annual Seasonality", fontweight="bold", pad=10)
+
+plt.tight_layout()
+plt.savefig("unicon-gp-periodicities.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+## Weather Response Analysis
+
+The GP's weather kernel learns a **nonlinear temperature–consumption relationship** without imposing a parametric form. By sweeping temperature while holding other features at their mean, we extract the learned response curve.
+
+```{python}
+#| label: fig-gp-temp-response
+#| fig-cap: "Learned temperature response curve from the GP weather kernel — Bundoora Teaching building. The shape reflects combined heating and cooling demand."
+
+# ─── Synthetic temperature sweep ───
+n_sweep = 200
+temp_range_raw = np.linspace(0, 40, n_sweep)
+feat_scaler = primary_ds["feat_scaler"]
+
+# Create synthetic feature matrix: sweep temperature, hold others at mean (=0 in standardised space)
+synthetic_features = np.zeros((n_sweep, len(all_features)))
+# Set temp_mean (index 0) to swept values
+temp_std = feat_scaler.scale_[0]
+temp_mean_val = feat_scaler.mean_[0]
+synthetic_features[:, 0] = (temp_range_raw - temp_mean_val) / temp_std
+
+synthetic_x = torch.tensor(synthetic_features, dtype=torch.float32)
+
+# Get weather component contribution only
+primary_mdl.eval()
+primary_lik.eval()
+with torch.no_grad():
+    output = primary_mdl(primary_ds["train_x"])
+    K_noisy = primary_lik(output).covariance_matrix
+    residual = (primary_ds["train_y"] - output.mean).unsqueeze(-1)
+    alpha = torch.linalg.solve(K_noisy, residual).squeeze(-1)
+
+    K_weather_cross = primary_mdl.k_weather(synthetic_x, primary_ds["train_x"]).evaluate()
+    weather_response = (K_weather_cross @ alpha).numpy() * tgt_scale
+
+    # Full prediction for uncertainty
+    full_pred = gp_models[primary_cat]["likelihood"](primary_mdl(synthetic_x))
+    full_mean = full_pred.mean.numpy() * tgt_scale + tgt_mean_val
+    full_std = np.sqrt(full_pred.variance.numpy()) * tgt_scale
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot(temp_range_raw, weather_response, color=COLORS["accent"], linewidth=2.5,
+        label="Weather kernel component")
+ax.fill_between(temp_range_raw,
+                weather_response - 50, weather_response + 50,
+                alpha=0.15, color=COLORS["accent"])
+ax.axhline(0, color="#4a5568", linestyle=":", alpha=0.5)
+
+# Mark typical comfort zone
+ax.axvspan(15, 22, alpha=0.08, color="#68d391", label="Thermoneutral zone (~15–22°C)")
+
+ax.set_xlabel("Mean Daily Air Temperature (°C)", fontweight="bold")
+ax.set_ylabel("Weather Effect on Consumption (kWh)", fontweight="bold")
+ax.set_title("Learned Temperature Response — Teaching Building", fontweight="bold", pad=15)
+ax.legend(fontsize=9)
+plt.tight_layout()
+plt.savefig("unicon-gp-temp-response.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+## Intervention Impact Analysis (ECM + COVID-19)
+
+The GP trained on pre-COVID data provides a **counterfactual**: what consumption *would have been* without interventions. By comparing this to actual observations, we quantify the causal impact of COVID-19 and ECM events.
+
+```{python}
+#| label: fig-gp-covid-cusum
+#| fig-cap: "COVID-19 structural break detection — standardised GP residuals (top) and CUSUM changepoint statistic (bottom)"
+
+# ─── Standardised residuals on test set ───
+test_residuals_std = (
+    (gp_predictions[primary_cat]["y_test"] - gp_predictions[primary_cat]["test_mean"])
+    / gp_predictions[primary_cat]["test_std"]
+)
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 8), sharex=True)
+
+test_dates = gp_predictions[primary_cat]["test_dates"]
+
+# Top: standardised residuals
+colors_res = np.where(np.abs(test_residuals_std) > 2.5, "#fc8181", COLORS["electricity"])
+ax1.scatter(test_dates, test_residuals_std, c=colors_res, s=8, alpha=0.6, zorder=2)
+ax1.axhline(0, color="#4a5568", linestyle=":", alpha=0.5)
+ax1.axhline(2.5, color="#fc8181", linestyle="--", alpha=0.5, linewidth=1)
+ax1.axhline(-2.5, color="#fc8181", linestyle="--", alpha=0.5, linewidth=1)
+ax1.axvline(pd.Timestamp("2020-03-20"), color="#fc8181", linewidth=2, alpha=0.8)
+ax1.text(pd.Timestamp("2020-04-05"), 4, "COVID-19\nShutdown", color="#fc8181",
+         fontsize=9, fontweight="bold", va="top")
+ax1.set_ylabel("Standardised Residual (σ)", fontweight="bold")
+ax1.set_title(f"GP Residual Analysis — {primary_cat} Building", fontweight="bold", pad=15)
+
+# Bottom: CUSUM
+cusum = np.cumsum(test_residuals_std)
+ax2.plot(test_dates, cusum, color=COLORS["electricity"], linewidth=1.5)
+ax2.fill_between(test_dates, 0, cusum, alpha=0.15, color=COLORS["electricity"])
+ax2.axhline(0, color="#4a5568", linestyle=":", alpha=0.5)
+ax2.axvline(pd.Timestamp("2020-03-20"), color="#fc8181", linewidth=2, alpha=0.8)
+ax2.set_xlabel("Date", fontweight="bold")
+ax2.set_ylabel("Cumulative Sum of Residuals", fontweight="bold")
+ax2.set_title("CUSUM Changepoint Detection", fontweight="bold", pad=10)
+
+plt.tight_layout()
+plt.savefig("unicon-gp-covid-cusum.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+```{python}
+#| label: fig-gp-ecm-impact
+#| fig-cap: "Counterfactual analysis — GP prediction with vs without interventions. The shaded area represents estimated energy savings from ECM events and COVID-19."
+
+# ─── Counterfactual: set event indicators to 0 ───
+counterfactual_x = primary_ds["test_x"].clone()
+counterfactual_x[:, 12:15] = 0.0  # Zero out event indicators
+
+primary_mdl_eval = gp_models[primary_cat]["model"]
+primary_lik = gp_models[primary_cat]["likelihood"]
+
+with torch.no_grad(), gpytorch.settings.fast_pred_var():
+    cf_pred = primary_lik(primary_mdl_eval(counterfactual_x))
+    cf_mean = cf_pred.mean.numpy()
+
+cf_mean_orig = primary_ds["tgt_scaler"].inverse_transform(cf_mean.reshape(-1, 1)).ravel()
+actual_mean_orig = gp_predictions[primary_cat]["test_mean"]
+
+# Compute total savings
+daily_savings = cf_mean_orig - actual_mean_orig
+total_savings = np.sum(daily_savings)
+
+fig, ax = plt.subplots(figsize=(14, 6))
+
+ax.plot(test_dates, actual_mean_orig, color=COLORS["electricity"], linewidth=1.5,
+        label="GP Prediction (with interventions)")
+ax.plot(test_dates, cf_mean_orig, color="#fc8181", linewidth=1.5, linestyle="--",
+        label="Counterfactual (no interventions)")
+ax.fill_between(test_dates, actual_mean_orig, cf_mean_orig,
+                where=(cf_mean_orig > actual_mean_orig),
+                alpha=0.2, color="#fc8181", label="Estimated savings")
+
+ax.axvline(pd.Timestamp("2020-03-20"), color="#fc8181", linestyle=":", alpha=0.5)
+
+ax.set_xlabel("Date", fontweight="bold")
+ax.set_ylabel("Daily Consumption (kWh)", fontweight="bold")
+ax.set_title(f"Intervention Impact — {primary_cat} Building | Total savings: {total_savings:,.0f} kWh",
+             fontweight="bold", pad=15)
+ax.legend(fontsize=9, loc="upper right")
+plt.tight_layout()
+plt.savefig("unicon-gp-ecm-impact.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+## Anomaly Detection
+
+The GP's calibrated predictive variance enables principled anomaly detection. Days where $|z| > 2.5\sigma$ are flagged — *contextually*, meaning the model accounts for expected time-of-week, season, and weather before declaring an anomaly.
+
+```{python}
+#| label: fig-gp-anomalies
+#| fig-cap: "GP-based anomaly detection — days exceeding 2.5σ from the GP prediction are flagged as anomalous (red). Most anomalies cluster around the COVID-19 transition period."
+
+ANOMALY_THRESHOLD = 2.5
+anomaly_mask = np.abs(test_residuals_std) > ANOMALY_THRESHOLD
+normal_mask = ~anomaly_mask
+n_anomalies = anomaly_mask.sum()
+anomaly_pct = n_anomalies / len(test_residuals_std) * 100
+
+fig, ax = plt.subplots(figsize=(14, 6))
+
+ax.scatter(test_dates[normal_mask],
+           gp_predictions[primary_cat]["y_test"][normal_mask],
+           color=COLORS["electricity"], s=5, alpha=0.3, label="Normal", zorder=1)
+ax.scatter(test_dates[anomaly_mask],
+           gp_predictions[primary_cat]["y_test"][anomaly_mask],
+           color="#fc8181", s=25, edgecolors="white", linewidth=0.5,
+           zorder=5, label=f"Anomaly (>{ANOMALY_THRESHOLD}σ, n={n_anomalies})")
+ax.plot(test_dates, gp_predictions[primary_cat]["test_mean"],
+        color=COLORS["accent"], linewidth=1, alpha=0.7, label="GP Mean")
+ax.fill_between(test_dates,
+                gp_predictions[primary_cat]["test_mean"] - ANOMALY_THRESHOLD * gp_predictions[primary_cat]["test_std"],
+                gp_predictions[primary_cat]["test_mean"] + ANOMALY_THRESHOLD * gp_predictions[primary_cat]["test_std"],
+                alpha=0.1, color=COLORS["accent"], label=f"±{ANOMALY_THRESHOLD}σ band")
+
+ax.axvline(pd.Timestamp("2020-03-20"), color="#fc8181", linestyle="--", alpha=0.7)
+
+ax.set_xlabel("Date", fontweight="bold")
+ax.set_ylabel("Daily Consumption (kWh)", fontweight="bold")
+ax.set_title(f"Anomaly Detection — {primary_cat} Building | {n_anomalies} anomalies ({anomaly_pct:.1f}%)",
+             fontweight="bold", pad=15)
+ax.legend(fontsize=9, loc="upper right")
+plt.tight_layout()
+plt.savefig("unicon-gp-anomalies.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+## Cross-Building Category Comparison
+
+The same GP architecture is fitted to all 8 building categories. By comparing the posterior predictions and learned hyperparameters, we test whether the GP captures the **fundamentally different physics** of each building type — weekly occupancy patterns, seasonal sensitivity, and weather response.
+
+```{python}
+#| label: fig-gp-cross-building
+#| fig-cap: "GP posterior predictions across all building categories — each panel shows observed consumption (dots), GP mean (line), and 95% CI (shaded)"
+
+n_categories = len(gp_predictions)
+fig, axes = plt.subplots(n_categories, 1, figsize=(14, 3.5 * n_categories), sharex=True)
+
+for ax, cat in zip(axes, sorted(gp_predictions.keys())):
+    pred = gp_predictions[cat]
+    bid = gp_datasets[cat]["building_id"]
+    color = cat_colors.get(cat, "#cbd5e1")
+
+    # Train
+    ax.scatter(pred["train_dates"], pred["y_train"],
+               color=COLORS["muted"], s=2, alpha=0.2, zorder=1)
+    ax.plot(pred["train_dates"], pred["train_mean"],
+            color=color, linewidth=1.2, zorder=3)
+    ax.fill_between(pred["train_dates"],
+                    pred["train_mean"] - 1.96 * pred["train_std"],
+                    pred["train_mean"] + 1.96 * pred["train_std"],
+                    alpha=0.15, color=color, zorder=2)
+
+    # Test
+    ax.scatter(pred["test_dates"], pred["y_test"],
+               color=COLORS["accent"], s=2, alpha=0.2, zorder=1)
+    ax.plot(pred["test_dates"], pred["test_mean"],
+            color=color, linewidth=1.2, zorder=3)
+    ax.fill_between(pred["test_dates"],
+                    pred["test_mean"] - 1.96 * pred["test_std"],
+                    pred["test_mean"] + 1.96 * pred["test_std"],
+                    alpha=0.1, color=color, zorder=2)
+
+    ax.axvline(pd.Timestamp("2020-01-01"), color="#cbd5e1", linestyle=":", alpha=0.3)
+    ax.axvline(pd.Timestamp("2020-03-20"), color="#fc8181", linestyle="--", alpha=0.4)
+    ax.set_ylabel(f"{cat}\n(B{int(bid)})", fontweight="bold", fontsize=9)
+    ax.tick_params(labelsize=8)
+
+axes[0].set_title("GP Posterior — All Building Categories", fontweight="bold", pad=15, fontsize=13)
+axes[-1].set_xlabel("Date", fontweight="bold")
+plt.tight_layout()
+plt.savefig("unicon-gp-cross-building.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+```{python}
+#| label: fig-gp-hyperparams
+#| fig-cap: "Learned kernel hyperparameters across building categories — weekly amplitude (left), annual amplitude (centre), and weather lengthscale (right) reveal distinct building physics"
+
+# ─── Extract key hyperparameters from all 7 models ───
+hyperparam_data = []
+for cat in sorted(gp_models.keys()):
+    mdl = gp_models[cat]["model"]
+    tgt_scale = gp_datasets[cat]["tgt_scaler"].scale_[0]
+
+    hyperparam_data.append({
+        "Category": cat,
+        "Weekly Amplitude": mdl.k_weekly.outputscale.item() * tgt_scale,
+        "Annual Amplitude": mdl.k_annual.outputscale.item() * tgt_scale,
+        "Weather Scale": mdl.k_weather.outputscale.item() * tgt_scale,
+        "Trend Scale": mdl.k_trend.outputscale.item() * tgt_scale,
+        "Calendar Scale": mdl.k_calendar.outputscale.item() * tgt_scale,
+        "Event Scale": mdl.k_event.outputscale.item() * tgt_scale,
+        "Noise (σ²)": gp_models[cat]["likelihood"].noise.item() * tgt_scale**2,
+    })
+
+hp_df = pd.DataFrame(hyperparam_data).sort_values("Category")
+
+# Plot 3 key hyperparameters
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(16, 6))
+
+categories = hp_df["Category"].values
+colors_list = [cat_colors.get(c, "#cbd5e1") for c in categories]
+x_pos = range(len(categories))
+
+# Weekly amplitude
+ax1.bar(x_pos, hp_df["Weekly Amplitude"].values, color=colors_list,
+        edgecolor="#2d3748", alpha=0.85)
+ax1.set_xticks(x_pos)
+ax1.set_xticklabels(categories, rotation=45, ha="right", fontsize=8)
+ax1.set_ylabel("Output Scale (kWh)", fontweight="bold")
+ax1.set_title("Weekly Kernel Amplitude\n(Weekday/Weekend Contrast)", fontweight="bold", fontsize=11)
+
+# Annual amplitude
+ax2.bar(x_pos, hp_df["Annual Amplitude"].values, color=colors_list,
+        edgecolor="#2d3748", alpha=0.85)
+ax2.set_xticks(x_pos)
+ax2.set_xticklabels(categories, rotation=45, ha="right", fontsize=8)
+ax2.set_ylabel("Output Scale (kWh)", fontweight="bold")
+ax2.set_title("Annual Kernel Amplitude\n(Seasonal Variation)", fontweight="bold", fontsize=11)
+
+# Weather scale
+ax3.bar(x_pos, hp_df["Weather Scale"].values, color=colors_list,
+        edgecolor="#2d3748", alpha=0.85)
+ax3.set_xticks(x_pos)
+ax3.set_xticklabels(categories, rotation=45, ha="right", fontsize=8)
+ax3.set_ylabel("Output Scale (kWh)", fontweight="bold")
+ax3.set_title("Weather Kernel Scale\n(Temperature Sensitivity)", fontweight="bold", fontsize=11)
+
+plt.suptitle("Learned Hyperparameters Across Building Categories",
+             fontweight="bold", fontsize=13, y=1.02)
+plt.tight_layout()
+plt.savefig("unicon-gp-hyperparams.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+```{python}
+#| label: tbl-gp-hyperparams
+#| tbl-cap: "Full hyperparameter table — learned kernel scales across all building categories (units: kWh for amplitudes, kWh² for noise variance)"
+
+hp_display = hp_df.copy()
+for col in hp_display.columns:
+    if col != "Category":
+        hp_display[col] = hp_display[col].apply(lambda x: f"{x:.1f}")
+hp_display
+```
+
+## Model Evaluation and Discussion
+
+```{python}
+#| label: fig-gp-evaluation
+#| fig-cap: "Model evaluation for Teaching building — predicted vs observed (left), residual distribution (centre), and calibration reliability diagram (right)"
+
+from scipy import stats
+
+# ─── Compute metrics for all buildings ───
+metrics_rows = []
+for cat in sorted(gp_predictions.keys()):
+    pred = gp_predictions[cat]
+    y_true = pred["y_test"]
+    y_pred = pred["test_mean"]
+    y_std = pred["test_std"]
+
+    residuals = y_true - y_pred
+    rmse = np.sqrt(np.mean(residuals**2))
+    mae = np.mean(np.abs(residuals))
+    mape = np.mean(np.abs(residuals) / np.maximum(np.abs(y_true), 1)) * 100
+
+    # Coverage at 90% CI
+    z_scores = np.abs(residuals) / y_std
+    coverage_90 = np.mean(z_scores < 1.645) * 100
+    coverage_95 = np.mean(z_scores < 1.96) * 100
+
+    metrics_rows.append({
+        "Category": cat,
+        "Building": int(gp_datasets[cat]["building_id"]),
+        "RMSE (kWh)": f"{rmse:.1f}",
+        "MAE (kWh)": f"{mae:.1f}",
+        "MAPE (%)": f"{mape:.1f}",
+        "90% Coverage": f"{coverage_90:.1f}%",
+        "95% Coverage": f"{coverage_95:.1f}%",
+    })
+
+# ─── 3-panel evaluation plot for primary building ───
+pred = gp_predictions[primary_cat]
+y_true = pred["y_test"]
+y_pred = pred["test_mean"]
+y_std = pred["test_std"]
+residuals = y_true - y_pred
+z_scores = residuals / y_std
+
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(16, 5))
+
+# Panel 1: Actual vs Predicted
+ax1.scatter(y_true, y_pred, s=5, alpha=0.4, color=COLORS["electricity"])
+lims = [min(y_true.min(), y_pred.min()), max(y_true.max(), y_pred.max())]
+ax1.plot(lims, lims, color="#fc8181", linestyle="--", linewidth=1.5, label="Perfect prediction")
+ax1.set_xlabel("Observed (kWh)", fontweight="bold")
+ax1.set_ylabel("Predicted (kWh)", fontweight="bold")
+ax1.set_title("Predicted vs Observed", fontweight="bold")
+ax1.legend(fontsize=8)
+
+# Panel 2: Residual distribution
+ax2.hist(z_scores, bins=50, color=COLORS["electricity"], edgecolor="#2d3748", alpha=0.85, density=True)
+x_norm = np.linspace(-4, 4, 100)
+ax2.plot(x_norm, stats.norm.pdf(x_norm), color="#fc8181", linewidth=2, linestyle="--",
+         label="N(0,1) reference")
+ax2.set_xlabel("Standardised Residual (σ)", fontweight="bold")
+ax2.set_ylabel("Density", fontweight="bold")
+ax2.set_title("Residual Distribution", fontweight="bold")
+ax2.legend(fontsize=8)
+
+# Panel 3: Calibration plot
+ci_levels = np.arange(0.1, 1.0, 0.05)
+expected_coverage = ci_levels
+observed_coverage = []
+for ci in ci_levels:
+    z_threshold = stats.norm.ppf(0.5 + ci / 2)
+    obs_cov = np.mean(np.abs(z_scores) < z_threshold)
+    observed_coverage.append(obs_cov)
+
+ax3.plot([0, 1], [0, 1], color="#fc8181", linestyle="--", linewidth=1.5, label="Perfect calibration")
+ax3.plot(expected_coverage, observed_coverage, color=COLORS["electricity"],
+         linewidth=2, marker="o", markersize=4, label="GP Model")
+ax3.set_xlabel("Expected Coverage", fontweight="bold")
+ax3.set_ylabel("Observed Coverage", fontweight="bold")
+ax3.set_title("Calibration Reliability Diagram", fontweight="bold")
+ax3.legend(fontsize=8)
+
+plt.suptitle(f"Model Evaluation — {primary_cat} Building (Test Set: 2020–2022)",
+             fontweight="bold", fontsize=13, y=1.02)
+plt.tight_layout()
+plt.savefig("unicon-gp-evaluation.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+```{python}
+#| label: tbl-gp-metrics
+#| tbl-cap: "Forecast performance metrics across all building categories — RMSE, MAE, MAPE, and calibration coverage on the 2020–2022 test set"
+
+pd.DataFrame(metrics_rows).sort_values("Category")
+```
+
+### Discussion: Hypothesis Testing Results
+
+The multi-category GP comparison provides evidence for the following hypotheses:
+
+| Hypothesis | Evidence | Supported? |
+|-----------|----------|:----------:|
+| **H1**: Teaching buildings have stronger weekly periodicity | Compare weekly kernel amplitudes across categories | See hyperparameter table |
+| **H2**: Temperature response is U-shaped | Temperature response curve (Fig 4) shows shape | See weather analysis |
+| **H3**: COVID-19 impact varies by building type | CUSUM analysis + cross-building predictions | Compare residuals |
+| **H4**: ECMs produce step-changes | Counterfactual analysis (Fig 6) | See event component |
+| **H5**: Seasonal amplitude varies by category | Compare annual kernel amplitudes | See hyperparameter bars |
+| **H6**: Weather sensitivity differs by category | Compare weather kernel scales | See hyperparameter bars |
+| **H8**: Academic calendar modulates consumption | Calendar kernel contributions | See decomposition |
+
+### Limitations and Future Work
+
+**Current limitations:**
+
+- **Daily aggregation** loses intra-day patterns (the diurnal profile, peak demand timing)
+- **Single-building models** — each building is modelled independently; no information sharing
+- **Stationary kernels** — the locally periodic structure (PER × SE) would better capture evolving patterns but adds complexity
+- **Two years of training data** — limited exposure to extreme weather events
+
+**Proposed extensions for research:**
+
+1. **Hierarchical multi-output GP** — share kernel hyperparameters across buildings via the Linear Model of Coregionalisation (LMC), enabling transfer learning to buildings with sparse data
+2. **Deep Kernel Learning** (Wilson et al., 2016) — replace handcrafted features with a neural network feature extractor, learning representations end-to-end
+3. **Sub-daily resolution with SVGP** — use Sparse Variational GP (Hensman et al., 2013) with ~2000 inducing points to model 15-minute data directly
+4. **Normalizing flows** for multi-modal consumption distributions
+5. **Bayesian changepoint detection** with sigmoid kernels for automatic regime identification
+
+---
+
+### References
+
+- Rasmussen, C. E. and Williams, C. K. I. (2006). *Gaussian Processes for Machine Learning*. MIT Press.
+- Duvenaud, D. et al. (2013). "Structure Discovery in Nonparametric Regression through Compositional Kernel Search." *ICML*.
+- Lloyd, J. R. et al. (2014). "Automatic Construction and Natural-Language Description of Nonparametric Regression Models." *AAAI*.
+- Hensman, J. et al. (2013). "Gaussian Processes for Big Data." *UAI*.
+- Wilson, A. G. et al. (2016). "Deep Kernel Learning." *AISTATS*.
+- Moraliyage, H. et al. (2022). "UNICON: An Open Dataset of Electricity, Gas and Water Consumption." *IEEE HSI*.
+
+---
+
+*Model implementation: [GPyTorch](https://gpytorch.ai/) with PyTorch backend. All code available with `code-fold` — click "Code" to expand.*

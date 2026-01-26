@@ -112,7 +112,7 @@
 | Projects listing | `projects/index.qmd` | Complete (grid + search + tags) |
 | Iris EDA demo | `projects/iris-eda/index.qmd` | Complete |
 | Revealjs demo | `projects/revealjs-demo/` | Complete (page + presentation) |
-| UNICON EDA | `projects/unicon-eda/index.qmd` | Complete (schema + stats + plots) |
+| UNICON EDA+GP | `projects/unicon-eda/index.qmd` | Complete (EDA + GP modelling, 39 cells, 16 figures) |
 | Freeze outputs | `_freeze/` | Committed (for CI deployment without data) |
 | Assets folder | `assets/` | Exists (images, js, UNICON PDF) |
 | Data folder | `data/` | Exists (gitignored — raw, intermediate) |
@@ -189,6 +189,9 @@ To reach target state:
 | 2026-01-26 | Removed `_freeze/` from `.gitignore` — frozen outputs now committed | `.gitignore` |
 | 2026-01-26 | Created UNICON EDA project (schema discovery, stats, 5 visualisations) | `projects/unicon-eda/index.qmd` |
 | 2026-01-26 | Full site validated — quarto render all 7 pages OK, freeze working | `_site/`, `_freeze/` |
+| 2026-01-26 | Added GP modelling pipeline to UNICON EDA (8 building categories, 18 new cells, 11 new figures) | `projects/unicon-eda/index.qmd` |
+| 2026-01-26 | Added gpytorch + linear_operator to requirements | `requirements.txt` |
+| 2026-01-26 | Freeze updated with GP outputs (16 figures + html.json) | `_freeze/projects/unicon-eda/` |
 
 ---
 
