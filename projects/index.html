@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Daniel Huencho Mardini - Data Scientist, AI Researcher, and MSc candidate at UCL">
+<meta name="description" content="A collection of data science and AI projects showcasing research and applied work.">
 
-<title>About | Daniel Huencho – Daniel Huencho | AI Engineer</title>
+<title>Projects – Daniel Huencho | AI Engineer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,27 +24,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/images/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d2ac4630ef75d4acf4bbc1803ea9635c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/images/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d2ac4630ef75d4acf4bbc1803ea9635c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,22 +72,80 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-project-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-project-listing'] = new List('listing-project-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="custom.scss">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../custom.scss">
 </head>
 
-<body class="nav-fixed hide-title-block quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Daniel Huencho | AI Engineer</span>
     </a>
   </div>
@@ -98,15 +156,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects/index.html"> 
+    <a class="nav-link active" href="../projects/index.html" aria-current="page"> 
 <span class="menu-text">Projects</span></a>
   </li>  
 </ul>
@@ -132,23 +190,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RURB">EDA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJlc2VudGF0aW9u">Presentation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmV2ZWFsanM=">Revealjs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2Npa2l0LWxlYXJu">Scikit-learn <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VmlzdWFsaXphdGlvbg==">Visualization <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Projects</h1>
 </div>
 
 <div>
   <div class="description">
-    Daniel Huencho Mardini - Data Scientist, AI Researcher, and MSc candidate at UCL
+    A collection of data science and AI projects showcasing research and applied work.
   </div>
 </div>
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -160,185 +219,103 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="hero-section">
-<p><img src="./assets/images/my_photo_professional.jpeg" class="hero-photo img-fluid" alt="Daniel Huencho Mardini"></p>
-<p><span class="hero-name">Daniel Huencho Mardini</span></p>
-<p><span class="hero-headline">MSc AI for Sustainable Development @ UCL | Former Head of Data Science</span></p>
-<div class="hero-summary">
-<p>With over seven years of experience delivering impactful data-driven solutions in finance and transportation, I specialize in designing AI systems for predictive maintenance, anomaly detection, and generative AI applications. Currently pursuing my Master’s at University College London, I am passionate about leveraging data and technology to innovate complex systems and create measurable societal value.</p>
+<div class="projects-header">
+<p class="projects-subtitle">
+Explore my portfolio of data science, machine learning, and AI projects. Use the search bar to filter by text or click on tags to browse by category.
+</p>
 </div>
-<div class="social-links">
-<p><a href="mailto:daniel.mardini.25@ucl.ac.uk" class="social-link"><i class="fa-solid fa-envelope" aria-label="envelope"></i> daniel.mardini.25@ucl.ac.uk</a> <a href="https://github.com/choka30" class="social-link"><i class="fa-brands fa-github" aria-label="github"></i> GitHub</a> <a href="https://www.linkedin.com/in/daniel-huencho-mardini-9568489a/" class="social-link"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i> LinkedIn</a> <a href="https://maps.google.com/?q=London,UK" class="social-link"><i class="fa-solid fa-map-marker-alt" aria-label="map-marker-alt"></i> London, UK</a></p>
-</div>
-</div>
-<section id="education" class="level2">
-<h2 class="anchored" data-anchor-id="education">Education</h2>
-<div class="timeline">
-<div class="timeline-item">
-<p><span class="timeline-date">2025 - Present</span></p>
-<p><span class="timeline-title">University College London (UCL)</span></p>
-<p><span class="timeline-subtitle">Master of Science in Artificial Intelligence for Sustainable Development</span></p>
-<div class="timeline-content">
-<p>Relevant modules: Probabilistic Modelling, Foundations of Artificial Intelligence, Deep Representations and Learning.</p>
-</div>
-</div>
-<div class="timeline-item">
-<p><span class="timeline-date">2019 - 2020</span></p>
-<p><span class="timeline-title">Pontificia Universidad Católica de Chile</span></p>
-<p><span class="timeline-subtitle">Master of Science in Statistics</span></p>
-<div class="timeline-content">
-<ul>
-<li>Ranked 2nd in cohort, GPA: 3.75 / 4.0</li>
-<li>Thesis: Multinomial logit model for route choice behavior in Santiago Metro using Origin-Destination survey data and spatial predictors</li>
-<li>Modules: Generalized Linear Models, Time Series, Bayesian Statistics, Machine Learning Applications</li>
-</ul>
-</div>
-</div>
-<div class="timeline-item">
-<p><span class="timeline-date">2011 - 2018</span></p>
-<p><span class="timeline-title">Pontificia Universidad Católica de Chile</span></p>
-<p><span class="timeline-subtitle">Civil Engineer of Industry with Diploma in Transportation Engineering</span></p>
-<div class="timeline-content">
-<p>Modules: Calculus, Differential Equations, Linear Algebra, Probability &amp; Statistics, Operational Research, Travel Demand Modeling, Transport Network Equilibrium.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="professional-experience" class="level2">
-<h2 class="anchored" data-anchor-id="professional-experience">Professional Experience</h2>
-<div class="timeline">
-<div class="timeline-item">
-<p><span class="timeline-date">2023 - 2025</span></p>
-<p><span class="timeline-title">Head of Data Science</span></p>
-<p><span class="timeline-subtitle">Metro de Santiago, Chile</span></p>
-<div class="timeline-content">
-<ul>
-<li>Led a team of 5 Data Scientists and Data Engineers to design and deploy AI-driven solutions using cloud services</li>
-<li>Architected end-to-end big data pipeline for high-frequency SCADA energy data, addressing complex spatial-temporal challenges</li>
-<li>Developed ensemble-based predictive maintenance model for ticket reload machines, optimizing maintenance schedules</li>
-<li>Implemented Generative AI agents to assist Operations Control Center and Maintenance tasks with embedded knowledge base</li>
-</ul>
-</div>
-</div>
-<div class="timeline-item">
-<p><span class="timeline-date">2022 - 2023</span></p>
-<p><span class="timeline-title">Analytics Translator</span></p>
-<p><span class="timeline-subtitle">Banco de Crédito e Inversiones (BCI), Chile</span></p>
-<div class="timeline-content">
-<ul>
-<li>Bridged technical data science expertise with business operations, developing strategies for digital banking ecosystem</li>
-<li>Led data-driven profitability initiative using behavioral and financial clustering to identify high-value segments</li>
-<li>Designed optimized customer journey with A/B testing validation, increasing adoption and reducing churn</li>
-<li>Tools: Databricks, R, Python, SQL, Spark, Scala</li>
-</ul>
-</div>
-</div>
-<div class="timeline-item">
-<p><span class="timeline-date">2021 - 2022</span></p>
-<p><span class="timeline-title">Senior Risk Management Analyst</span></p>
-<p><span class="timeline-subtitle">Banco de Chile</span></p>
-<div class="timeline-content">
-<ul>
-<li>Monitored provision models for portfolio risk mitigation (CMF regulatory methodology)</li>
-<li>Led migration of data infrastructure to Cloudera on-premises data lake platform</li>
-<li>Presented results in technical and executive committees for strategic decision-making</li>
-</ul>
-</div>
-</div>
-<div class="timeline-item">
-<p><span class="timeline-date">2018 - 2021</span></p>
-<p><span class="timeline-title">Data Analyst, Planning and Development</span></p>
-<p><span class="timeline-subtitle">Metro de Santiago, Chile</span></p>
-<div class="timeline-content">
-<ul>
-<li>Developed ML models to describe and forecast user behavior with R (Rcpp) and Python</li>
-<li>Led development of train passenger density model as key KPI for service level measurement</li>
-<li>Strategic analysis with Chile’s Ministry of Transportation for future Metro line projects</li>
-<li>Contributed to research on mobile phone data for mobility pattern detection</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="technical-skills" class="level2">
-<h2 class="anchored" data-anchor-id="technical-skills">Technical Skills</h2>
-<div class="skills-legend">
-  <span class="skills-legend-title">Proficiency:</span>
-  <div class="skills-legend-item">
-    <span class="legend-dot legend-dot-advanced"></span>
-    <span class="legend-label">Advanced</span>
+<div id="listing-project-listing" class="quarto-listing quarto-listing-container-grid">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-project-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-project-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+    </select>
   </div>
-  <div class="skills-legend-item">
-    <span class="legend-dot legend-dot-intermediate"></span>
-    <span class="legend-label">Intermediate</span>
-  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
 </div>
-<div class="skill-category">
-<p><span class="skill-category-title">Programming Languages</span></p>
-<div class="skills-container">
-<p><span class="skill-tag skill-tag-advanced">Python</span> <span class="skill-tag skill-tag-advanced">SQL</span> <span class="skill-tag skill-tag-advanced">R</span> <span class="skill-tag skill-tag-intermediate">C++</span></p>
+<div class="list grid quarto-listing-cols-2">
+<div class="g-col-1" data-index="0" data-categories="UHl0aG9uJTJDRURBJTJDU2Npa2l0LWxlYXJuJTJDVmlzdWFsaXphdGlvbg==" data-listing-date-sort="1769385600000" data-listing-file-modified-sort="1769443434835" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="794">
+<a href="../projects/iris-eda/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../projects/iris-eda/iris-pairplot.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Iris Dataset: Exploratory Data Analysis
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RURB'); return false;">EDA</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2Npa2l0LWxlYXJu'); return false;">Scikit-learn</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsaXphdGlvbg=='); return false;">Visualization</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>A visual exploration of the classic Iris dataset using matplotlib, seaborn, and scikit-learn. Includes distribution analysis, correlation heatmaps, and a classification…</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jan 26, 2026
 </div>
 </div>
-<div class="skill-category">
-<p><span class="skill-category-title">Machine Learning &amp; Deep Learning</span></p>
-<div class="skills-container">
-<p><span class="skill-tag skill-tag-advanced">PyTorch</span> <span class="skill-tag skill-tag-advanced">Scikit-learn</span> <span class="skill-tag skill-tag-advanced">Deep Learning</span> <span class="skill-tag skill-tag-advanced">TensorFlow</span> <span class="skill-tag skill-tag-advanced">Ensemble Models</span> <span class="skill-tag skill-tag-intermediate">Generative AI</span> <span class="skill-tag skill-tag-intermediate">MLlib</span></p>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="UXVhcnRvJTJDUHJlc2VudGF0aW9uJTJDUmV2ZWFsanM=" data-listing-date-sort="1769299200000" data-listing-file-modified-sort="1769443434839" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="125">
+<a href="../projects/revealjs-demo/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../projects/revealjs-demo/revealjs-thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Interactive Presentations with Revealjs
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UXVhcnRv'); return false;">Quarto</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJlc2VudGF0aW9u'); return false;">Presentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmV2ZWFsanM='); return false;">Revealjs</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>A demonstration of Quarto’s Revealjs integration for creating beautiful, interactive HTML presentations with slide transitions and themes.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jan 25, 2026
 </div>
 </div>
-<div class="skill-category">
-<p><span class="skill-category-title">Data Engineering &amp; Cloud</span></p>
-<div class="skills-container">
-<p><span class="skill-tag skill-tag-advanced">Apache Spark</span> <span class="skill-tag skill-tag-advanced">ETL Pipelines</span> <span class="skill-tag skill-tag-intermediate">Databricks</span> <span class="skill-tag skill-tag-intermediate">AWS (EC2, S3, Glue, Athena)</span> <span class="skill-tag skill-tag-intermediate">Docker</span></p>
+</div>
+</div></a>
 </div>
 </div>
-<div class="skill-category">
-<p><span class="skill-category-title">Statistical Methods</span></p>
-<div class="skills-container">
-<p><span class="skill-tag skill-tag-advanced">Bayesian Statistics</span> <span class="skill-tag skill-tag-advanced">Time Series Analysis</span> <span class="skill-tag skill-tag-advanced">Generalized Linear Models</span> <span class="skill-tag skill-tag-intermediate">A/B Testing</span> <span class="skill-tag skill-tag-intermediate">Survival Analysis</span></p>
+<div class="listing-no-matching d-none">No matching items</div>
 </div>
-</div>
-</section>
-<section id="languages" class="level2">
-<h2 class="anchored" data-anchor-id="languages">Languages</h2>
-<div class="language-item">
-<p><span class="language-name">Spanish</span> <span class="language-level">Native Speaker</span></p>
-</div>
-<div class="language-item">
-<p><span class="language-name">English</span> <span class="language-level">IELTS 8.0 (C1 - Advanced)</span></p>
-</div>
-</section>
-<section id="conferences-events" class="level2">
-<h2 class="anchored" data-anchor-id="conferences-events">Conferences &amp; Events</h2>
-<div class="event-item">
-<p><span class="event-year">2025</span> | <span class="event-title">EurIPS, Copenhagen</span></p>
-<p><span class="event-description">Volunteered facilitating logistics and technical support for workshops on AI Efficiency, Sustainability, and Earth Observation.</span></p>
-</div>
-<div class="event-item">
-<p><span class="event-year">2024</span> | <span class="event-title">InnoTrans 2024, Berlin</span></p>
-<p><span class="event-description">Represented Metro de Santiago at world’s largest transportation technology fair, exploring trends in sustainability, digitalization, and AI.</span></p>
-</div>
-<div class="event-item">
-<p><span class="event-year">2024</span> | <span class="event-title">OpenAI Hackathon &amp; Conference, Latin America</span></p>
-<p><span class="event-description">Participated in first OpenAI event in Latin America, engaging with advancements in generative AI applications.</span></p>
-</div>
-</section>
-<section id="publications-research" class="level2">
-<h2 class="anchored" data-anchor-id="publications-research">Publications &amp; Research</h2>
-<div class="event-item">
-<p><span class="event-year">2025</span> | <span class="event-title">XXII Congreso Chileno de Ingeniería de Transporte</span></p>
-<p><span class="event-description">Research on Urban Quality of Life Index focusing on environmental and social dynamics surrounding Metro stations.</span></p>
-</div>
-<div class="event-item">
-<p><span class="event-year">2018-2019</span> | <span class="event-title">Mobile Phone Antenna Data Research</span></p>
-<p><span class="event-description">Supported academic research with Eduardo Graells-Garrido on large-scale mobility patterns. <a href="https://arxiv.org/pdf/2204.09482">arXiv:2204.09482</a></span></p>
-</div>
-</section>
-<section id="download-cv" class="level2">
-<h2 class="anchored" data-anchor-id="download-cv">Download CV</h2>
-<p><a href="./assets/CV DHM 20251222.pdf" class="btn-download"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> Download Full CV (PDF)</a></p>
 
 
-</section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

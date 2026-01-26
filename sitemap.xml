@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://danielhuencho.com/projects/revealjs-demo/presentation.html</loc>
+    <lastmod>2026-01-26T16:03:54.839Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/projects/iris-eda/index.html</loc>
+    <lastmod>2026-01-26T16:03:54.835Z</lastmod>
+  </url>
+  <url>
     <loc>https://danielhuencho.com/about.html</loc>
-    <lastmod>2026-01-26T13:49:00.352Z</lastmod>
+    <lastmod>2026-01-26T16:03:54.832Z</lastmod>
   </url>
   <url>
     <loc>https://danielhuencho.com/index.html</loc>
-    <lastmod>2026-01-26T13:49:00.353Z</lastmod>
+    <lastmod>2026-01-26T16:03:54.834Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/projects/index.html</loc>
+    <lastmod>2026-01-26T16:03:54.834Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/projects/revealjs-demo/index.html</loc>
+    <lastmod>2026-01-26T16:03:54.839Z</lastmod>
   </url>
 </urlset>
