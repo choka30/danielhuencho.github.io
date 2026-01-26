@@ -1,9 +1,9 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-26 18:00
-> Total pages: 8 (Home, About, Projects listing, Iris EDA, UNICON EDA, Revealjs demo page, Revealjs presentation, + 2 legacy)
-> Total assets: 2 profile photos + 1 thumbnail + 10 generated plots + 1 reference PDF
-> Content status: Projects listing with search/tags, 3 projects complete (Iris, UNICON, Revealjs), freeze enabled
+> Last updated: 2026-01-26 20:40
+> Total pages: 8 (Home, About, Projects listing, Iris EDA, UNICON EDA+GP, Revealjs demo page, Revealjs presentation, + 2 legacy)
+> Total assets: 2 profile photos + 1 thumbnail + 21 generated plots + 1 reference PDF
+> Content status: Projects listing with search/tags, 3 projects complete (Iris, UNICON EDA+GP, Revealjs), freeze enabled
 
 ---
 
@@ -118,12 +118,12 @@
 
 ---
 
-### `projects/unicon-eda/index.qmd` — UNICON Dataset EDA
+### `projects/unicon-eda/index.qmd` — UNICON Dataset EDA + GP Modelling
 
-**Purpose:** Exploratory data analysis of the UNICON open dataset — electricity, gas, and water consumption across La Trobe University's 5 campuses (2018–2021).
+**Purpose:** Exploratory data analysis and Gaussian Process probabilistic modelling of the UNICON open dataset — electricity, gas, and water consumption across La Trobe University's 5 campuses (2018–2021).
 
-**Current State:**
-- ✓ YAML front matter (title, date, description, categories: Python/EDA/Energy/Time Series, image)
+**Current State (EDA section — cells 1–21):**
+- ✓ YAML front matter (title, date, description, categories: Python/EDA/Energy/Time Series/Gaussian Processes/Probabilistic ML/PyTorch, image)
 - ✓ Introduction with dataset overview and key features
 - ✓ Zip extraction (idempotent — skips if already extracted)
 - ✓ All 11 CSVs loaded with optimized float32 dtypes
@@ -139,11 +139,37 @@
 - ✓ Temperature vs consumption scatter (coloured by year)
 - ✓ Summary table with key findings
 - ✓ Next steps section (probabilistic modelling approaches)
+
+**Current State (GP Modelling section — cells 22–39):**
+- ✓ Mathematical framework: GP prior, posterior, marginal likelihood, compositional kernel design (LaTeX)
+- ✓ 6-component additive kernel: trend + annual + weekly + weather + calendar + events
+- ✓ GPyTorch setup with CUDA GPU support
+- ✓ Building selection: 1 representative per category (8 categories: teaching, library, office, residence, mixed use, sport, other, leased)
+- ✓ Daily aggregation + 15-feature engineering (6 weather + 4 calendar + 2 temporal + 3 event)
+- ✓ Temporal train/test split (pre-2020 train / 2020+ test)
+- ✓ `EnergyGP(ExactGP)` model class with 6 additive kernels
+- ✓ Training convergence plot for all 8 categories
+- ✓ GP posterior with 95% CI for primary teaching building
+- ✓ Kernel decomposition: 6-panel additive components plot
+- ✓ Learned periodicities: weekly bar chart + annual line plot
+- ✓ Temperature response curve (synthetic sweep with thermoneutral zone)
+- ✓ COVID-19 CUSUM changepoint detection
+- ✓ Counterfactual ECM impact analysis (kWh savings)
+- ✓ Anomaly detection (z > 2.5σ flagging)
+- ✓ Cross-building 8-panel posterior comparison
+- ✓ Hyperparameter comparison bars (weekly/annual/weather amplitudes)
+- ✓ Full hyperparameter table
+- ✓ 3-panel evaluation (scatter, residual histogram, calibration diagram)
+- ✓ Metrics table (RMSE, MAE, MAPE, coverage for all 8 categories)
+- ✓ Hypothesis testing discussion + limitations + references
+
+**Theme & Output:**
 - ✓ All plots use dark ocean blue theme
-- ✓ 5 figures saved as PNG (listing card thumbnail + analysis plots)
+- ✓ 16 figures saved as PNG (5 EDA + 11 GP)
 - ✓ `code-fold: true`, `execute.warning: false`
 - ✓ `execute.freeze: auto` inherited from `_quarto.yml`
-- ✓ `_freeze/projects/unicon-eda/` contains cached outputs
+- ✓ `_freeze/projects/unicon-eda/` contains all cached outputs (16 figures + html.json)
+- ✓ Total cells: 39 (21 EDA + 18 GP)
 
 **Data dependency:** Requires `data/raw/archive.zip` (gitignored, ~142MB). Freeze enables deployment without data.
 
@@ -256,6 +282,17 @@
 | unicon-missing-values.png | UNICON missing values chart | ✓ Generated |
 | unicon-weather-correlation.png | Weather–electricity correlation heatmap | ✓ Generated |
 | unicon-temp-scatter.png | Temperature vs consumption scatter | ✓ Generated |
+| unicon-gp-training.png | GP training convergence (all 8 categories) | ✓ Generated |
+| unicon-gp-posterior.png | GP posterior with 95% CI (teaching building) | ✓ Generated |
+| unicon-gp-decomposition.png | 6-panel kernel decomposition | ✓ Generated |
+| unicon-gp-periodicities.png | Weekly + annual learned patterns | ✓ Generated |
+| unicon-gp-temp-response.png | Temperature response curve | ✓ Generated |
+| unicon-gp-covid-cusum.png | COVID-19 CUSUM changepoint detection | ✓ Generated |
+| unicon-gp-ecm-impact.png | Counterfactual ECM impact analysis | ✓ Generated |
+| unicon-gp-anomalies.png | Anomaly detection (2.5σ threshold) | ✓ Generated |
+| unicon-gp-cross-building.png | 8-category posterior comparison | ✓ Generated |
+| unicon-gp-hyperparams.png | Hyperparameter comparison bars | ✓ Generated |
+| unicon-gp-evaluation.png | 3-panel model evaluation | ✓ Generated |
 
 ### Documents (`assets/`)
 
