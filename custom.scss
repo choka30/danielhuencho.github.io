@@ -638,46 +638,73 @@ a {
 
 // Listing grid cards (dark theme) — comprehensive overrides
 .quarto-listing {
-  // Search/filter/sort action bar
-  .listing-actions {
-    background-color: transparent;
+  // Sort + Filter toolbar — group together, dark theme
+  .listing-actions-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: flex-start;
+    margin-bottom: 1.25rem;
     padding: 0.5rem 0;
-    margin-bottom: 1rem;
+  }
 
-    // All form inputs (search, sort)
-    .form-control,
-    .form-select,
-    input[type="text"],
-    input[type="search"],
-    select {
+  // Both sort and filter input groups — consistent sizing
+  .quarto-listing-sort,
+  .quarto-listing-filter {
+    max-width: 260px;
+    min-width: 180px;
+    flex: 0 1 auto;
+  }
+
+  // Icon containers (fixes white boxes)
+  .input-group-text {
+    background-color: $bg-card !important;
+    border: 1px solid $border-light !important;
+    color: $text-accent !important;
+    border-right: none !important;
+    border-radius: 8px 0 0 8px !important;
+    padding: 0.5rem 0.75rem;
+
+    i {
+      color: $text-accent;
+    }
+  }
+
+  // All form inputs (search, sort)
+  .form-control,
+  .form-select,
+  input[type="text"],
+  input[type="search"],
+  select {
+    background-color: $bg-secondary !important;
+    border: 1px solid $border-light !important;
+    color: $text-primary !important;
+    border-radius: 0 8px 8px 0 !important;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+
+    &::placeholder {
+      color: $text-muted !important;
+    }
+
+    &:focus {
+      border-color: $accent-hover !important;
+      box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.25) !important;
+      outline: none;
       background-color: $bg-secondary !important;
-      border: 1px solid $border-light !important;
-      color: $text-primary !important;
-      border-radius: 8px;
-      padding: 0.5rem 0.75rem;
-
-      &::placeholder {
-        color: $text-muted !important;
-      }
-
-      &:focus {
-        border-color: $accent-hover !important;
-        box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.25) !important;
-        outline: none;
-        background-color: $bg-secondary !important;
-      }
     }
+  }
 
-    // Sort dropdown option styling
-    .form-select option {
-      background-color: $bg-secondary;
-      color: $text-primary;
-    }
+  // Sort dropdown option styling
+  .form-select option {
+    background-color: $bg-secondary;
+    color: $text-primary;
+  }
 
-    // Labels
-    label {
-      color: $text-secondary !important;
-    }
+  // Labels
+  label {
+    color: $text-secondary !important;
   }
 
   // Category sidebar

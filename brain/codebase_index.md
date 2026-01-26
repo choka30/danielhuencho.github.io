@@ -83,6 +83,8 @@
 - ✓ Grid layout (2 columns)
 - ✓ Dark theme card styles in custom.scss
 - ✓ Search/filter/sort inputs styled dark (no white boxes)
+- ✓ Sort + filter controls grouped together (flexbox toolbar)
+- ✓ Icon containers (`.input-group-text`) dark-themed (no white boxes)
 - ✓ Category sidebar styled dark
 - ✓ Pagination controls styled dark
 

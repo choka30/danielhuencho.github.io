@@ -169,6 +169,7 @@ To reach target state:
 | 2026-01-26 | Removed pandas Styler inline styles (CSS handles dark theme) | `projects/iris-eda/index.qmd` |
 | 2026-01-26 | Full site validated — quarto render all 6 pages OK | `_site/` |
 | 2026-01-26 | Fixed Iris EDA plots — removed `matplotlib.use('Agg')` + `plt.show()`, plots now render via Jupyter inline backend | `projects/iris-eda/index.qmd` |
+| 2026-01-26 | Fixed listing sort/filter controls — grouped together, dark icon containers, correct CSS nesting under `.quarto-listing` | `custom.scss` |
 
 ---
 
