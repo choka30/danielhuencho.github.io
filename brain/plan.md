@@ -1,214 +1,125 @@
 # Session Plan
 
-> Created: 2026-01-25 21:55
-> Request: "Improve visual contrast issues (About section text, about.qmd title), add skills legend, reorganize skills by industry-standard categories"
-> Branch: improve_visuals
-> Session ID: 20260125_IMPROVE_VISUALS
+> Created: 2026-01-26 12:58
+> Request: "Simplify skills to 2 levels (Advanced/Intermediate), move Databricks to Intermediate, remove Cloudera & Scala, replace XGBoost with Ensemble Models, change index.qmd hero photo to friendly version, keep professional photo on about.qmd"
+> Branch: pw_fixSkills_others
+> Session ID: 20260126_FIX_SKILLS_OTHERS
 
 ## Context Summary
 
-**Issues to Fix:**
+**Changes Requested:**
 
-1. **Text Visibility:**
-   - About section on index.qmd has low contrast text (dark gray on dark background)
-   - About.qmd title/hero-name may have visibility issues
-
-2. **Skills Section:**
-   - No legend explaining skill tag colors (core/advanced/intermediate)
-   - Skills not organized by standard industry categories
-   - Random mixing of tools, frameworks, and concepts
+1. **Skills Levels:** Reduce from 3 (Expert/Advanced/Intermediate) to 2 (Advanced/Intermediate)
+2. **Skill Changes:**
+   - Move Databricks → Intermediate
+   - Remove Cloudera entirely
+   - Remove Scala entirely
+   - Replace "XGBoost" with "Ensemble Models" (covers Random Forest, XGBoost, GBM, etc.)
+3. **Photo Swap:** index.qmd hero photo → `my_photo_friendly.jpeg`; about.qmd keeps `my_photo_professional.jpeg`
 
 **Design Approach:**
-- Improve contrast ratios to meet WCAG AA (4.5:1 minimum)
-- Add visible legend explaining proficiency levels
-- Reorganize skills using common industry groupings:
-  - Languages & Frameworks
-  - Machine Learning / Deep Learning
-  - Data Engineering & Cloud
-  - Domain Expertise
+- Remove the "Expert" tier from skills legend, CSS, and all skill tags
+- Reclassify former "Expert" skills as "Advanced"
+- Apply skill content changes (Databricks, Cloudera, Scala, XGBoost→Ensemble Models) to both index.qmd and about.qmd
+- Update `custom.scss` to remove expert-related CSS classes
+- Swap photo src in index.qmd only
 
 ---
 
 ## Tasks
 
-### Task 1: Fix Text Contrast Issues in SCSS
+### Task 1: Update SCSS — Remove Expert Tier
 - **ID:** TASK-001
 - **Status:** Complete ✓
-- **Completed:** 2026-01-25 21:58
-- **Description:** Update custom.scss to improve text visibility for info-card and hero sections
+- **Completed:** 2026-01-26 12:59
+- **Description:** Remove `.skill-tag-expert`, `.legend-dot-expert`, and `.skill-tag-core` from custom.scss. Keep only Advanced and Intermediate styles.
 - **Atomic Units:**
-  - Update `.info-card` to use brighter text color
-  - Ensure `.hero-name` spans in about.qmd render correctly
-  - Improve overall text contrast for `$text-secondary`
+  - Remove `.skill-tag-expert` class (and `.skill-tag-core` alias)
+  - Remove `.legend-dot-expert` class
+  - No new CSS needed — existing Advanced and Intermediate styles remain
 - **Acceptance Criteria:**
-  - [ ] About section text clearly readable
-  - [ ] About.qmd title/name clearly visible
-  - [ ] Text contrast meets 4.5:1 ratio minimum
-  - [ ] `quarto preview` shows improved readability
+  - [ ] Only `.skill-tag-advanced` and `.skill-tag-intermediate` remain
+  - [ ] Only `.legend-dot-advanced` and `.legend-dot-intermediate` remain
+  - [ ] No references to "expert" in CSS
 
 ---
 
-### Task 2: Create Skills Legend Component
+### Task 2: Update index.qmd — Skills + Photo
 - **ID:** TASK-002
 - **Status:** Complete ✓
-- **Completed:** 2026-01-25 22:00
-- **Description:** Add a visual legend explaining skill proficiency levels with their corresponding colors
+- **Completed:** 2026-01-26 13:00
+- **Description:** Swap hero photo to friendly version, update skills legend to 2 levels, reclassify skills, apply content changes
 - **Atomic Units:**
-  - Add `.skills-legend` CSS component in custom.scss
-  - Define clear proficiency levels: Expert, Advanced, Intermediate
-  - Match colors to existing skill-tag variants
+  - Change hero photo: `my_photo_professional.jpeg` → `my_photo_friendly.jpeg`
+  - Update skills legend HTML: Remove Expert row, keep Advanced + Intermediate
+  - Reclassify all `.skill-tag-expert` → `.skill-tag-advanced`
+  - Remove `[Scala]` and `[Cloudera]` tags
+  - Change `[Databricks]` from advanced → intermediate
+  - Replace `[XGBoost]` with `[Ensemble Models]`
+- **Skill Reclassification (index.qmd):**
+  - **Programming Languages:** Python→Advanced, SQL→Advanced, R→Advanced, ~~Scala~~, C++→Intermediate
+  - **ML/DL:** PyTorch→Advanced, Deep Learning→Advanced, Scikit-learn→Advanced, TensorFlow→Advanced, GNNs→Advanced, Ensemble Models→Advanced, Bayesian Modeling→Advanced, Computer Vision→Intermediate, NLP→Intermediate, Generative AI→Intermediate
+  - **Data Engineering:** Apache Spark→Advanced, ETL Pipelines→Advanced, Databricks→Intermediate, AWS→Intermediate, Docker→Intermediate, PostgreSQL→Intermediate, ~~Cloudera~~
+  - **Domain Expertise:** Transportation Analytics→Advanced, Financial Risk Modeling→Advanced, Earth Observation→Advanced, Geospatial Analysis→Advanced, Energy Optimization→Intermediate, Disaster Risk Assessment→Intermediate
 - **Acceptance Criteria:**
-  - [ ] Legend displays before skills grid
-  - [ ] Shows 3 levels: Expert (core), Advanced, Intermediate
-  - [ ] Uses same colors as skill tags
-  - [ ] Visually distinct and easy to understand
+  - [ ] Hero photo is `my_photo_friendly.jpeg`
+  - [ ] No `.skill-tag-expert` references
+  - [ ] Legend shows only Advanced and Intermediate
+  - [ ] Scala and Cloudera removed
+  - [ ] Databricks is intermediate
+  - [ ] XGBoost replaced with Ensemble Models
 
 ---
 
-### Task 3: Reorganize Skills in index.qmd
+### Task 3: Update about.qmd — Skills (same changes)
 - **ID:** TASK-003
 - **Status:** Complete ✓
-- **Completed:** 2026-01-25 22:02
-- **Description:** Restructure Technical Expertise section with industry-standard categories and add legend
+- **Completed:** 2026-01-26 13:00
+- **Description:** Apply identical skills changes to about.qmd. Photo remains `my_photo_professional.jpeg` (no change).
 - **Atomic Units:**
-  - Add skills legend HTML block
-  - Reorganize categories:
-    1. Programming Languages
-    2. ML/AI Frameworks & Tools
-    3. Data Engineering & Cloud
-    4. Domain Expertise
-  - Ensure consistent proficiency tagging
+  - Update skills legend HTML: Remove Expert row
+  - Reclassify all `.skill-tag-expert` → `.skill-tag-advanced`
+  - Remove `[Scala]` tag
+  - Remove `[Cloudera]` tag
+  - Change `[Databricks]` from advanced → intermediate
+  - Replace `[XGBoost]` with `[Ensemble Models]`
+- **Skill Reclassification (about.qmd):**
+  - Same mapping as Task 2
+  - about.qmd also has Statistical Methods category — keep those as-is (all were advanced/intermediate already)
 - **Acceptance Criteria:**
-  - [ ] Skills legend appears at top of section
-  - [ ] Categories match industry job postings
-  - [ ] Each skill has appropriate proficiency level
-  - [ ] Visual hierarchy is clear
+  - [ ] Photo unchanged (`my_photo_professional.jpeg`)
+  - [ ] No `.skill-tag-expert` references
+  - [ ] Legend shows only Advanced and Intermediate
+  - [ ] Scala and Cloudera removed
+  - [ ] Databricks is intermediate
+  - [ ] XGBoost replaced with Ensemble Models
 
 ---
 
-### Task 4: Update Skills in about.qmd
+### Task 4: Validation
 - **ID:** TASK-004
 - **Status:** Complete ✓
-- **Completed:** 2026-01-25 22:03
-- **Description:** Apply same skills organization and legend to about.qmd Technical Skills section
+- **Completed:** 2026-01-26 13:01
+- **Description:** Build site, verify no errors, check rendering
 - **Atomic Units:**
-  - Add skills legend
-  - Reorganize skill categories to match index.qmd
-  - Ensure proficiency levels are consistent
+  - Run `quarto render`
+  - Verify no build errors
+  - Check that index.qmd and about.qmd render correctly
 - **Acceptance Criteria:**
-  - [ ] Skills section matches index.qmd structure
-  - [ ] Legend explains proficiency levels
-  - [ ] All skills properly categorized
-
----
-
-### Task 5: Final Validation and Polish
-- **ID:** TASK-005
-- **Status:** Complete ✓
-- **Completed:** 2026-01-25 22:05
-- **Description:** Run quarto preview, verify all visual improvements, check mobile responsiveness
-- **Atomic Units:**
-  - Test with `quarto preview`
-  - Verify text contrast on both pages
-  - Confirm legend displays correctly
-  - Check mobile view
-- **Acceptance Criteria:**
-  - [ ] All text clearly readable on dark background
-  - [ ] Skills legend visible and understandable
-  - [ ] Skills properly organized
-  - [ ] Mobile view renders correctly
-  - [ ] No console errors
-  - [ ] Brain files updated
-
----
-
-## Testing & Validation Tools
-
-### Tool Usage per Task
-
-| Task | Tools Used | Purpose |
-|------|------------|---------|
-| After each task | `quarto render` (Bash) | Build site to check for errors |
-| After each task | `mcp__ide__getDiagnostics` | Check for code/syntax errors in IDE |
-| Task 5 | `quarto preview` (Bash, background) | Launch live preview server |
-| Task 5 | User visual inspection | Verify contrast and layout |
-
-### Testing Workflow
-
-```
-1. Make changes to SCSS/QMD files
-   ↓
-2. Run: quarto render
-   ↓
-3. Check: mcp__ide__getDiagnostics (verify no errors)
-   ↓
-4. Run: quarto preview --port 4200 (background)
-   ↓
-5. User opens: http://localhost:4200
-   ↓
-6. User verifies: text visibility, skills legend, layout
-   ↓
-7. Iterate or approve
-```
-
-### Preview Commands
-
-```bash
-# Render site (check for build errors)
-quarto render
-
-# Start preview server (background, for user inspection)
-quarto preview --port 4200 --no-browser
-
-# Stop preview when done
-# (Ctrl+C or kill process)
-```
-
----
-
-## Design Decisions
-
-### Skill Proficiency Levels
-
-| Level | Color | Description | Use For |
-|-------|-------|-------------|---------|
-| Expert | Cyan/Highlight (`#90cdf4`) | Primary tools used daily | Python, PyTorch, SQL |
-| Advanced | Blue (`#63b3ed`) | Strong proficiency | TensorFlow, R, Spark |
-| Intermediate | Green (`#68d391`) | Working knowledge | Docker, AWS, Scala |
-
-### Industry-Standard Skill Categories
-
-1. **Programming Languages:** Python, R, SQL, Scala, C++
-2. **ML/AI Frameworks:** PyTorch, TensorFlow, Scikit-learn, XGBoost, Keras
-3. **Data Engineering & Cloud:** Spark, Databricks, AWS, Docker, ETL
-4. **Domain Expertise:** Earth Observation, Financial Risk, Transportation, GenAI
-
-### Color Contrast Improvements
-
-| Element | Current | Updated | Contrast Ratio |
-|---------|---------|---------|----------------|
-| `.info-card` text | `#a0aec0` | `#e2e8f0` | 4.5:1 → 8.5:1 |
-| `.text-secondary` | `#a0aec0` | Keep (links/secondary) | 4.5:1 |
-| Hero summary | `#a0aec0` | `#cbd5e0` | 4.5:1 → 6.5:1 |
+  - [ ] `quarto render` succeeds without errors
+  - [ ] No "expert" references remain in any content file
+  - [ ] Photo correctly displays on index.qmd (friendly) and about.qmd (professional)
+  - [ ] Skills legend shows 2 levels on both pages
 
 ---
 
 ## Session Constraints
-
-- **Max tasks:** 5
+- **Max tasks:** 4
 - **Dependencies:**
-  - Task 1 must complete first (CSS foundation)
-  - Tasks 2-4 depend on CSS being ready
-  - Task 5 validates everything
-- **Validation:** `quarto preview` after each task
-
----
-
-## Files to Modify
-
-| File | Changes |
-|------|---------|
-| `custom.scss` | Improve text contrast, add skills-legend styles |
-| `index.qmd` | Add legend, reorganize skills section |
-| `about.qmd` | Add legend, reorganize skills section |
-
+  - Task 1 (CSS) should be done first as foundation
+  - Tasks 2 & 3 can run in parallel after Task 1
+  - Task 4 validates everything
+- **Files to Modify:**
+  - `custom.scss` (Task 1)
+  - `index.qmd` (Task 2)
+  - `about.qmd` (Task 3)

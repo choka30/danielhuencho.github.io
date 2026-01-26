@@ -1,6 +1,6 @@
 # Project Structure Index
 
-> Last updated: 2026-01-25
+> Last updated: 2026-01-26
 > Project type: Quarto Website (Portfolio)
 > Author: Daniel Huencho
 
@@ -135,6 +135,10 @@ To reach target state:
 | 2026-01-25 | Reorganized skills with industry-standard categories | `index.qmd`, `about.qmd` |
 | 2026-01-25 | Hidden Quarto title blocks (text over hero image) | `custom.scss` |
 | 2026-01-25 | Fixed theme to dark-only (removed light mode) | `_quarto.yml`, `custom.scss` |
+| 2026-01-26 | Simplified skills to 2 levels (Advanced/Intermediate), removed Expert tier | `custom.scss`, `index.qmd`, `about.qmd` |
+| 2026-01-26 | Removed Scala and Cloudera from skills | `index.qmd`, `about.qmd` |
+| 2026-01-26 | Moved Databricks to Intermediate, replaced XGBoost with Ensemble Models | `index.qmd`, `about.qmd` |
+| 2026-01-26 | Swapped index.qmd hero photo to friendly version | `index.qmd` |
 
 ---
 
