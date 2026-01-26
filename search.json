@@ -25,7 +25,7 @@
     "href": "about.html#technical-skills",
     "title": "About",
     "section": "Technical Skills",
-    "text": "Technical Skills\n\n  Proficiency:\n  \n    \n    Expert\n  \n  \n    \n    Advanced\n  \n  \n    \n    Intermediate\n  \n\n\nProgramming Languages\n\nPython SQL R Scala C++\n\n\n\nMachine Learning & Deep Learning\n\nPyTorch Scikit-learn Deep Learning TensorFlow XGBoost Generative AI MLlib\n\n\n\nData Engineering & Cloud\n\nApache Spark Databricks AWS (EC2, S3, Glue, Athena) Docker Cloudera ETL Pipelines\n\n\n\nStatistical Methods\n\nBayesian Statistics Time Series Analysis Generalized Linear Models A/B Testing Survival Analysis"
+    "text": "Technical Skills\n\n  Proficiency:\n  \n    \n    Advanced\n  \n  \n    \n    Intermediate\n  \n\n\nProgramming Languages\n\nPython SQL R C++\n\n\n\nMachine Learning & Deep Learning\n\nPyTorch Scikit-learn Deep Learning TensorFlow Ensemble Models Generative AI MLlib\n\n\n\nData Engineering & Cloud\n\nApache Spark ETL Pipelines Databricks AWS (EC2, S3, Glue, Athena) Docker\n\n\n\nStatistical Methods\n\nBayesian Statistics Time Series Analysis Generalized Linear Models A/B Testing Survival Analysis"
   },
   {
     "objectID": "about.html#languages",
@@ -74,7 +74,7 @@
     "href": "index.html#technical-expertise",
     "title": "Daniel Huencho",
     "section": "Technical Expertise",
-    "text": "Technical Expertise\n\n  Proficiency:\n  \n    \n    Expert\n  \n  \n    \n    Advanced\n  \n  \n    \n    Intermediate\n  \n\n\n\nProgramming Languages\n\n\nPython SQL R Scala C++\n\n\n\n\nMachine Learning & Deep Learning\n\n\nPyTorch Deep Learning Scikit-learn TensorFlow Graph Neural Networks XGBoost Bayesian Modeling Computer Vision NLP Generative AI\n\n\n\n\nData Engineering & Cloud\n\n\nApache Spark Databricks AWS Docker PostgreSQL ETL Pipelines Cloudera\n\n\n\n\nDomain Expertise\n\n\nTransportation Analytics Financial Risk Modeling Earth Observation Geospatial Analysis Energy Optimization Disaster Risk Assessment"
+    "text": "Technical Expertise\n\n  Proficiency:\n  \n    \n    Advanced\n  \n  \n    \n    Intermediate\n  \n\n\n\nProgramming Languages\n\n\nPython SQL R C++\n\n\n\n\nMachine Learning & Deep Learning\n\n\nPyTorch Deep Learning Scikit-learn TensorFlow Graph Neural Networks Ensemble Models Bayesian Modeling Computer Vision NLP Generative AI\n\n\n\n\nData Engineering & Cloud\n\n\nApache Spark ETL Pipelines Databricks AWS Docker PostgreSQL\n\n\n\n\nDomain Expertise\n\n\nTransportation Analytics Financial Risk Modeling Earth Observation Geospatial Analysis Energy Optimization Disaster Risk Assessment"
   },
   {
     "objectID": "index.html#highlights",
