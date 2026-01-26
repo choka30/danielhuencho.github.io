@@ -27,9 +27,10 @@
 │   ├── unicon-eda/          # UNICON dataset EDA (electricity/gas/water)
 │   │   ├── index.qmd        # Schema discovery, temporal analysis, weather correlations
 │   │   └── *.png            # Generated figures (5 plots)
-│   └── revealjs-demo/       # Demo: Revealjs presentation
+│   └── revealjs-demo/       # UCL Application Presentation
 │       ├── index.qmd        # Project description page
-│       └── presentation.qmd # Revealjs slides (3 slides)
+│       ├── presentation.qmd # Revealjs slides (5 slides — UCL RA application)
+│       └── presentation-theme.scss # Custom ocean blue Revealjs theme
 │
 ├── _freeze/                 # [OUTPUT] Frozen computation outputs (committed to git)
 │   └── projects/            # Cached execution results for CI deployment
@@ -111,7 +112,7 @@
 | Custom styles | `custom.scss` | Complete (ocean blue theme + listing cards + dark tables/forms) |
 | Projects listing | `projects/index.qmd` | Complete (grid + search + tags) |
 | Iris EDA demo | `projects/iris-eda/index.qmd` | Complete |
-| Revealjs demo | `projects/revealjs-demo/` | Complete (page + presentation) |
+| Revealjs presentation | `projects/revealjs-demo/` | Complete (UCL application presentation, 5 slides + custom SCSS + JS) |
 | UNICON EDA+GP | `projects/unicon-eda/index.qmd` | Complete (EDA + GP modelling, 39 cells, 16 figures) |
 | Freeze outputs | `_freeze/` | Committed (for CI deployment without data) |
 | Assets folder | `assets/` | Exists (images, js, UNICON PDF) |
@@ -192,6 +193,12 @@ To reach target state:
 | 2026-01-26 | Added GP modelling pipeline to UNICON EDA (8 building categories, 18 new cells, 11 new figures) | `projects/unicon-eda/index.qmd` |
 | 2026-01-26 | Added gpytorch + linear_operator to requirements | `requirements.txt` |
 | 2026-01-26 | Freeze updated with GP outputs (16 figures + html.json) | `_freeze/projects/unicon-eda/` |
+| 2026-01-26 | Fixed false claim in index.qmd — removed fabricated "15% energy cost reduction" | `index.qmd` |
+| 2026-01-26 | Transformed revealjs-demo into UCL RA application presentation (5 slides) | `projects/revealjs-demo/presentation.qmd` |
+| 2026-01-26 | Created custom Revealjs SCSS theme (ocean blue, stat-cards, icon-lists, animations) | `projects/revealjs-demo/presentation-theme.scss` |
+| 2026-01-26 | Updated revealjs-demo index page with application presentation metadata | `projects/revealjs-demo/index.qmd` |
+| 2026-01-26 | Added kernel equation typing animation (JS) to final slide | `projects/revealjs-demo/presentation.qmd` |
+| 2026-01-26 | Full site validated — quarto render all 7 pages OK, no warnings | `_site/` |
 
 ---
 

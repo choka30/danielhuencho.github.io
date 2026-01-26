@@ -1,9 +1,9 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-26 20:40
-> Total pages: 8 (Home, About, Projects listing, Iris EDA, UNICON EDA+GP, Revealjs demo page, Revealjs presentation, + 2 legacy)
-> Total assets: 2 profile photos + 1 thumbnail + 21 generated plots + 1 reference PDF
-> Content status: Projects listing with search/tags, 3 projects complete (Iris, UNICON EDA+GP, Revealjs), freeze enabled
+> Last updated: 2026-01-26 23:15
+> Total pages: 8 (Home, About, Projects listing, Iris EDA, UNICON EDA+GP, UCL Application page, UCL Application presentation, + 2 legacy)
+> Total assets: 2 profile photos + 1 thumbnail + 21 generated plots + 1 reference PDF + 1 custom SCSS theme
+> Content status: Projects listing with search/tags, 3 projects complete (Iris, UNICON EDA+GP, UCL Application), freeze enabled
 
 ---
 
@@ -16,8 +16,8 @@
 | Projects | `projects/index.qmd` | Portfolio listing (grid + search + tags) | Complete |
 | Iris EDA | `projects/iris-eda/index.qmd` | Iris dataset EDA demo | Complete |
 | UNICON EDA | `projects/unicon-eda/index.qmd` | UNICON energy dataset EDA | Complete |
-| Revealjs Demo | `projects/revealjs-demo/index.qmd` | Presentation demo page | Complete |
-| Revealjs Slides | `projects/revealjs-demo/presentation.qmd` | 3-slide Revealjs presentation | Complete |
+| UCL Application | `projects/revealjs-demo/index.qmd` | UCL RA application presentation page | Complete |
+| UCL App Slides | `projects/revealjs-demo/presentation.qmd` | 5-slide Revealjs application presentation | Complete |
 | Dashboard | `dashboard.qmd` | Sample visualization | Review needed |
 | Code Example | `pythond-code-example.qmd` | Python demo | Review needed |
 
@@ -44,7 +44,9 @@
 - ✓ Ensemble Models replaces XGBoost
 - ✓ Databricks moved to Intermediate
 
-**Status:** `Complete` — fully functional landing page with simplified skills
+- ✓ Fixed false "15% energy cost reduction" claim — now uses CV-accurate wording
+
+**Status:** `Complete` — fully functional landing page with simplified skills, fact-checked
 
 ---
 
@@ -177,31 +179,67 @@
 
 ---
 
-### `projects/revealjs-demo/index.qmd` — Revealjs Demo Page
+### `projects/revealjs-demo/index.qmd` — UCL Application Presentation Page
 
-**Purpose:** Project page describing the Revealjs presentation with a link to open it.
+**Purpose:** Project page describing the formal UCL RA application presentation with a link to open it.
 
 **Current State:**
-- ✓ YAML front matter (title, date, description, categories)
-- ✓ Categories: Quarto, Presentation, Revealjs
-- ✓ Description of Revealjs features
+- ✓ YAML front matter (title: "Application: UCL Grand Challenges Living Lab", date, description)
+- ✓ Categories: Presentation, Gaussian Processes, Energy, UCL
+- ✓ Presentation structure overview (5 slides)
+- ✓ Interactive features description
 - ✓ Link to open presentation.html
-- ✓ Reference to Quarto Revealjs docs
+- ✓ Built-with section (Quarto Revealjs, custom SCSS, vanilla JS)
 
 **Status:** `Complete`
 
 ---
 
-### `projects/revealjs-demo/presentation.qmd` — Revealjs Slides
+### `projects/revealjs-demo/presentation.qmd` — UCL Application Slides
 
-**Purpose:** 3-slide demo presentation using Quarto Revealjs format.
+**Purpose:** Formal 5-slide application presentation for the UCL Research Assistant — Grand Challenges Living Lab role. Content follows `assets/presentation.md` strictly.
 
 **Current State:**
-- ✓ `format: revealjs` with moon theme
-- ✓ Slide transitions (slide), slide numbers, controls
-- ✓ 3 slides with lorem ipsum content
-- ✓ Speaker notes on first slide
-- ✓ Footer and logo configured
+- ✓ `format: revealjs` with custom ocean blue theme (`presentation-theme.scss`)
+- ✓ Title slide with gradient background (auto-generated from YAML)
+- ✓ Slide 2: Technical Knowledge — education timeline (animated path nodes), probabilistic modelling card, tools card
+- ✓ Slide 3: Passion for Applicable Knowledge — dissertation story (Galasso + Guedj), research connections (Henry Moss, Daniel Giles, Max Harris), philosophy quote, compositional kernels
+- ✓ Slide 4: Engineering & Collaboration — Metro SCADA pipeline + AWS stack, interdisciplinary teamwork, SRA at Ramsay Hall personal stake
+- ✓ Slide 5: UNICON GP Demo — live demo link, stat cards (8 categories, 6 kernels, 16 visualisations), kernel equation typing animation (JS), contact info CTA
+- ✓ Speaker notes on all 4 content slides with detailed talking points from presentation.md
+- ✓ Fade transitions, fragment reveals, columns layout
+- ✓ Footer: "Daniel Huencho | UCL Grand Challenges Living Lab"
+- ✓ 1280x720 resolution, slide numbers (c/t)
+- ✓ All content verified against CV — no fabricated claims
+
+**Interactive Elements:**
+- ✓ Education path timeline with pulsing current position (CSS animation)
+- ✓ Stat cards with hover effects
+- ✓ Kernel equation typing animation (vanilla JS, MutationObserver trigger)
+- ✓ Progressive fragment reveals on all slides
+
+**Status:** `Complete`
+
+---
+
+### `projects/revealjs-demo/presentation-theme.scss` — Custom Revealjs Theme
+
+**Purpose:** Ocean blue dark SCSS theme for the Revealjs presentation, matching the site's palette.
+
+**Current State:**
+- ✓ `/*-- scss:defaults --*/` section: colors (#0d1b2a, #1b2838, #63b3ed), Inter font, 38px root
+- ✓ `/*-- scss:rules --*/` section: custom components
+- ✓ `.highlight-box` — bordered info cards with gradient background
+- ✓ `.stat-row` + `.stat-card` — metric cards with hover effects
+- ✓ `.icon-list` — styled bullet lists with glowing dots
+- ✓ `.gradient-text` — gradient text effect
+- ✓ `.fade-card` — content block cards with backdrop blur
+- ✓ `.path-timeline` + `.path-node` + `.path-connector` — animated education timeline
+- ✓ `.slide-quote` — styled quote block
+- ✓ `.cta-btn` — gradient call-to-action button
+- ✓ `@keyframes pulse-dot` — pulsing animation for current path node
+- ✓ Progress bar gradient, footer/slide-number styling
+- ✓ Responsive adjustments
 
 **Status:** `Complete`
 
