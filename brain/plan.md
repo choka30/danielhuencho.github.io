@@ -1,40 +1,20 @@
 # Session Plan
 
+> No active session.
+
+## Completed Sessions
+
+<details>
+<summary>Session 2026-01-27 — pw_cw_sustainability — Add listing thumbnail to AI sustainability essay</summary>
+
 > Created: 2026-01-27
 > Request: "Add a thumbnail image to the AI sustainability essay project so it displays in the projects listing grid"
 > Branch: pw_cw_sustainability
 
-## Tasks
+- [x] Task 1: Add image field to AI sustainability essay YAML front matter
+- [x] Task 2: Update brain files
 
-### Task 1: Add image field to AI sustainability essay YAML front matter
-- **Status:** Complete
-- **Atomic Units:**
-  - [ ] Add `image: ../../assets/images/Gemini_Generated_Image_3q3ek13q3ek13q3e.png` to the YAML front matter of `projects/ai-sustainability-essay/index.qmd`
-- **Acceptance Criteria:**
-  - [ ] YAML front matter includes `image:` field with correct relative path to the asset
-  - [ ] Image displays as thumbnail in the projects listing grid (`projects/index.qmd`)
-  - [ ] `quarto preview` renders without errors
-  - [ ] Existing content unchanged
-
----
-
-### Task 2: Update brain files
-- **Status:** Complete
-- **Atomic Units:**
-  - [ ] Run `/update-brain` to sync brain files (codebase_index.md reflects the image addition)
-- **Acceptance Criteria:**
-  - [ ] Brain files reflect the change
-
----
-
-## Session Constraints
-- Max tasks: 2
-- Dependencies: Task 1 → Task 2 (sequential)
-- Scope: Single YAML field addition — no content changes
-
----
-
-## Completed Sessions
+</details>
 
 <details>
 <summary>Session 2026-01-26 — pw_cw_sustainability — COMP0173 AI Sustainability Essay</summary>
