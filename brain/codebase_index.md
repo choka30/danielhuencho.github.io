@@ -1,9 +1,9 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-26 20:40
-> Total pages: 8 (Home, About, Projects listing, Iris EDA, UNICON EDA+GP, Revealjs demo page, Revealjs presentation, + 2 legacy)
-> Total assets: 2 profile photos + 1 thumbnail + 21 generated plots + 1 reference PDF
-> Content status: Projects listing with search/tags, 3 projects complete (Iris, UNICON EDA+GP, Revealjs), freeze enabled
+> Last updated: 2026-01-27
+> Total pages: 9 (Home, About, Projects listing, Iris EDA, UNICON EDA+GP, Revealjs demo page, Revealjs presentation, AI Sustainability Essay, + 2 legacy)
+> Total assets: 2 profile photos + 1 thumbnail + 21 generated plots + 2 reference PDFs
+> Content status: Projects listing with search/tags, 4 projects complete (Iris, UNICON EDA+GP, Revealjs, AI Sustainability Essay), freeze enabled
 
 ---
 
@@ -16,6 +16,7 @@
 | Projects | `projects/index.qmd` | Portfolio listing (grid + search + tags) | Complete |
 | Iris EDA | `projects/iris-eda/index.qmd` | Iris dataset EDA demo | Complete |
 | UNICON EDA | `projects/unicon-eda/index.qmd` | UNICON energy dataset EDA | Complete |
+| AI Sustainability Essay | `projects/ai-sustainability-essay/index.qmd` | COMP0173 coursework essay | Complete |
 | Revealjs Demo | `projects/revealjs-demo/index.qmd` | Presentation demo page | Complete |
 | Revealjs Slides | `projects/revealjs-demo/presentation.qmd` | 3-slide Revealjs presentation | Complete |
 | Dashboard | `dashboard.qmd` | Sample visualization | Review needed |
@@ -177,6 +178,33 @@
 
 ---
 
+### `projects/ai-sustainability-essay/index.qmd` — AI Sustainability Essay
+
+**Purpose:** COMP0173 (Artificial Intelligence for Sustainable Development) coursework essay analysing CoastSat — an ML-powered shoreline monitoring toolkit — through the UN SDG framework.
+
+**Current State:**
+- ✓ YAML front matter (title, date: 2025-11-05, description, author, categories, image)
+- ✓ Categories: AI, Sustainability, SDGs, Coastal Management, Essay, UCL
+- ✓ Listing thumbnail image (`Gemini_Generated_Image_3q3ek13q3ek13q3e.png` from assets/images/)
+- ✓ Portfolio context section (course info, coursework brief, skills demonstrated)
+- ✓ Description of dataset and baseline (CoastSat MLP pipeline, RMSE comparison)
+- ✓ Connection to SDGs (SDG 13 Climate Action, SDG 11 Sustainable Cities, risks)
+- ✓ Impact on social sustainability (stakeholders, democratic decision-making, error sources)
+- ✓ Impact on environmental sustainability (resource intensity, GEE, LEO satellites)
+- ✓ Climate risk protection (zone regulations, disaster prevention, infrastructure)
+- ✓ Impact on economic sustainability (short-term costs, long-term benefits, open-source)
+- ✓ Other sustainability factors (desalination, ecosystem complexity, climate gentrification)
+- ✓ Intersection between SDGs (13→6 indivisible, 11→8 enabling, 13→10 constraining)
+- ✓ Speculative solutions (labelled datasets, diffusion models, PINNs, Bayesian, regulation)
+- ✓ Ideal conditions paragraph
+- ✓ References section (30 academic citations with DOIs)
+- ✓ TOC enabled
+- ✓ Text-only page (no code execution)
+
+**Status:** `Complete`
+
+---
+
 ### `projects/revealjs-demo/index.qmd` — Revealjs Demo Page
 
 **Purpose:** Project page describing the Revealjs presentation with a link to open it.
@@ -300,6 +328,7 @@
 |------|---------|--------|
 | cv.pdf | Downloadable resume | Missing |
 | UNICON_*.pdf | UNICON open dataset paper (electricity/gas/water consumption, multi-campus university) | ✓ Added |
+| Essay 20251105 - Analysing the broader impact of AI.pdf | COMP0173 coursework essay (source PDF) | ✓ Added |
 
 ### Data Directory (`data/` — gitignored)
 
@@ -316,7 +345,7 @@
 
 **Current State:**
 - Navbar: Home, About, Projects (+ GitHub, LinkedIn icons)
-- Render targets: index.qmd, about.qmd, projects/** (including unicon-eda)
+- Render targets: index.qmd, about.qmd, projects/** (including unicon-eda, ai-sustainability-essay)
 - Theme: cosmo + custom.scss (dark only)
 - Font: Inter (Google Fonts)
 - Execute: `freeze: auto` (frozen outputs committed for CI deployment)

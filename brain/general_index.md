@@ -1,6 +1,6 @@
 # Project Structure Index
 
-> Last updated: 2026-01-26
+> Last updated: 2026-01-27
 > Project type: Quarto Website (Portfolio)
 > Author: Daniel Huencho
 
@@ -27,9 +27,11 @@
 │   ├── unicon-eda/          # UNICON dataset EDA (electricity/gas/water)
 │   │   ├── index.qmd        # Schema discovery, temporal analysis, weather correlations
 │   │   └── *.png            # Generated figures (5 plots)
-│   └── revealjs-demo/       # Demo: Revealjs presentation
-│       ├── index.qmd        # Project description page
-│       └── presentation.qmd # Revealjs slides (3 slides)
+│   ├── revealjs-demo/       # Demo: Revealjs presentation
+│   │   ├── index.qmd        # Project description page
+│   │   └── presentation.qmd # Revealjs slides (3 slides)
+│   └── ai-sustainability-essay/  # COMP0173 coursework essay
+│       └── index.qmd        # AI impact analysis on SDGs (CoastSat)
 │
 ├── _freeze/                 # [OUTPUT] Frozen computation outputs (committed to git)
 │   └── projects/            # Cached execution results for CI deployment
@@ -113,6 +115,7 @@
 | Iris EDA demo | `projects/iris-eda/index.qmd` | Complete |
 | Revealjs demo | `projects/revealjs-demo/` | Complete (page + presentation) |
 | UNICON EDA+GP | `projects/unicon-eda/index.qmd` | Complete (EDA + GP modelling, 39 cells, 16 figures) |
+| AI Sustainability Essay | `projects/ai-sustainability-essay/index.qmd` | Complete (COMP0173 coursework, CoastSat + SDGs) |
 | Freeze outputs | `_freeze/` | Committed (for CI deployment without data) |
 | Assets folder | `assets/` | Exists (images, js, UNICON PDF) |
 | Data folder | `data/` | Exists (gitignored — raw, intermediate) |
@@ -192,6 +195,10 @@ To reach target state:
 | 2026-01-26 | Added GP modelling pipeline to UNICON EDA (8 building categories, 18 new cells, 11 new figures) | `projects/unicon-eda/index.qmd` |
 | 2026-01-26 | Added gpytorch + linear_operator to requirements | `requirements.txt` |
 | 2026-01-26 | Freeze updated with GP outputs (16 figures + html.json) | `_freeze/projects/unicon-eda/` |
+| 2026-01-26 | Created AI Sustainability Essay project (COMP0173 coursework, CoastSat + SDGs, 30 references) | `projects/ai-sustainability-essay/index.qmd` |
+| 2026-01-26 | Added ai-sustainability-essay to render targets | `_quarto.yml` |
+| 2026-01-26 | Full site validated — quarto render all 8 pages OK | `_site/` |
+| 2026-01-27 | Added listing thumbnail image to AI Sustainability Essay | `projects/ai-sustainability-essay/index.qmd` |
 
 ---
 

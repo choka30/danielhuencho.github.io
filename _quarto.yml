@@ -9,6 +9,7 @@ project:
     - projects/revealjs-demo/index.qmd
     - projects/revealjs-demo/presentation.qmd
     - projects/unicon-eda/index.qmd
+    - projects/ai-sustainability-essay/index.qmd
   resources:
     - "assets/js/**"
     - "assets/images/**"

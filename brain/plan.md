@@ -1,10 +1,126 @@
 # Session Plan
 
-> No active session. Run `/plan` to start a new session.
+> No active session.
+
+## Completed Sessions
+
+<details>
+<summary>Session 2026-01-27 — pw_cw_sustainability — Add listing thumbnail to AI sustainability essay</summary>
+
+> Created: 2026-01-27
+> Request: "Add a thumbnail image to the AI sustainability essay project so it displays in the projects listing grid"
+> Branch: pw_cw_sustainability
+
+- [x] Task 1: Add image field to AI sustainability essay YAML front matter
+- [x] Task 2: Update brain files
+
+</details>
+
+<details>
+<summary>Session 2026-01-26 — pw_cw_sustainability — COMP0173 AI Sustainability Essay</summary>
+
+> Created: 2026-01-26 22:50
+> Request: "Create a new project page for the COMP0173 coursework essay — 'Analysing the Broader Impact of AI' — replicating the PDF content exactly with a portfolio introduction"
+> Branch: pw_cw_sustainability
+
+### Task 1: Create project directory and essay page with YAML front matter
+- **Status:** Complete
+- **Atomic Units:**
+  - [ ] Create `projects/ai-sustainability-essay/` directory
+  - [ ] Create `projects/ai-sustainability-essay/index.qmd` with proper YAML front matter (title, date, description, author, categories, image placeholder)
+  - [ ] Add portfolio context section: course info (COMP0173), coursework brief, and what the essay demonstrates
+- **Acceptance Criteria:**
+  - [ ] YAML front matter includes: title, date (2025-11-05), description, author, categories
+  - [ ] Categories: `[AI, Sustainability, SDGs, Coastal Management, Essay, UCL]`
+  - [ ] Portfolio context explains the coursework purpose and skills demonstrated
+  - [ ] File exists at correct path
 
 ---
 
-## Completed Sessions
+### Task 2: Replicate essay body text — Description, SDGs, Social Sustainability sections
+- **Status:** Complete
+- **Atomic Units:**
+  - [ ] Add "Description of dataset and baseline" section (CoastSat overview, MLP pipeline, tidal correction, RMSE comparison)
+  - [ ] Add "Connection to SDGs" section (SDG 13 Climate Action, SDG 11 Sustainable Cities, risks to SDGs)
+  - [ ] Add "Impact on social sustainability" section (stakeholders, democratic decision-making, risks of simplification)
+  - [ ] Add "Error sources" subsection (open-source evaluation, benchmark paper, georeferencing/tidal/slope errors)
+- **Acceptance Criteria:**
+  - [ ] Text matches PDF exactly (including citation numbers [1]-[30])
+  - [ ] Bold section headers match PDF format
+  - [ ] All paragraph content preserved verbatim
+
+---
+
+### Task 3: Replicate essay body text — Environmental, Economic, Other Sustainability sections
+- **Status:** Complete
+- **Atomic Units:**
+  - [ ] Add "Impact on environmental sustainability" section (resource intensity, GEE electricity, LEO satellite pollution)
+  - [ ] Add climate risk protection subsection (zone regulations, disaster prevention, infrastructure)
+  - [ ] Add "Impact on economic sustainability" section (short-term costs, long-term benefits, open-source impact)
+  - [ ] Add "Other sustainability factors" section (desalination, ecosystem complexity, power dynamics/climate gentrification)
+- **Acceptance Criteria:**
+  - [ ] Text matches PDF exactly
+  - [ ] All subsections and questions from the coursework reproduced
+
+---
+
+### Task 4: Replicate SDG intersections, speculative solutions, and references
+- **Status:** Complete
+- **Atomic Units:**
+  - [ ] Add "Intersection between SDGs" section (13→6 indivisible, 11→8 enabling, 13→10 constraining)
+  - [ ] Add "Speculative solutions" section (labelled datasets, diffusion models, PINNs, Bayesian models, regulation)
+  - [ ] Add "Ideal conditions" paragraph
+  - [ ] Add "References" section with all 30 references formatted correctly
+- **Acceptance Criteria:**
+  - [ ] SDG interaction notation matches PDF (+3, +1, -1)
+  - [ ] All 30 references [1]–[30] included with correct formatting (authors, titles, journals, DOIs)
+  - [ ] Speculative solutions section complete
+
+---
+
+### Task 5: Register in _quarto.yml and validate render
+- **Status:** Complete
+- **Atomic Units:**
+  - [ ] Add `projects/ai-sustainability-essay/index.qmd` to `_quarto.yml` render targets
+  - [ ] Run `quarto render projects/ai-sustainability-essay/index.qmd` — verify page renders
+  - [ ] Run `quarto render` (full site) — verify no regressions
+  - [ ] Verify page appears in projects listing grid
+- **Acceptance Criteria:**
+  - [ ] Page renders without errors
+  - [ ] Page appears in projects listing with correct title, date, categories
+  - [ ] Full site renders cleanly
+  - [ ] Text is readable on dark theme
+
+---
+
+### Task 6: Update brain files
+- **Status:** Complete
+- **Atomic Units:**
+  - [ ] Run `/update-brain` to sync all brain files
+  - [ ] Verify `brain/codebase_index.md` includes new project entry
+  - [ ] Verify `brain/general_index.md` updated
+- **Acceptance Criteria:**
+  - [ ] All brain files reflect new project
+  - [ ] Ready for commit
+
+---
+
+## Session Constraints
+- Max tasks: 6
+- Dependencies: Task 1 → Task 2 → Task 3 → Task 4 → Task 5 → Task 6 (sequential)
+- File format: `.qmd` (text-heavy essay, no code execution needed)
+- Content: Exact reproduction of PDF text + portfolio context introduction
+- Theme: Dark ocean blue (inherited from site)
+- No images needed (text-only essay)
+- References: 30 academic citations to reproduce
+
+## Content Strategy
+
+The page will have two parts:
+1. **Portfolio introduction** (new content): Brief context explaining the course (COMP0173 at UCL), the coursework brief, and what skills this essay demonstrates (critical analysis of AI impact, SDG framework application, literature review, policy thinking)
+2. **Essay reproduction** (exact copy): The full essay text reproduced verbatim from the PDF, preserving all section headers, paragraph structure, and citation numbers
+
+</details>
 
 <details>
 <summary>Session 2026-01-26 — pw_EDA_model — Compositional GP Modelling Pipeline</summary>

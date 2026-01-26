@@ -1,8 +1,8 @@
 # Development History Log
 
 > Project started: 2026-01-25
-> Last entry: 2026-01-26
-> Total sessions: 3
+> Last entry: 2026-01-27
+> Total sessions: 5
 
 ---
 
@@ -19,6 +19,77 @@ This file maintains a chronological record of all development sessions. Each ses
 ## Recent Sessions
 
 <!-- New sessions are prepended here by /session-end -->
+
+### Session: 20260127_ESSAY_THUMBNAIL
+
+**Summary**
+- **Date:** 2026-01-27
+- **Branch:** `pw_cw_sustainability`
+- **Scope:** Add listing thumbnail image to AI sustainability essay project page
+
+**Tasks Completed**
+
+| # | Task | Commits |
+|---|------|---------|
+| 1 | Add image field to AI sustainability essay YAML front matter | `88db3ba` |
+| 2 | Update brain files | `88db3ba` |
+
+**Key Decisions**
+
+1. **Decision:** Use Gemini-generated image as listing thumbnail
+   - **Rationale:** Provides visual representation for the essay in the projects listing grid; image already available in assets
+
+**Files Changed**
+
+- Modified: `projects/ai-sustainability-essay/index.qmd` (+1 line — `image:` YAML field)
+- Created: `assets/images/Gemini_Generated_Image_3q3ek13q3ek13q3e.png` (thumbnail asset)
+- Modified: `brain/codebase_index.md`, `brain/general_index.md`, `brain/plan.md`
+
+**Notes**
+
+- Small atomic session: single YAML field addition + brain sync
+- Previous session on this branch created the full essay page (7db2bea)
+
+---
+
+### Session: 20260126_AI_SUSTAINABILITY_ESSAY
+
+**Summary**
+- **Date:** 2026-01-26
+- **Branch:** `pw_cw_sustainability`
+- **Scope:** Create COMP0173 AI sustainability essay project page (CoastSat + SDGs)
+
+**Tasks Completed**
+
+| # | Task | Commits |
+|---|------|---------|
+| 1 | Create project directory and essay page with YAML front matter | `7db2bea` |
+| 2 | Replicate essay body — Description, SDGs, Social Sustainability | `7db2bea` |
+| 3 | Replicate essay body — Environmental, Economic, Other Sustainability | `7db2bea` |
+| 4 | Replicate SDG intersections, speculative solutions, references | `7db2bea` |
+| 5 | Register in _quarto.yml and validate render | `7db2bea` |
+| 6 | Update brain files | `7db2bea` |
+
+**Key Decisions**
+
+1. **Decision:** Use `.qmd` format (not `.ipynb`) for the essay
+   - **Rationale:** Text-only content with no code execution; `.qmd` is simpler and renders faster
+2. **Decision:** Add portfolio context section before the essay body
+   - **Rationale:** Contextualises the academic work for recruiters viewing the portfolio
+
+**Files Changed**
+
+- Created: `projects/ai-sustainability-essay/index.qmd` (~400 lines — full essay with 30 references)
+- Modified: `_quarto.yml` (added render target)
+- Modified: `brain/plan.md`, `brain/codebase_index.md`, `brain/general_index.md`
+
+**Notes**
+
+- Essay reproduced verbatim from COMP0173 coursework PDF
+- 30 academic citations with DOIs preserved
+- Page validated with full site `quarto render` — no errors
+
+---
 
 ### Session: 20260126_GP_MODELLING
 
@@ -209,15 +280,15 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 4 |
-| Total tasks completed | 25 |
-| Total commits | 3 |
+| Total sessions | 6 |
+| Total tasks completed | 33 |
+| Total commits | 5 |
 
 ### Sessions by Type
 
 | Branch Type | Count |
 |-------------|-------|
-| content/ | 1 |
+| content/ | 3 |
 | style/ | 1 |
 | modelling/ | 1 |
 | config/ | 0 |
