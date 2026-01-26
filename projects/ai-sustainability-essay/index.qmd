@@ -4,6 +4,7 @@ description: "A critical analysis of CoastSat — an ML-powered shoreline monito
 date: 2025-11-05
 author: Daniel Huencho
 categories: [AI, Sustainability, SDGs, Coastal Management, Essay, UCL]
+image: ../../assets/images/Gemini_Generated_Image_3q3ek13q3ek13q3e.png
 toc: true
 ---
 

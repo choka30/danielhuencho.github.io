@@ -1,6 +1,6 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-26 23:00
+> Last updated: 2026-01-27
 > Total pages: 9 (Home, About, Projects listing, Iris EDA, UNICON EDA+GP, Revealjs demo page, Revealjs presentation, AI Sustainability Essay, + 2 legacy)
 > Total assets: 2 profile photos + 1 thumbnail + 21 generated plots + 2 reference PDFs
 > Content status: Projects listing with search/tags, 4 projects complete (Iris, UNICON EDA+GP, Revealjs, AI Sustainability Essay), freeze enabled
@@ -183,8 +183,9 @@
 **Purpose:** COMP0173 (Artificial Intelligence for Sustainable Development) coursework essay analysing CoastSat — an ML-powered shoreline monitoring toolkit — through the UN SDG framework.
 
 **Current State:**
-- ✓ YAML front matter (title, date: 2025-11-05, description, author, categories)
+- ✓ YAML front matter (title, date: 2025-11-05, description, author, categories, image)
 - ✓ Categories: AI, Sustainability, SDGs, Coastal Management, Essay, UCL
+- ✓ Listing thumbnail image (`Gemini_Generated_Image_3q3ek13q3ek13q3e.png` from assets/images/)
 - ✓ Portfolio context section (course info, coursework brief, skills demonstrated)
 - ✓ Description of dataset and baseline (CoastSat MLP pipeline, RMSE comparison)
 - ✓ Connection to SDGs (SDG 13 Climate Action, SDG 11 Sustainable Cities, risks)
@@ -198,7 +199,7 @@
 - ✓ Ideal conditions paragraph
 - ✓ References section (30 academic citations with DOIs)
 - ✓ TOC enabled
-- ✓ Text-only page (no code execution, no images)
+- ✓ Text-only page (no code execution)
 
 **Status:** `Complete`
 

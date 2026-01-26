@@ -198,6 +198,7 @@ To reach target state:
 | 2026-01-26 | Created AI Sustainability Essay project (COMP0173 coursework, CoastSat + SDGs, 30 references) | `projects/ai-sustainability-essay/index.qmd` |
 | 2026-01-26 | Added ai-sustainability-essay to render targets | `_quarto.yml` |
 | 2026-01-26 | Full site validated — quarto render all 8 pages OK | `_site/` |
+| 2026-01-27 | Added listing thumbnail image to AI Sustainability Essay | `projects/ai-sustainability-essay/index.qmd` |
 
 ---
 
