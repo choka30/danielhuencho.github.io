@@ -160,7 +160,7 @@ Head of Data Science
 Metro de Santiago
 :::
 ::: {.timeline-content}
-Led team of 5 data scientists. Deployed GenAI agents for operational efficiency. Built Big Data pipelines achieving 15% energy cost reduction through SCADA analytics.
+Led team of 5 data scientists. Deployed GenAI agents for operational efficiency. Architected Big Data pipeline for high-frequency SCADA energy data, identifying key drivers of efficiency through anomaly detection.
 :::
 :::
 
