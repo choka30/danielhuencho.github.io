@@ -2,6 +2,7 @@
 title: "About"
 description: "Daniel Huencho Mardini - Data Scientist, AI Researcher, and MSc candidate at UCL"
 pagetitle: "About | Daniel Huencho"
+body-classes: hide-title-block
 ---
 
 ::: {.hero-section}

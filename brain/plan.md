@@ -1,125 +1,127 @@
 # Session Plan
 
-> Created: 2026-01-26 12:58
-> Request: "Simplify skills to 2 levels (Advanced/Intermediate), move Databricks to Intermediate, remove Cloudera & Scala, replace XGBoost with Ensemble Models, change index.qmd hero photo to friendly version, keep professional photo on about.qmd"
-> Branch: pw_fixSkills_others
-> Session ID: 20260126_FIX_SKILLS_OTHERS
+> Created: 2026-01-26 15:00
+> Request: "Improve the visual of the project listing (white box around search/filter), fix Iris EDA plots not printing and black text invisible on dark theme. Make visuals elegant."
+> Branch: pw_add_projectQMD
+> Session ID: 20260126_FIX_PROJECT_VISUALS
 
 ## Context Summary
 
-**Changes Requested:**
+**Problems identified:**
 
-1. **Skills Levels:** Reduce from 3 (Expert/Advanced/Intermediate) to 2 (Advanced/Intermediate)
-2. **Skill Changes:**
-   - Move Databricks → Intermediate
-   - Remove Cloudera entirely
-   - Remove Scala entirely
-   - Replace "XGBoost" with "Ensemble Models" (covers Random Forest, XGBoost, GBM, etc.)
-3. **Photo Swap:** index.qmd hero photo → `my_photo_friendly.jpeg`; about.qmd keeps `my_photo_professional.jpeg`
+1. **White box on search/filter inputs** — The Quarto listing's search bar and sort dropdown render with a white background because the dark theme overrides in `custom.scss` don't fully cover all Quarto listing UI elements (e.g., `.form-control`, `.form-select`, category list container, and possibly the listing container itself have default white/light Bootstrap backgrounds).
 
-**Design Approach:**
-- Remove the "Expert" tier from skills legend, CSS, and all skill tags
-- Reclassify former "Expert" skills as "Advanced"
-- Apply skill content changes (Databricks, Cloudera, Scala, XGBoost→Ensemble Models) to both index.qmd and about.qmd
-- Update `custom.scss` to remove expert-related CSS classes
-- Swap photo src in index.qmd only
+2. **Iris EDA plots not printing** — The page has `matplotlib.use('Agg')` in setup and `plt.show()` after each plot, but the plots may not render because:
+   - The title block is hidden globally by `.quarto-title` `display: none !important` — this also hides necessary page elements on subpages
+   - The `#| output: false` on the setup cell is fine, but downstream cells need proper figure output
+   - The `code-fold: true` in YAML front matter should work, but we need to verify cells produce output
+
+3. **Black/invisible text** — Some text on the Iris EDA page renders as black (default) because:
+   - Table styling uses inline `.style.set_properties()` but Quarto may override with its own table styles
+   - The global `.quarto-title` hide rule may be too aggressive, breaking project subpage layouts
+   - Quarto-generated tables (`<table>`) and inline code blocks may not inherit dark theme colors
+
+**Root causes:**
+- The `.quarto-title` hide rule (`display: none !important`) is global — it hides titles on ALL pages including project pages. This breaks the layout for project detail pages.
+- The Quarto listing search/filter uses Bootstrap form controls that need explicit dark overrides.
+- Table elements in Quarto output inherit default Bootstrap (light) styling.
+- Category sidebar container has white/light background by default.
+
+**Design approach:**
+- Scope the title-block hiding to only the homepage and about page (where hero sections exist)
+- Add comprehensive dark theme overrides for all Quarto listing UI elements
+- Add dark theme overrides for Quarto-rendered tables
+- Ensure Iris EDA renders properly with plots visible and all text readable
+- Keep all styling in `custom.scss` (single source of truth)
 
 ---
 
 ## Tasks
 
-### Task 1: Update SCSS — Remove Expert Tier
+### Task 1: Fix Global Title Block Hiding (Scope to Home/About Only)
 - **ID:** TASK-001
 - **Status:** Complete ✓
-- **Completed:** 2026-01-26 12:59
-- **Description:** Remove `.skill-tag-expert`, `.legend-dot-expert`, and `.skill-tag-core` from custom.scss. Keep only Advanced and Intermediate styles.
+- **Completed:** 2026-01-26 15:10
+- **Description:** The `.quarto-title` `display: none !important` rule hides title blocks on ALL pages, including project pages where they should be visible. Scope it to only homepage and about page.
 - **Atomic Units:**
-  - Remove `.skill-tag-expert` class (and `.skill-tag-core` alias)
-  - Remove `.legend-dot-expert` class
-  - No new CSS needed — existing Advanced and Intermediate styles remain
+  - Modify `custom.scss`: Change the `.quarto-title` hide rule to target only pages with `.hero-wrapper` or `.hero-section` parents, OR use Quarto's page-specific CSS class
+  - Add dark-themed title block styles for project pages (so titles show with proper dark colors)
 - **Acceptance Criteria:**
-  - [ ] Only `.skill-tag-advanced` and `.skill-tag-intermediate` remain
-  - [ ] Only `.legend-dot-advanced` and `.legend-dot-intermediate` remain
-  - [ ] No references to "expert" in CSS
+  - [ ] Homepage and About page: title block still hidden (hero sections handle titles)
+  - [ ] Project pages: title block visible with dark-themed styling
+  - [ ] No white backgrounds leak through on any page
 
 ---
 
-### Task 2: Update index.qmd — Skills + Photo
+### Task 2: Fix Listing Search/Filter White Box & Category Sidebar
 - **ID:** TASK-002
 - **Status:** Complete ✓
-- **Completed:** 2026-01-26 13:00
-- **Description:** Swap hero photo to friendly version, update skills legend to 2 levels, reclassify skills, apply content changes
+- **Completed:** 2026-01-26 15:15
+- **Description:** The search bar, sort dropdown, and category sidebar on the projects listing page have white/light backgrounds that clash with the dark theme. Add comprehensive dark theme overrides.
 - **Atomic Units:**
-  - Change hero photo: `my_photo_professional.jpeg` → `my_photo_friendly.jpeg`
-  - Update skills legend HTML: Remove Expert row, keep Advanced + Intermediate
-  - Reclassify all `.skill-tag-expert` → `.skill-tag-advanced`
-  - Remove `[Scala]` and `[Cloudera]` tags
-  - Change `[Databricks]` from advanced → intermediate
-  - Replace `[XGBoost]` with `[Ensemble Models]`
-- **Skill Reclassification (index.qmd):**
-  - **Programming Languages:** Python→Advanced, SQL→Advanced, R→Advanced, ~~Scala~~, C++→Intermediate
-  - **ML/DL:** PyTorch→Advanced, Deep Learning→Advanced, Scikit-learn→Advanced, TensorFlow→Advanced, GNNs→Advanced, Ensemble Models→Advanced, Bayesian Modeling→Advanced, Computer Vision→Intermediate, NLP→Intermediate, Generative AI→Intermediate
-  - **Data Engineering:** Apache Spark→Advanced, ETL Pipelines→Advanced, Databricks→Intermediate, AWS→Intermediate, Docker→Intermediate, PostgreSQL→Intermediate, ~~Cloudera~~
-  - **Domain Expertise:** Transportation Analytics→Advanced, Financial Risk Modeling→Advanced, Earth Observation→Advanced, Geospatial Analysis→Advanced, Energy Optimization→Intermediate, Disaster Risk Assessment→Intermediate
+  - Override all Bootstrap form elements within `.quarto-listing` (input, select, label, button)
+  - Override category sidebar container background and text colors
+  - Style the listing pagination controls if present
+  - Ensure focus/hover states use accent colors
 - **Acceptance Criteria:**
-  - [ ] Hero photo is `my_photo_friendly.jpeg`
-  - [ ] No `.skill-tag-expert` references
-  - [ ] Legend shows only Advanced and Intermediate
-  - [ ] Scala and Cloudera removed
-  - [ ] Databricks is intermediate
-  - [ ] XGBoost replaced with Ensemble Models
+  - [ ] Search input has dark background, light text, no white border flash
+  - [ ] Sort dropdown has dark background, light text
+  - [ ] Category sidebar has dark background, light text
+  - [ ] All form elements use consistent dark theme colors
+  - [ ] Focus states use blue accent glow
 
 ---
 
-### Task 3: Update about.qmd — Skills (same changes)
+### Task 3: Fix Iris EDA — Plot Output & Dark Text Visibility
 - **ID:** TASK-003
 - **Status:** Complete ✓
-- **Completed:** 2026-01-26 13:00
-- **Description:** Apply identical skills changes to about.qmd. Photo remains `my_photo_professional.jpeg` (no change).
+- **Completed:** 2026-01-26 15:15
+- **Description:** Fix the Iris EDA page so plots render properly and all text (tables, inline code, headings) is visible on the dark background.
 - **Atomic Units:**
-  - Update skills legend HTML: Remove Expert row
-  - Reclassify all `.skill-tag-expert` → `.skill-tag-advanced`
-  - Remove `[Scala]` tag
-  - Remove `[Cloudera]` tag
-  - Change `[Databricks]` from advanced → intermediate
-  - Replace `[XGBoost]` with `[Ensemble Models]`
-- **Skill Reclassification (about.qmd):**
-  - Same mapping as Task 2
-  - about.qmd also has Statistical Methods category — keep those as-is (all were advanced/intermediate already)
+  - Review and fix the `iris-eda/index.qmd` Python cell options to ensure plots output correctly
+  - Add dark theme overrides for Quarto-generated tables (`.table`, `table`, `th`, `td`)
+  - Add dark theme overrides for Quarto inline code output and cell output
+  - Add dark theme for pandas Styler HTML output
+  - Ensure summary table at bottom is readable
 - **Acceptance Criteria:**
-  - [ ] Photo unchanged (`my_photo_professional.jpeg`)
-  - [ ] No `.skill-tag-expert` references
-  - [ ] Legend shows only Advanced and Intermediate
-  - [ ] Scala and Cloudera removed
-  - [ ] Databricks is intermediate
-  - [ ] XGBoost replaced with Ensemble Models
+  - [ ] All 5 plots render and display (violin, pairplot, heatmap, confusion matrix, feature importance)
+  - [ ] Tables have dark background with light text
+  - [ ] Inline Python output (`{python}`) is visible
+  - [ ] Summary table at bottom is readable
+  - [ ] All text on the page is visible (no black-on-dark)
 
 ---
 
-### Task 4: Validation
+### Task 4: Visual Polish & Validation
 - **ID:** TASK-004
 - **Status:** Complete ✓
-- **Completed:** 2026-01-26 13:01
-- **Description:** Build site, verify no errors, check rendering
+- **Completed:** 2026-01-26 15:20
+- **Description:** Run `quarto render` to validate all fixes. Fine-tune any remaining visual issues.
 - **Atomic Units:**
-  - Run `quarto render`
-  - Verify no build errors
-  - Check that index.qmd and about.qmd render correctly
+  - Run `quarto render` for the full site
+  - Verify projects listing page visuals (search, filter, cards)
+  - Verify Iris EDA page (plots, tables, text)
+  - Verify Revealjs demo page still works
+  - Fix any remaining visual inconsistencies
 - **Acceptance Criteria:**
-  - [ ] `quarto render` succeeds without errors
-  - [ ] No "expert" references remain in any content file
-  - [ ] Photo correctly displays on index.qmd (friendly) and about.qmd (professional)
-  - [ ] Skills legend shows 2 levels on both pages
+  - [ ] `quarto render` succeeds with no errors
+  - [ ] No white/light backgrounds visible on any dark-themed page
+  - [ ] All plots render on Iris EDA
+  - [ ] All text is readable (no black-on-dark)
+  - [ ] Search and filter UI is elegant and consistent with theme
+  - [ ] Cards, badges, and layout look polished
 
 ---
 
 ## Session Constraints
 - **Max tasks:** 4
 - **Dependencies:**
-  - Task 1 (CSS) should be done first as foundation
-  - Tasks 2 & 3 can run in parallel after Task 1
-  - Task 4 validates everything
+  - Task 1 (title fix) must be done first — it unblocks project page rendering
+  - Task 2 (listing fix) and Task 3 (Iris fix) can run in parallel after Task 1
+  - Task 4 (validation) after Tasks 2 & 3
 - **Files to Modify:**
-  - `custom.scss` (Task 1)
-  - `index.qmd` (Task 2)
-  - `about.qmd` (Task 3)
+  - `custom.scss` (Tasks 1, 2, 3) — main styling fixes
+  - `projects/iris-eda/index.qmd` (Task 3) — if cell options need adjustment
+- **Files NOT to Modify:**
+  - `_quarto.yml` (no config changes needed)
+  - `projects/index.qmd` (listing config is fine, styling goes in SCSS)

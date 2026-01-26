@@ -13,21 +13,34 @@
 /personal_webpage
 │
 ├── _quarto.yml              # [CONFIG] Main site configuration
-├── index.qmd                # [CONTENT] Landing page (placeholder)
-├── about.qmd                # [CONTENT] CV page (empty)
+├── index.qmd                # [CONTENT] Landing page (complete)
+├── about.qmd                # [CONTENT] CV page (complete)
+├── custom.scss              # [CONFIG] Custom SCSS (ocean blue theme)
 ├── dashboard.qmd            # [CONTENT] Sample dashboard (to review)
 ├── pythond-code-example.qmd # [CONTENT] Code example (to review)
 ├── styles.css               # [CONFIG] Custom CSS (empty)
 │
+├── projects/                # [CONTENT] Portfolio projects listing
+│   ├── index.qmd            # Projects listing page (grid + search + tags)
+│   ├── iris-eda/            # Demo: Iris dataset EDA
+│   │   └── index.qmd        # matplotlib/seaborn/scikit-learn visualizations
+│   └── revealjs-demo/       # Demo: Revealjs presentation
+│       ├── index.qmd        # Project description page
+│       └── presentation.qmd # Revealjs slides (3 slides)
+│
+├── assets/                  # [ASSETS] Static files
+│   ├── images/              # Profile pics, favicon
+│   └── js/                  # Neural network animation
+│
 ├── brain/                   # [META] AI agent knowledge base
 │   ├── plan.md              # Active session tasks
 │   ├── general_index.md     # (this file) Project structure
-│   ├── content_index.md     # Page & asset documentation
-│   ├── content_standard.md  # Quality standards
+│   ├── codebase_index.md    # Page & asset documentation
+│   ├── development_standard.md # Quality standards
 │   └── history_log.md       # Session history
 │
 ├── .claude/                 # [META] Claude Code configuration
-│   ├── skills/              # Custom skills (12 total)
+│   ├── skills/              # Custom skills
 │   └── settings.local.json  # Local settings
 │
 ├── _site/                   # [OUTPUT] Generated site (gitignored)
@@ -81,14 +94,16 @@
 
 | Purpose | Path | Status |
 |---------|------|--------|
-| Site config | `_quarto.yml` | Exists (needs update) |
-| Landing page | `index.qmd` | Exists (placeholder) |
-| CV/About | `about.qmd` | Exists (empty) |
-| Custom styles | `custom.scss` | Exists (ocean blue theme) |
-| Projects folder | `projects/` | Missing (create) |
-| Assets folder | `assets/` | Exists (images added) |
+| Site config | `_quarto.yml` | Complete (nav, theme, render targets) |
+| Landing page | `index.qmd` | Complete |
+| CV/About | `about.qmd` | Complete |
+| Custom styles | `custom.scss` | Complete (ocean blue theme + listing cards + dark tables/forms) |
+| Projects listing | `projects/index.qmd` | Complete (grid + search + tags) |
+| Iris EDA demo | `projects/iris-eda/index.qmd` | Complete |
+| Revealjs demo | `projects/revealjs-demo/` | Complete (page + presentation) |
+| Assets folder | `assets/` | Exists (images, js) |
 | Brain files | `brain/` | Exists (updated) |
-| Claude skills | `.claude/skills/` | Exists (needs update) |
+| Claude skills | `.claude/skills/` | Exists |
 
 ---
 
@@ -98,10 +113,13 @@ To reach target state:
 
 ### Files to Create
 - [x] `custom.scss` - Custom styling (ocean blue dark theme)
-- [ ] `projects/` directory
-- [ ] `projects/_metadata.yml` - Shared project settings
-- [ ] `projects/research-methodology.ipynb` - Research showcase
-- [ ] `projects/industry-portfolio.qmd` - Industry experience
+- [x] `projects/` directory
+- [x] `projects/index.qmd` - Projects listing page
+- [x] `projects/iris-eda/index.qmd` - Iris EDA demo project
+- [x] `projects/revealjs-demo/index.qmd` - Revealjs demo project page
+- [x] `projects/revealjs-demo/presentation.qmd` - Revealjs presentation
+- [ ] `projects/research-methodology.ipynb` - Research showcase (future)
+- [ ] `projects/industry-portfolio.qmd` - Industry experience (future)
 - [x] `assets/` directory
 - [x] `assets/images/` directory
 - [x] `assets/images/my_photo_professional.jpeg` - Profile photo
@@ -139,6 +157,17 @@ To reach target state:
 | 2026-01-26 | Removed Scala and Cloudera from skills | `index.qmd`, `about.qmd` |
 | 2026-01-26 | Moved Databricks to Intermediate, replaced XGBoost with Ensemble Models | `index.qmd`, `about.qmd` |
 | 2026-01-26 | Swapped index.qmd hero photo to friendly version | `index.qmd` |
+| 2026-01-26 | Added projects/ directory with listing page (search + tags) | `projects/index.qmd` |
+| 2026-01-26 | Created Iris EDA demo project (matplotlib/seaborn/sklearn) | `projects/iris-eda/index.qmd` |
+| 2026-01-26 | Created Revealjs demo project (page + 3-slide presentation) | `projects/revealjs-demo/` |
+| 2026-01-26 | Added Projects to navbar and render targets | `_quarto.yml` |
+| 2026-01-26 | Added listing card styles (dark theme) | `custom.scss` |
+| 2026-01-26 | Added Revealjs + Listings references | `CLAUDE.md` |
+| 2026-01-26 | Scoped title-block hiding to Home/About only (body-classes) | `custom.scss`, `index.qmd`, `about.qmd` |
+| 2026-01-26 | Added dark theme for listing search/filter/sort/pagination | `custom.scss` |
+| 2026-01-26 | Added dark theme for tables, cell output, code blocks, TOC | `custom.scss` |
+| 2026-01-26 | Removed pandas Styler inline styles (CSS handles dark theme) | `projects/iris-eda/index.qmd` |
+| 2026-01-26 | Full site validated — quarto render all 6 pages OK | `_site/` |
 
 ---
 
