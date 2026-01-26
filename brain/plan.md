@@ -1,9 +1,30 @@
 # Session Plan
 
+> No active session. Run `/plan` to start a new session.
+
+---
+
+## Completed Sessions
+
+<details>
+<summary>Session 2026-01-26 — pw_EDA_model — Compositional GP Modelling Pipeline</summary>
+
 > Created: 2026-01-26 19:30
 > Request: "Develop a compositional Gaussian Process modelling pipeline for UNICON energy data — building-level electricity consumption forecasting, kernel decomposition, anomaly detection, and cross-building generalisation"
 > Branch: pw_EDA_model
 > Previous session: EDA complete (5/5 tasks done) — this session extends the notebook with probabilistic modelling
+
+- [x] Task 1: Install GPyTorch and prepare dependencies
+- [x] Task 2: Add Probabilistic Modelling Framework section with mathematical foundation
+- [x] Task 3: Data preparation for GP modelling (8 buildings — one per category)
+- [x] Task 4: Build and train ExactGP models for all 8 building categories
+- [x] Task 5: Kernel decomposition analysis
+- [x] Task 6: Weather response and intervention impact analysis
+- [x] Task 7: Anomaly detection and cross-building category comparison
+- [x] Task 8: Model evaluation, metrics across all categories, and conclusion
+- [x] Task 9: Validate render, update freeze and brain
+
+</details>
 
 ## Architecture Decision: Compositional GP for Energy Modelling
 

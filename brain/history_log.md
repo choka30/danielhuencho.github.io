@@ -209,9 +209,9 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 3 |
-| Total tasks completed | 16 |
-| Total commits | 2 |
+| Total sessions | 4 |
+| Total tasks completed | 25 |
+| Total commits | 3 |
 
 ### Sessions by Type
 
@@ -219,6 +219,7 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 |-------------|-------|
 | content/ | 1 |
 | style/ | 1 |
+| modelling/ | 1 |
 | config/ | 0 |
 | fix/ | 0 |
 
