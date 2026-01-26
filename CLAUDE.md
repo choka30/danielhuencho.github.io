@@ -131,5 +131,7 @@ Before committing content:
 ## References
 
 - Quarto Websites: https://quarto.org/docs/websites/
+- Quarto Listings: https://quarto.org/docs/websites/website-listings.html
+- Quarto Revealjs Presentations: https://quarto.org/docs/reference/formats/presentations/revealjs.html
 - Project Context: `project_context.md`
 - Target Audience: UK tech recruiters, academic reviewers

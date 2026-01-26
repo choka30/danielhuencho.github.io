@@ -2,6 +2,7 @@
 title: "Daniel Huencho"
 description: "AI Engineer & Data Scientist | MSc AI for Sustainable Development @ UCL"
 pagetitle: "Daniel Huencho | AI Engineer"
+body-classes: hide-title-block
 format:
   html:
     toc: false

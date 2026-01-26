@@ -1,8 +1,8 @@
 # Development History Log
 
 > Project started: 2026-01-25
-> Last entry: 2026-01-25
-> Total sessions: 1
+> Last entry: 2026-01-26
+> Total sessions: 2
 
 ---
 
@@ -19,6 +19,37 @@ This file maintains a chronological record of all development sessions. Each ses
 ## Recent Sessions
 
 <!-- New sessions are prepended here by /session-end -->
+
+### Session: 20260126_FIX_LISTING_CONTROLS
+
+**Summary**
+- **Date:** 2026-01-26
+- **Branch:** `pw_add_projectQMD`
+- **Scope:** Fix listing sort/filter controls styling on Projects page
+
+**Tasks Completed**
+
+| # | Task | Commits |
+|---|------|---------|
+| 1 | Fix listing controls styling in custom.scss | `0969697` |
+| 2 | Validate with quarto preview | `0969697` |
+
+**Key Decisions**
+
+1. **Decision:** Move CSS selectors from `.listing-actions` to directly under `.quarto-listing`
+   - **Rationale:** Quarto's rendered HTML uses `.listing-actions-group` as a direct child of `.quarto-listing` — the `.listing-actions` wrapper doesn't exist in the DOM
+
+**Files Changed**
+
+- Modified: `custom.scss` (restructured listing control selectors, added `.listing-actions-group` flexbox, `.input-group-text` dark styling)
+- Modified: `brain/plan.md`, `brain/codebase_index.md`, `brain/general_index.md`
+
+**Notes**
+
+- The untracked screenshot `assets/Captura de pantalla 2026-01-26 154625.png` was left out of the commit (reference image only)
+- Key lesson: always inspect rendered HTML to verify CSS selector targets match actual DOM structure
+
+---
 
 ### Session: 20260125_INDEX_PAGE
 
@@ -125,16 +156,16 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 1 |
-| Total tasks completed | 5 |
-| Total commits | 1 |
+| Total sessions | 2 |
+| Total tasks completed | 7 |
+| Total commits | 2 |
 
 ### Sessions by Type
 
 | Branch Type | Count |
 |-------------|-------|
 | content/ | 1 |
-| style/ | 0 |
+| style/ | 1 |
 | config/ | 0 |
 | fix/ | 0 |
 

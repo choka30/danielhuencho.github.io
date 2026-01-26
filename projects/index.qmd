@@ -1,0 +1,26 @@
+---
+title: "Projects"
+description: "A collection of data science and AI projects showcasing research and applied work."
+listing:
+  id: project-listing
+  contents: "*/index.qmd"
+  type: grid
+  sort: "date desc"
+  categories: true
+  filter-ui: true
+  sort-ui: true
+  grid-columns: 2
+  grid-item-border: true
+  fields: [image, date, title, description, categories]
+  date-format: "medium"
+  page-size: 10
+page-layout: full
+toc: false
+---
+
+<div class="projects-header">
+<p class="projects-subtitle">Explore my portfolio of data science, machine learning, and AI projects. Use the search bar to filter by text or click on tags to browse by category.</p>
+</div>
+
+:::{#project-listing}
+:::

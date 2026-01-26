@@ -1,9 +1,9 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-26 13:00
-> Total pages: 4
-> Total assets: 2 (profile photos: professional + friendly)
-> Content status: index.qmd & about.qmd complete with simplified 2-level skills
+> Last updated: 2026-01-26 15:20
+> Total pages: 7 (Home, About, Projects listing, Iris EDA, Revealjs demo page, Revealjs presentation, + 2 legacy)
+> Total assets: 2 profile photos + 1 thumbnail + 5 generated plots
+> Content status: Projects listing with search/tags, 2 demo projects complete, dark theme visual fixes applied
 
 ---
 
@@ -13,6 +13,10 @@
 |------|------|---------|--------|
 | Home | `index.qmd` | Landing page with hero + bio | Complete |
 | About | `about.qmd` | Detailed CV/Resume | Complete |
+| Projects | `projects/index.qmd` | Portfolio listing (grid + search + tags) | Complete |
+| Iris EDA | `projects/iris-eda/index.qmd` | Iris dataset EDA demo | Complete |
+| Revealjs Demo | `projects/revealjs-demo/index.qmd` | Presentation demo page | Complete |
+| Revealjs Slides | `projects/revealjs-demo/presentation.qmd` | 3-slide Revealjs presentation | Complete |
 | Dashboard | `dashboard.qmd` | Sample visualization | Review needed |
 | Code Example | `pythond-code-example.qmd` | Python demo | Review needed |
 
@@ -34,7 +38,7 @@
 - ✓ Friendly photo (`my_photo_friendly.jpeg`)
 - ✓ Timeline highlights section
 - ✓ Improved text contrast (WCAG AA)
-- ✓ Title block hidden (no text over hero)
+- ✓ Title block hidden via `body-classes: hide-title-block` (scoped, not global)
 - ✓ Dark-only theme (no light mode toggle)
 - ✓ Ensemble Models replaces XGBoost
 - ✓ Databricks moved to Intermediate
@@ -64,6 +68,82 @@
 - ✓ Dark-only theme applied
 
 **Status:** `Complete` — fully styled and organized with simplified skills
+
+---
+
+### `projects/index.qmd` — Projects Listing Page
+
+**Purpose:** Portfolio grid showing all projects with search and tag filtering.
+
+**Current State:**
+- ✓ Quarto native `listing` with `type: grid`
+- ✓ `filter-ui: true` — search bar for text filtering
+- ✓ `categories: true` — sidebar tag filtering
+- ✓ `sort-ui: true` — sort dropdown
+- ✓ Grid layout (2 columns)
+- ✓ Dark theme card styles in custom.scss
+- ✓ Search/filter/sort inputs styled dark (no white boxes)
+- ✓ Sort + filter controls grouped together (flexbox toolbar)
+- ✓ Icon containers (`.input-group-text`) dark-themed (no white boxes)
+- ✓ Category sidebar styled dark
+- ✓ Pagination controls styled dark
+
+**Status:** `Complete`
+
+---
+
+### `projects/iris-eda/index.qmd` — Iris Dataset EDA
+
+**Purpose:** Demo project showcasing data visualization and ML with the classic Iris dataset.
+
+**Current State:**
+- ✓ YAML front matter (title, date, description, categories, image)
+- ✓ Categories: Python, EDA, Scikit-learn, Visualization
+- ✓ Dark-themed matplotlib/seaborn plots
+- ✓ Violin plots (feature distributions by species)
+- ✓ Pairplot (all feature combinations)
+- ✓ Correlation heatmap
+- ✓ Random Forest classifier with confusion matrix
+- ✓ Feature importance bar chart
+- ✓ Code-fold enabled, figure captions included
+- ✓ Markdown explanations between code cells
+- ✓ Tables use plain pandas output (CSS handles dark styling, no inline Styler)
+- ✓ Title block visible with dark theme (scoped hide-title-block fix)
+- ✓ All text readable on dark background (CSS overrides for tables, cell output, captions)
+- ✓ Plots render correctly — removed `matplotlib.use('Agg')` and `plt.show()` (Quarto captures figures via Jupyter inline backend)
+- ✓ `plt.savefig()` retained for listing card thumbnails
+
+**Status:** `Complete`
+
+---
+
+### `projects/revealjs-demo/index.qmd` — Revealjs Demo Page
+
+**Purpose:** Project page describing the Revealjs presentation with a link to open it.
+
+**Current State:**
+- ✓ YAML front matter (title, date, description, categories)
+- ✓ Categories: Quarto, Presentation, Revealjs
+- ✓ Description of Revealjs features
+- ✓ Link to open presentation.html
+- ✓ Reference to Quarto Revealjs docs
+
+**Status:** `Complete`
+
+---
+
+### `projects/revealjs-demo/presentation.qmd` — Revealjs Slides
+
+**Purpose:** 3-slide demo presentation using Quarto Revealjs format.
+
+**Current State:**
+- ✓ `format: revealjs` with moon theme
+- ✓ Slide transitions (slide), slide numbers, controls
+- ✓ 3 slides with lorem ipsum content
+- ✓ Speaker notes on first slide
+- ✓ Footer and logo configured
+
+**Status:** `Complete`
 
 ---
 
@@ -134,7 +214,9 @@
 | my_photo_professional.jpeg | Professional headshot (about.qmd) | ✓ Added |
 | my_photo_friendly.jpeg | Friendly photo (index.qmd hero) | ✓ Added |
 | hero-bg.jpg | Hero section background | Optional |
-| project-*.png | Project screenshots | Missing |
+| revealjs-thumbnail.png | Revealjs demo card image | ✓ Generated |
+| iris-pairplot.png | Iris EDA card image (auto-generated) | ✓ Generated |
+| iris-*.png | Iris EDA plots (violin, heatmap, etc.) | ✓ Generated |
 
 ### Documents (`assets/`)
 
@@ -149,60 +231,40 @@
 ### `_quarto.yml` — Site Configuration
 
 **Current State:**
-```yaml
-project:
-  type: website
-  render:
-    - "*.qmd"   # Required for git worktree detection
+- Navbar: Home, About, Projects (+ GitHub, LinkedIn icons)
+- Render targets: index.qmd, about.qmd, projects/**
+- Theme: cosmo + custom.scss (dark only)
+- Font: Inter (Google Fonts)
 
-website:
-  title: "Daniel Huencho | Data Science Portfolio"
-  navbar:
-    background: dark
-    left:
-      - href: index.qmd
-        text: Home
-      - href: about.qmd
-        text: About
-    right:
-      - icon: github
-        href: https://github.com/choka30
-      - icon: linkedin
-        href: https://www.linkedin.com/in/daniel-huencho-mardini-9568489a/
+**Status:** `Complete` — includes projects nav + render targets
 
-format:
-  html:
-    theme:
-      dark: [cosmo, custom.scss]
-    toc: false
-    page-layout: full
-```
-
-**Status:** `Complete` — properly configured for worktree
-
-**Note:** The `render: ["*.qmd"]` directive is required because Quarto doesn't auto-detect .qmd files in git worktree directories.
+**Notes:**
+- Render targets must be explicitly listed for git worktree directories
+- The Revealjs presentation renders as standalone HTML
+- `QUARTO_PYTHON` env var needed for render: `/home/dhuencho/dev_py/0001_start_pytorch/.venv/bin/python`
 
 ---
 
 ## Content Roadmap
 
-### Phase 1: Foundation
-1. Update `_quarto.yml` with proper config
-2. Create `custom.scss` for styling
-3. Rewrite `index.qmd` with real content
-4. Create `about.qmd` with CV content
+### Phase 1: Foundation ✓
+1. ✓ Update `_quarto.yml` with proper config
+2. ✓ Create `custom.scss` for styling
+3. ✓ Rewrite `index.qmd` with real content
+4. ✓ Create `about.qmd` with CV content
 
-### Phase 2: Projects
-5. Create `projects/` directory structure
-6. Create `research-methodology.ipynb`
-7. Create `industry-portfolio.qmd`
+### Phase 2: Projects (in progress)
+5. ✓ Create `projects/` directory structure + listing page
+6. ✓ Create demo projects (Iris EDA + Revealjs)
+7. ○ Create `research-methodology.ipynb` (future)
+8. ○ Create `industry-portfolio.qmd` (future)
 
 ### Phase 3: Polish
-8. Add professional photo
-9. Create downloadable CV
-10. Review and decide on dashboard.qmd
-11. Mobile optimization
-12. SEO metadata
+9. ✓ Add professional photo
+10. ○ Create downloadable CV
+11. ○ Review and decide on dashboard.qmd
+12. ○ Mobile optimization
+13. ○ SEO metadata
 
 ---
 
