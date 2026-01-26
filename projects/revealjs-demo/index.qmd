@@ -1,0 +1,36 @@
+---
+title: "Interactive Presentations with Revealjs"
+description: "A demonstration of Quarto's Revealjs integration for creating beautiful, interactive HTML presentations with slide transitions and themes."
+author: Daniel Huencho
+date: 2026-01-25
+categories: [Quarto, Presentation, Revealjs]
+image: revealjs-thumbnail.png
+toc: false
+---
+
+## About This Project
+
+[Quarto](https://quarto.org/) supports creating interactive HTML presentations using [Reveal.js](https://revealjs.com/), a powerful framework for building slide decks directly from Markdown. This is particularly useful for academic and technical presentations where you need to include code, equations, and visualizations.
+
+### Key Features
+
+- **Markdown-based slides** — Write content in plain Markdown, Quarto handles the rendering
+- **Code highlighting** — Syntax-highlighted code blocks with optional line numbers
+- **Themes** — Multiple built-in themes (dark, moon, night, etc.)
+- **Transitions** — Smooth slide transitions (slide, fade, convex, zoom)
+- **Speaker notes** — Built-in presenter mode with notes
+- **LaTeX support** — Render equations natively
+
+### View the Presentation
+
+Click the link below to open the demo presentation in full-screen mode:
+
+<div style="margin: 2rem 0;">
+<a href="presentation.html" class="btn-primary" target="_blank">
+  Open Presentation →
+</a>
+</div>
+
+### Reference
+
+This presentation was built following the [Quarto Revealjs documentation](https://quarto.org/docs/reference/formats/presentations/revealjs.html).

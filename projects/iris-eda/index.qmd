@@ -1,0 +1,250 @@
+---
+title: "Iris Dataset: Exploratory Data Analysis"
+description: "A visual exploration of the classic Iris dataset using matplotlib, seaborn, and scikit-learn. Includes distribution analysis, correlation heatmaps, and a classification model."
+author: Daniel Huencho
+date: 2026-01-26
+categories: [Python, EDA, Scikit-learn, Visualization]
+image: iris-pairplot.png
+toc: true
+code-fold: true
+---
+
+## Introduction
+
+The Iris dataset is one of the most well-known datasets in machine learning. It contains 150 samples from three species of Iris flowers (*Iris setosa*, *Iris versicolor*, and *Iris virginica*), with four features measured for each sample: sepal length, sepal width, petal length, and petal width.
+
+In this project, we perform an exploratory data analysis (EDA) to understand the distribution of features, relationships between variables, and build a simple classification model.
+
+```{python}
+#| label: setup
+#| echo: false
+#| output: false
+
+import matplotlib
+matplotlib.use('Agg')
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
+
+# Set global plot style
+sns.set_theme(style="darkgrid", palette="muted")
+plt.rcParams.update({
+    'figure.facecolor': '#1b2838',
+    'axes.facecolor': '#0d1b2a',
+    'axes.edgecolor': '#4a5568',
+    'axes.labelcolor': '#cbd5e1',
+    'text.color': '#cbd5e1',
+    'xtick.color': '#94a3b8',
+    'ytick.color': '#94a3b8',
+    'grid.color': '#2d3748',
+    'legend.facecolor': '#1b2838',
+    'legend.edgecolor': '#4a5568',
+    'font.size': 11,
+    'axes.titlesize': 13,
+    'axes.labelsize': 11,
+})
+
+# Load data
+iris = load_iris()
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+df['species'] = pd.Categorical.from_codes(iris.target, iris.target_names)
+```
+
+## Dataset Overview
+
+```{python}
+#| label: tbl-overview
+#| tbl-cap: "First 10 rows of the Iris dataset"
+
+df.head(10)
+```
+
+The dataset has **`{python} len(df)`** samples across **3 species**, each with 4 numerical features.
+
+```{python}
+#| label: tbl-stats
+#| tbl-cap: "Summary statistics by species"
+
+df.groupby('species').describe().T.round(2)
+```
+
+## Feature Distributions
+
+Violin plots reveal how each feature is distributed across the three Iris species. Notice how petal measurements provide much clearer separation between species compared to sepal measurements.
+
+```{python}
+#| label: fig-violin
+#| fig-cap: "Feature distributions by species — violin plots"
+
+fig, axes = plt.subplots(2, 2, figsize=(12, 9))
+features = iris.feature_names
+colors = ['#63b3ed', '#68d391', '#fc8181']
+
+for idx, (ax, feature) in enumerate(zip(axes.flat, features)):
+    sns.violinplot(
+        data=df, x='species', y=feature, ax=ax,
+        palette=colors, inner='box', linewidth=1.2
+    )
+    ax.set_title(feature.replace(' (cm)', '').title(), fontweight='bold')
+    ax.set_xlabel('')
+    ax.set_ylabel('cm')
+
+plt.tight_layout()
+plt.savefig('iris-violin.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
+plt.show()
+```
+
+## Pairwise Relationships
+
+A pairplot shows all feature combinations, revealing clusters and the separability of each species.
+
+```{python}
+#| label: fig-pairplot
+#| fig-cap: "Pairwise relationships between all features, coloured by species"
+
+palette = {'setosa': '#63b3ed', 'versicolor': '#68d391', 'virginica': '#fc8181'}
+
+g = sns.pairplot(
+    df, hue='species', palette=palette,
+    diag_kind='kde', plot_kws={'alpha': 0.7, 's': 40, 'edgecolor': 'white', 'linewidth': 0.3},
+    diag_kws={'linewidth': 2}
+)
+g.figure.set_facecolor('#1b2838')
+
+for ax in g.axes.flat:
+    ax.set_facecolor('#0d1b2a')
+    ax.tick_params(colors='#94a3b8')
+    ax.xaxis.label.set_color('#cbd5e1')
+    ax.yaxis.label.set_color('#cbd5e1')
+
+g.legend.get_frame().set_facecolor('#1b2838')
+g.legend.get_frame().set_edgecolor('#4a5568')
+for text in g.legend.get_texts():
+    text.set_color('#cbd5e1')
+
+plt.savefig('iris-pairplot.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
+plt.show()
+```
+
+**Key observations:**
+
+- *Iris setosa* is clearly separable from the other two species across most feature pairs.
+- *Versicolor* and *virginica* overlap in sepal measurements but are more separable using petal dimensions.
+- Petal length and petal width show the strongest separation between all three species.
+
+## Correlation Analysis
+
+```{python}
+#| label: fig-heatmap
+#| fig-cap: "Correlation heatmap of Iris features"
+
+fig, ax = plt.subplots(figsize=(8, 6))
+corr = df.drop('species', axis=1).corr()
+
+mask = np.triu(np.ones_like(corr, dtype=bool))
+cmap = sns.diverging_palette(220, 20, as_cmap=True)
+
+sns.heatmap(
+    corr, mask=mask, annot=True, fmt='.2f', cmap=cmap,
+    center=0, square=True, linewidths=2, linecolor='#2d3748',
+    cbar_kws={'shrink': 0.8, 'label': 'Correlation'},
+    ax=ax, vmin=-1, vmax=1,
+    annot_kws={'size': 13, 'weight': 'bold'}
+)
+
+ax.set_title('Feature Correlation Matrix', fontweight='bold', pad=15)
+labels = [name.replace(' (cm)', '').title() for name in iris.feature_names]
+ax.set_xticklabels(labels, rotation=45, ha='right')
+ax.set_yticklabels(labels, rotation=0)
+
+plt.tight_layout()
+plt.savefig('iris-heatmap.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
+plt.show()
+```
+
+Petal length and petal width are highly correlated (r = 0.96), suggesting they capture similar information about the flower's structure.
+
+## Classification with Random Forest
+
+We train a Random Forest classifier to predict species from the four features.
+
+```{python}
+#| label: fig-confusion
+#| fig-cap: "Confusion matrix — Random Forest classifier on the test set"
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, test_size=0.3, random_state=42, stratify=iris.target
+)
+
+# Train model
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+clf.fit(X_train, y_train)
+
+# Predict
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+
+# Confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+fig, ax = plt.subplots(figsize=(7, 6))
+sns.heatmap(
+    cm, annot=True, fmt='d', cmap='Blues',
+    xticklabels=iris.target_names,
+    yticklabels=iris.target_names,
+    linewidths=2, linecolor='#2d3748',
+    cbar=False, ax=ax,
+    annot_kws={'size': 18, 'weight': 'bold'}
+)
+ax.set_xlabel('Predicted', fontweight='bold')
+ax.set_ylabel('Actual', fontweight='bold')
+ax.set_title(f'Random Forest — Accuracy: {accuracy:.1%}', fontweight='bold', pad=15)
+
+plt.tight_layout()
+plt.savefig('iris-confusion.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
+plt.show()
+```
+
+```{python}
+#| label: fig-importance
+#| fig-cap: "Feature importance — which features matter most for classification"
+
+importances = clf.feature_importances_
+feature_labels = [name.replace(' (cm)', '').title() for name in iris.feature_names]
+sorted_idx = np.argsort(importances)
+
+fig, ax = plt.subplots(figsize=(8, 5))
+colors = ['#63b3ed' if i >= 2 else '#4a5568' for i in sorted_idx]
+
+ax.barh(range(len(sorted_idx)), importances[sorted_idx], color=colors, edgecolor='#2d3748', height=0.6)
+ax.set_yticks(range(len(sorted_idx)))
+ax.set_yticklabels([feature_labels[i] for i in sorted_idx])
+ax.set_xlabel('Importance', fontweight='bold')
+ax.set_title('Feature Importance (Random Forest)', fontweight='bold', pad=15)
+
+for i, v in enumerate(importances[sorted_idx]):
+    ax.text(v + 0.01, i, f'{v:.3f}', va='center', color='#cbd5e1', fontweight='bold')
+
+plt.tight_layout()
+plt.savefig('iris-importance.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
+plt.show()
+```
+
+## Summary
+
+| Aspect | Finding |
+|--------|---------|
+| **Best separators** | Petal length and petal width |
+| **Easiest species** | *Setosa* — linearly separable |
+| **Hardest pair** | *Versicolor* vs *Virginica* |
+| **Model accuracy** | Random Forest achieves near-perfect accuracy on this dataset |
+| **Top features** | Petal width and petal length dominate feature importance |
+
+This analysis demonstrates a standard EDA workflow: understand the data structure, visualize distributions, explore correlations, and build a baseline model.

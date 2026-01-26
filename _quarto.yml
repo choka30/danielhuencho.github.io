@@ -4,6 +4,10 @@ project:
   render:
     - index.qmd
     - about.qmd
+    - projects/index.qmd
+    - projects/iris-eda/index.qmd
+    - projects/revealjs-demo/index.qmd
+    - projects/revealjs-demo/presentation.qmd
   resources:
     - "assets/js/**"
     - "assets/images/**"
@@ -20,6 +24,8 @@ website:
         text: Home
       - href: about.qmd
         text: About
+      - href: projects/index.qmd
+        text: Projects
     right:
       - icon: github
         href: https://github.com/choka30
