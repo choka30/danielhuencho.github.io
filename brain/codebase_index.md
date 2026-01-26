@@ -1,9 +1,9 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-26 15:20
-> Total pages: 7 (Home, About, Projects listing, Iris EDA, Revealjs demo page, Revealjs presentation, + 2 legacy)
-> Total assets: 2 profile photos + 1 thumbnail + 5 generated plots + 1 reference PDF
-> Content status: Projects listing with search/tags, 2 demo projects complete, dark theme visual fixes applied
+> Last updated: 2026-01-26 18:00
+> Total pages: 8 (Home, About, Projects listing, Iris EDA, UNICON EDA, Revealjs demo page, Revealjs presentation, + 2 legacy)
+> Total assets: 2 profile photos + 1 thumbnail + 10 generated plots + 1 reference PDF
+> Content status: Projects listing with search/tags, 3 projects complete (Iris, UNICON, Revealjs), freeze enabled
 
 ---
 
@@ -15,6 +15,7 @@
 | About | `about.qmd` | Detailed CV/Resume | Complete |
 | Projects | `projects/index.qmd` | Portfolio listing (grid + search + tags) | Complete |
 | Iris EDA | `projects/iris-eda/index.qmd` | Iris dataset EDA demo | Complete |
+| UNICON EDA | `projects/unicon-eda/index.qmd` | UNICON energy dataset EDA | Complete |
 | Revealjs Demo | `projects/revealjs-demo/index.qmd` | Presentation demo page | Complete |
 | Revealjs Slides | `projects/revealjs-demo/presentation.qmd` | 3-slide Revealjs presentation | Complete |
 | Dashboard | `dashboard.qmd` | Sample visualization | Review needed |
@@ -112,6 +113,39 @@
 - ✓ All text readable on dark background (CSS overrides for tables, cell output, captions)
 - ✓ Plots render correctly — removed `matplotlib.use('Agg')` and `plt.show()` (Quarto captures figures via Jupyter inline backend)
 - ✓ `plt.savefig()` retained for listing card thumbnails
+
+**Status:** `Complete`
+
+---
+
+### `projects/unicon-eda/index.qmd` — UNICON Dataset EDA
+
+**Purpose:** Exploratory data analysis of the UNICON open dataset — electricity, gas, and water consumption across La Trobe University's 5 campuses (2018–2021).
+
+**Current State:**
+- ✓ YAML front matter (title, date, description, categories: Python/EDA/Energy/Time Series, image)
+- ✓ Introduction with dataset overview and key features
+- ✓ Zip extraction (idempotent — skips if already extracted)
+- ✓ All 11 CSVs loaded with optimized float32 dtypes
+- ✓ Metadata tables: campus_meta, building_meta, nmi_meta, calendar, events
+- ✓ Building categories cross-tab (by campus and category)
+- ✓ Schema report for all 6 consumption/weather files (dtypes, nulls, memory, date ranges)
+- ✓ Temporal coverage table (start/end dates, record counts, median intervals)
+- ✓ Descriptive statistics by campus (electricity, gas, water, weather)
+- ✓ Missing values bar chart
+- ✓ Daily/weekly electricity consumption time series (by campus, with COVID-19 marker)
+- ✓ Consumption distributions (electricity/gas/water, log scale)
+- ✓ Weather–electricity correlation heatmap (Bundoora campus)
+- ✓ Temperature vs consumption scatter (coloured by year)
+- ✓ Summary table with key findings
+- ✓ Next steps section (probabilistic modelling approaches)
+- ✓ All plots use dark ocean blue theme
+- ✓ 5 figures saved as PNG (listing card thumbnail + analysis plots)
+- ✓ `code-fold: true`, `execute.warning: false`
+- ✓ `execute.freeze: auto` inherited from `_quarto.yml`
+- ✓ `_freeze/projects/unicon-eda/` contains cached outputs
+
+**Data dependency:** Requires `data/raw/archive.zip` (gitignored, ~142MB). Freeze enables deployment without data.
 
 **Status:** `Complete`
 
@@ -217,6 +251,11 @@
 | revealjs-thumbnail.png | Revealjs demo card image | ✓ Generated |
 | iris-pairplot.png | Iris EDA card image (auto-generated) | ✓ Generated |
 | iris-*.png | Iris EDA plots (violin, heatmap, etc.) | ✓ Generated |
+| unicon-daily-consumption.png | UNICON weekly electricity by campus | ✓ Generated |
+| unicon-distributions.png | UNICON consumption distributions | ✓ Generated |
+| unicon-missing-values.png | UNICON missing values chart | ✓ Generated |
+| unicon-weather-correlation.png | Weather–electricity correlation heatmap | ✓ Generated |
+| unicon-temp-scatter.png | Temperature vs consumption scatter | ✓ Generated |
 
 ### Documents (`assets/`)
 
@@ -240,11 +279,12 @@
 
 **Current State:**
 - Navbar: Home, About, Projects (+ GitHub, LinkedIn icons)
-- Render targets: index.qmd, about.qmd, projects/**
+- Render targets: index.qmd, about.qmd, projects/** (including unicon-eda)
 - Theme: cosmo + custom.scss (dark only)
 - Font: Inter (Google Fonts)
+- Execute: `freeze: auto` (frozen outputs committed for CI deployment)
 
-**Status:** `Complete` — includes projects nav + render targets
+**Status:** `Complete` — includes projects nav + render targets + freeze config
 
 **Notes:**
 - Render targets must be explicitly listed for git worktree directories
@@ -264,8 +304,9 @@
 ### Phase 2: Projects (in progress)
 5. ✓ Create `projects/` directory structure + listing page
 6. ✓ Create demo projects (Iris EDA + Revealjs)
-7. ○ Create `research-methodology.ipynb` (future)
-8. ○ Create `industry-portfolio.qmd` (future)
+7. ✓ Create UNICON EDA project (schema + stats + visualisations + freeze)
+8. ○ Create `research-methodology.ipynb` (future)
+9. ○ Create `industry-portfolio.qmd` (future)
 
 ### Phase 3: Polish
 9. ✓ Add professional photo

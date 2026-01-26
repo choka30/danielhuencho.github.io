@@ -177,8 +177,8 @@ _site/
 _book/
 _manuscript/
 
-# Freeze directory (computational cache)
-_freeze/
+# Freeze directory (computational cache — committed for CI deployment)
+# _freeze/  # UNCOMMENTED: freeze outputs must be committed for GitHub Pages
 
 # Intermediate notebook files
 **/*.quarto_ipynb

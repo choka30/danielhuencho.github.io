@@ -24,9 +24,15 @@
 │   ├── index.qmd            # Projects listing page (grid + search + tags)
 │   ├── iris-eda/            # Demo: Iris dataset EDA
 │   │   └── index.qmd        # matplotlib/seaborn/scikit-learn visualizations
+│   ├── unicon-eda/          # UNICON dataset EDA (electricity/gas/water)
+│   │   ├── index.qmd        # Schema discovery, temporal analysis, weather correlations
+│   │   └── *.png            # Generated figures (5 plots)
 │   └── revealjs-demo/       # Demo: Revealjs presentation
 │       ├── index.qmd        # Project description page
 │       └── presentation.qmd # Revealjs slides (3 slides)
+│
+├── _freeze/                 # [OUTPUT] Frozen computation outputs (committed to git)
+│   └── projects/            # Cached execution results for CI deployment
 │
 ├── data/                    # [DATA] Project datasets (gitignored)
 │   ├── raw/                 # Raw source data
@@ -106,6 +112,8 @@
 | Projects listing | `projects/index.qmd` | Complete (grid + search + tags) |
 | Iris EDA demo | `projects/iris-eda/index.qmd` | Complete |
 | Revealjs demo | `projects/revealjs-demo/` | Complete (page + presentation) |
+| UNICON EDA | `projects/unicon-eda/index.qmd` | Complete (schema + stats + plots) |
+| Freeze outputs | `_freeze/` | Committed (for CI deployment without data) |
 | Assets folder | `assets/` | Exists (images, js, UNICON PDF) |
 | Data folder | `data/` | Exists (gitignored — raw, intermediate) |
 | Brain files | `brain/` | Exists (updated) |
@@ -177,6 +185,10 @@ To reach target state:
 | 2026-01-26 | Fixed Iris EDA plots — removed `matplotlib.use('Agg')` + `plt.show()`, plots now render via Jupyter inline backend | `projects/iris-eda/index.qmd` |
 | 2026-01-26 | Fixed listing sort/filter controls — grouped together, dark icon containers, correct CSS nesting under `.quarto-listing` | `custom.scss` |
 | 2026-01-26 | Added data/ directory (gitignored) + UNICON dataset PDF to assets | `data/`, `assets/`, `.gitignore` |
+| 2026-01-26 | Enabled `execute: freeze: auto` in `_quarto.yml` for CI deployment | `_quarto.yml` |
+| 2026-01-26 | Removed `_freeze/` from `.gitignore` — frozen outputs now committed | `.gitignore` |
+| 2026-01-26 | Created UNICON EDA project (schema discovery, stats, 5 visualisations) | `projects/unicon-eda/index.qmd` |
+| 2026-01-26 | Full site validated — quarto render all 7 pages OK, freeze working | `_site/`, `_freeze/` |
 
 ---
 

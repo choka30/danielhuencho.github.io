@@ -8,6 +8,7 @@ project:
     - projects/iris-eda/index.qmd
     - projects/revealjs-demo/index.qmd
     - projects/revealjs-demo/presentation.qmd
+    - projects/unicon-eda/index.qmd
   resources:
     - "assets/js/**"
     - "assets/images/**"
@@ -33,6 +34,9 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/daniel-huencho-mardini-9568489a/
         aria-label: LinkedIn
+
+execute:
+  freeze: auto
 
 format:
   html:
