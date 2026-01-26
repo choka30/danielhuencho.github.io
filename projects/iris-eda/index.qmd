@@ -20,9 +20,6 @@ In this project, we perform an exploratory data analysis (EDA) to understand the
 #| echo: false
 #| output: false
 
-import matplotlib
-matplotlib.use('Agg')
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -97,7 +94,6 @@ for idx, (ax, feature) in enumerate(zip(axes.flat, features)):
 
 plt.tight_layout()
 plt.savefig('iris-violin.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
-plt.show()
 ```
 
 ## Pairwise Relationships
@@ -129,7 +125,6 @@ for text in g.legend.get_texts():
     text.set_color('#cbd5e1')
 
 plt.savefig('iris-pairplot.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
-plt.show()
 ```
 
 **Key observations:**
@@ -165,7 +160,6 @@ ax.set_yticklabels(labels, rotation=0)
 
 plt.tight_layout()
 plt.savefig('iris-heatmap.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
-plt.show()
 ```
 
 Petal length and petal width are highly correlated (r = 0.96), suggesting they capture similar information about the flower's structure.
@@ -209,7 +203,6 @@ ax.set_title(f'Random Forest — Accuracy: {accuracy:.1%}', fontweight='bold', p
 
 plt.tight_layout()
 plt.savefig('iris-confusion.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
-plt.show()
 ```
 
 ```{python}
@@ -234,7 +227,6 @@ for i, v in enumerate(importances[sorted_idx]):
 
 plt.tight_layout()
 plt.savefig('iris-importance.png', dpi=150, bbox_inches='tight', facecolor='#1b2838')
-plt.show()
 ```
 
 ## Summary

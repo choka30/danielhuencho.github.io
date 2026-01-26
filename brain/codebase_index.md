@@ -108,6 +108,8 @@
 - ✓ Tables use plain pandas output (CSS handles dark styling, no inline Styler)
 - ✓ Title block visible with dark theme (scoped hide-title-block fix)
 - ✓ All text readable on dark background (CSS overrides for tables, cell output, captions)
+- ✓ Plots render correctly — removed `matplotlib.use('Agg')` and `plt.show()` (Quarto captures figures via Jupyter inline backend)
+- ✓ `plt.savefig()` retained for listing card thumbnails
 
 **Status:** `Complete`
 
