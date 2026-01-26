@@ -1,8 +1,8 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-26 23:15
+> Last updated: 2026-01-27
 > Total pages: 8 (Home, About, Projects listing, Iris EDA, UNICON EDA+GP, UCL Application page, UCL Application presentation, + 2 legacy)
-> Total assets: 2 profile photos + 1 thumbnail + 21 generated plots + 1 reference PDF + 1 custom SCSS theme
+> Total assets: 2 profile photos + 1 thumbnail + 21 generated plots + 1 reference PDF + 1 job description PDF + 1 Gemini image + 1 custom SCSS theme
 > Content status: Projects listing with search/tags, 3 projects complete (Iris, UNICON EDA+GP, UCL Application), freeze enabled
 
 ---
@@ -209,8 +209,10 @@
 - ✓ Speaker notes on all 4 content slides with detailed talking points from presentation.md
 - ✓ Fade transitions, fragment reveals, columns layout
 - ✓ Footer: "Daniel Huencho | UCL Grand Challenges Living Lab"
-- ✓ 1280x720 resolution, slide numbers (c/t)
+- ✓ 1280x720 resolution, 4% margin, slide numbers (c/t)
 - ✓ All content verified against CV — no fabricated claims
+- ✓ Viewport-fitted: all 5 slides fit within 1280×720 without overflow (verified via pixel budget analysis)
+- ✓ Demo link points to project root (no anchor fragment)
 
 **Interactive Elements:**
 - ✓ Education path timeline with pulsing current position (CSS animation)
@@ -227,7 +229,7 @@
 **Purpose:** Ocean blue dark SCSS theme for the Revealjs presentation, matching the site's palette.
 
 **Current State:**
-- ✓ `/*-- scss:defaults --*/` section: colors (#0d1b2a, #1b2838, #63b3ed), Inter font, 38px root
+- ✓ `/*-- scss:defaults --*/` section: colors (#0d1b2a, #1b2838, #63b3ed), Inter font, 30px root
 - ✓ `/*-- scss:rules --*/` section: custom components
 - ✓ `.highlight-box` — bordered info cards with gradient background
 - ✓ `.stat-row` + `.stat-card` — metric cards with hover effects
@@ -338,6 +340,13 @@
 |------|---------|--------|
 | cv.pdf | Downloadable resume | Missing |
 | UNICON_*.pdf | UNICON open dataset paper (electricity/gas/water consumption, multi-campus university) | ✓ Added |
+| Research Assistant - Grand Challenges Living Lab .pdf | UCL job description for RA role | ✓ Added |
+
+### Other Images (`assets/images/`)
+
+| File | Purpose | Status |
+|------|---------|--------|
+| Gemini_Generated_Image_3q3ek13q3ek13q3e.png | Gemini-generated image | ✓ Added |
 
 ### Data Directory (`data/` — gitignored)
 
