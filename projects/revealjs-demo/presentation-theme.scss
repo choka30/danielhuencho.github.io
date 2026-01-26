@@ -1,0 +1,412 @@
+/*-- scss:defaults --*/
+
+// ===== Color Palette: Ocean Blue Dark (matching site theme) =====
+$body-bg: #0d1b2a;
+$body-color: #f1f5f9;
+$link-color: #63b3ed;
+$link-color-hover: #90cdf4;
+$selection-bg: rgba(99, 179, 237, 0.3);
+$selection-color: #f1f5f9;
+
+// Presentation-specific
+$presentation-font-size-root: 38px;
+$presentation-heading-color: #f1f5f9;
+$presentation-heading-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$presentation-heading-font-weight: 600;
+$presentation-heading-text-transform: none;
+$presentation-heading-letter-spacing: -0.02em;
+
+$presentation-h1-font-size: 2.2em;
+$presentation-h2-font-size: 1.5em;
+$presentation-h3-font-size: 1.15em;
+
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$presentation-line-height: 1.5;
+
+// Code
+$code-block-bg: #1b2838;
+$code-block-border-color: #2d3748;
+$code-block-font-size: 0.55em;
+$code-color: #90cdf4;
+$code-bg: rgba(27, 40, 56, 0.6);
+
+// Borders
+$border-color: #2d3748;
+$border-radius: 8px;
+
+/*-- scss:rules --*/
+
+// ===== Global Slide Styles =====
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  padding: 40px 60px;
+}
+
+.reveal p,
+.reveal li {
+  color: #cbd5e1;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+
+.reveal strong {
+  color: #f1f5f9;
+}
+
+.reveal em {
+  color: #63b3ed;
+  font-style: normal;
+}
+
+// ===== Title Slide =====
+
+.reveal .slides section.quarto-title-block {
+  text-align: center;
+
+  h1.title {
+    font-size: 2.4em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.2em;
+    background: linear-gradient(135deg, #f1f5f9 0%, #63b3ed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 1.1em;
+    color: #63b3ed;
+    font-weight: 400;
+    margin-bottom: 1.5em;
+  }
+
+  .author {
+    font-size: 1.0em;
+    color: #cbd5e1;
+    font-weight: 500;
+  }
+
+  .date {
+    font-size: 0.75em;
+    color: #94a3b8;
+  }
+}
+
+// ===== Section Headers =====
+
+.reveal h2 {
+  color: #f1f5f9;
+  border-bottom: 2px solid #2c5282;
+  padding-bottom: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+.reveal h3 {
+  color: #63b3ed;
+  font-weight: 500;
+  margin-top: 0.6em;
+}
+
+// ===== Highlight Box =====
+
+.highlight-box {
+  background: linear-gradient(135deg, rgba(44, 82, 130, 0.3) 0%, rgba(30, 58, 95, 0.5) 100%);
+  border: 1px solid #2c5282;
+  border-left: 4px solid #63b3ed;
+  border-radius: 8px;
+  padding: 1em 1.25em;
+  margin: 0.6em 0;
+  color: #cbd5e1;
+  font-size: 0.85em;
+  line-height: 1.6;
+
+  strong {
+    color: #90cdf4;
+  }
+}
+
+// ===== Stat Row (horizontal metric cards) =====
+
+.stat-row {
+  display: flex;
+  gap: 1em;
+  margin: 0.8em 0;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 140px;
+  background: rgba(27, 40, 56, 0.8);
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  padding: 0.8em 1em;
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    border-color: #63b3ed;
+    transform: translateY(-2px);
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #63b3ed;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.6em;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.3em;
+  }
+}
+
+// ===== Icon List =====
+
+.icon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5em 0;
+
+  li {
+    position: relative;
+    padding-left: 1.8em;
+    margin-bottom: 0.5em;
+    font-size: 0.82em;
+    color: #cbd5e1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 8px;
+      height: 8px;
+      background: #63b3ed;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(99, 179, 237, 0.4);
+    }
+  }
+}
+
+// ===== Gradient Text =====
+
+.gradient-text {
+  background: linear-gradient(135deg, #63b3ed 0%, #90cdf4 50%, #bee3f8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+// ===== Fade Card (for content blocks) =====
+
+.fade-card {
+  background: rgba(27, 40, 56, 0.6);
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  padding: 1em 1.25em;
+  margin: 0.4em 0;
+  backdrop-filter: blur(4px);
+
+  h3, h4 {
+    color: #63b3ed;
+    margin-top: 0;
+    margin-bottom: 0.3em;
+    font-size: 0.9em;
+  }
+
+  p, li {
+    font-size: 0.78em;
+    color: #cbd5e1;
+    margin: 0.2em 0;
+  }
+}
+
+// ===== Timeline Path (for education/career) =====
+
+.path-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 1em 0;
+  flex-wrap: nowrap;
+}
+
+.path-node {
+  text-align: center;
+  flex-shrink: 0;
+
+  .path-year {
+    display: block;
+    font-size: 0.55em;
+    color: #94a3b8;
+    margin-bottom: 0.2em;
+  }
+
+  .path-dot {
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: #63b3ed;
+    border-radius: 50%;
+    margin: 0 auto 0.2em;
+    box-shadow: 0 0 10px rgba(99, 179, 237, 0.5);
+  }
+
+  .path-label {
+    display: block;
+    font-size: 0.52em;
+    color: #cbd5e1;
+    max-width: 100px;
+    line-height: 1.3;
+  }
+
+  &.path-current .path-dot {
+    width: 18px;
+    height: 18px;
+    background: #90cdf4;
+    box-shadow: 0 0 16px rgba(144, 205, 244, 0.6);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+}
+
+.path-connector {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, #2c5282, #63b3ed);
+  min-width: 30px;
+  margin: 0 4px;
+  margin-top: -0.8em;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 10px rgba(144, 205, 244, 0.4); }
+  50% { box-shadow: 0 0 20px rgba(144, 205, 244, 0.8); }
+}
+
+// ===== Quote Block =====
+
+.slide-quote {
+  border-left: 3px solid #63b3ed;
+  padding: 0.6em 1em;
+  margin: 0.8em 0;
+  background: rgba(44, 82, 130, 0.15);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #94a3b8;
+  font-size: 0.8em;
+
+  .quote-source {
+    display: block;
+    margin-top: 0.4em;
+    font-style: normal;
+    font-size: 0.85em;
+    color: #63b3ed;
+  }
+}
+
+// ===== CTA Button =====
+
+.cta-btn {
+  display: inline-block;
+  padding: 0.6em 1.5em;
+  background: linear-gradient(135deg, #2c5282, #4299e1);
+  color: #f1f5f9;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8em;
+  transition: all 0.3s ease;
+  border: none;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4);
+    color: #f1f5f9;
+  }
+}
+
+// ===== Two-column helpers =====
+
+.col-left-icon {
+  font-size: 1.5em;
+  color: #63b3ed;
+  margin-bottom: 0.3em;
+}
+
+// ===== Fragment enhancements =====
+
+.reveal .fragment {
+  transition: all 0.4s ease;
+}
+
+.reveal .fragment.fade-in-then-semi-out.visible:not(.current-fragment) {
+  opacity: 0.4;
+}
+
+// ===== Footer styling =====
+
+.reveal .footer {
+  font-size: 0.45em;
+  color: #64748b;
+  opacity: 0.7;
+}
+
+// ===== Slide number =====
+
+.reveal .slide-number {
+  color: #64748b;
+  font-size: 0.5em;
+}
+
+// ===== Speaker notes indicator =====
+
+.reveal .speaker-notes-display {
+  font-family: 'Inter', sans-serif;
+}
+
+// ===== Progress bar =====
+
+.reveal .progress span {
+  background: linear-gradient(90deg, #2c5282, #63b3ed);
+}
+
+// ===== Links in slides =====
+
+.reveal a {
+  color: #63b3ed;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(99, 179, 237, 0.4);
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #90cdf4;
+    border-bottom-color: #90cdf4;
+  }
+}
+
+// ===== Responsive adjustments =====
+
+@media (max-width: 768px) {
+  .stat-row {
+    flex-direction: column;
+  }
+
+  .path-timeline {
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+}
