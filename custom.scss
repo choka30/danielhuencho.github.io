@@ -285,14 +285,6 @@ a {
   }
 }
 
-// Expert level - Primary skills (cyan highlight)
-.skill-tag-expert {
-  background-color: rgba(144, 205, 244, 0.2);
-  border-color: $accent-highlight;
-  color: #a5d8ff;
-  font-weight: 500;
-}
-
 // Advanced level - Strong proficiency (blue)
 .skill-tag-advanced {
   background-color: rgba(66, 153, 225, 0.18);
@@ -305,11 +297,6 @@ a {
   background-color: rgba(72, 187, 120, 0.18);
   border-color: #48bb78;
   color: #7ee2a8;
-}
-
-// Keep old class names as aliases for backwards compatibility
-.skill-tag-core {
-  @extend .skill-tag-expert;
 }
 
 // ===== Skills Legend =====
@@ -347,12 +334,6 @@ a {
   height: 12px;
   border-radius: 50%;
   flex-shrink: 0;
-}
-
-.legend-dot-expert {
-  background-color: rgba(144, 205, 244, 0.9);
-  border: 2px solid $accent-highlight;
-  box-shadow: 0 0 6px rgba(144, 205, 244, 0.4);
 }
 
 .legend-dot-advanced {

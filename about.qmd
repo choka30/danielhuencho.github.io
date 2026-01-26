@@ -140,10 +140,6 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 <div class="skills-legend">
   <span class="skills-legend-title">Proficiency:</span>
   <div class="skills-legend-item">
-    <span class="legend-dot legend-dot-expert"></span>
-    <span class="legend-label">Expert</span>
-  </div>
-  <div class="skills-legend-item">
     <span class="legend-dot legend-dot-advanced"></span>
     <span class="legend-label">Advanced</span>
   </div>
@@ -158,10 +154,9 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 [Programming Languages]{.skill-category-title}
 
 ::: {.skills-container}
-[Python]{.skill-tag .skill-tag-expert}
-[SQL]{.skill-tag .skill-tag-expert}
+[Python]{.skill-tag .skill-tag-advanced}
+[SQL]{.skill-tag .skill-tag-advanced}
 [R]{.skill-tag .skill-tag-advanced}
-[Scala]{.skill-tag .skill-tag-intermediate}
 [C++]{.skill-tag .skill-tag-intermediate}
 :::
 :::
@@ -170,11 +165,11 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 [Machine Learning & Deep Learning]{.skill-category-title}
 
 ::: {.skills-container}
-[PyTorch]{.skill-tag .skill-tag-expert}
-[Scikit-learn]{.skill-tag .skill-tag-expert}
-[Deep Learning]{.skill-tag .skill-tag-expert}
+[PyTorch]{.skill-tag .skill-tag-advanced}
+[Scikit-learn]{.skill-tag .skill-tag-advanced}
+[Deep Learning]{.skill-tag .skill-tag-advanced}
 [TensorFlow]{.skill-tag .skill-tag-advanced}
-[XGBoost]{.skill-tag .skill-tag-advanced}
+[Ensemble Models]{.skill-tag .skill-tag-advanced}
 [Generative AI]{.skill-tag .skill-tag-intermediate}
 [MLlib]{.skill-tag .skill-tag-intermediate}
 :::
@@ -184,12 +179,11 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 [Data Engineering & Cloud]{.skill-category-title}
 
 ::: {.skills-container}
-[Apache Spark]{.skill-tag .skill-tag-expert}
-[Databricks]{.skill-tag .skill-tag-advanced}
-[AWS (EC2, S3, Glue, Athena)]{.skill-tag .skill-tag-advanced}
-[Docker]{.skill-tag .skill-tag-intermediate}
-[Cloudera]{.skill-tag .skill-tag-intermediate}
+[Apache Spark]{.skill-tag .skill-tag-advanced}
 [ETL Pipelines]{.skill-tag .skill-tag-advanced}
+[Databricks]{.skill-tag .skill-tag-intermediate}
+[AWS (EC2, S3, Glue, Athena)]{.skill-tag .skill-tag-intermediate}
+[Docker]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 

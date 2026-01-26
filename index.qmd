@@ -15,7 +15,7 @@ format:
 <div class="hero-wrapper">
   <canvas id="neural-canvas"></canvas>
   <div class="hero-content">
-    <img src="assets/images/my_photo_professional.jpeg" alt="Daniel Huencho" class="hero-photo">
+    <img src="assets/images/my_photo_friendly.jpeg" alt="Daniel Huencho" class="hero-photo">
     <h1 class="hero-name">Daniel Huencho</h1>
     <p class="hero-headline">AI Engineer | MSc AI for Sustainable Development @ UCL</p>
     <p class="hero-summary">
@@ -62,10 +62,6 @@ My research interests lie at the intersection of **deep learning and earth obser
 <div class="skills-legend">
   <span class="skills-legend-title">Proficiency:</span>
   <div class="skills-legend-item">
-    <span class="legend-dot legend-dot-expert"></span>
-    <span class="legend-label">Expert</span>
-  </div>
-  <div class="skills-legend-item">
     <span class="legend-dot legend-dot-advanced"></span>
     <span class="legend-label">Advanced</span>
   </div>
@@ -81,10 +77,9 @@ My research interests lie at the intersection of **deep learning and earth obser
 Programming Languages
 :::
 ::: {.skills-container}
-[Python]{.skill-tag .skill-tag-expert}
-[SQL]{.skill-tag .skill-tag-expert}
+[Python]{.skill-tag .skill-tag-advanced}
+[SQL]{.skill-tag .skill-tag-advanced}
 [R]{.skill-tag .skill-tag-advanced}
-[Scala]{.skill-tag .skill-tag-intermediate}
 [C++]{.skill-tag .skill-tag-intermediate}
 :::
 :::
@@ -94,12 +89,12 @@ Programming Languages
 Machine Learning & Deep Learning
 :::
 ::: {.skills-container}
-[PyTorch]{.skill-tag .skill-tag-expert}
-[Deep Learning]{.skill-tag .skill-tag-expert}
-[Scikit-learn]{.skill-tag .skill-tag-expert}
+[PyTorch]{.skill-tag .skill-tag-advanced}
+[Deep Learning]{.skill-tag .skill-tag-advanced}
+[Scikit-learn]{.skill-tag .skill-tag-advanced}
 [TensorFlow]{.skill-tag .skill-tag-advanced}
 [Graph Neural Networks]{.skill-tag .skill-tag-advanced}
-[XGBoost]{.skill-tag .skill-tag-advanced}
+[Ensemble Models]{.skill-tag .skill-tag-advanced}
 [Bayesian Modeling]{.skill-tag .skill-tag-advanced}
 [Computer Vision]{.skill-tag .skill-tag-intermediate}
 [NLP]{.skill-tag .skill-tag-intermediate}
@@ -112,13 +107,12 @@ Machine Learning & Deep Learning
 Data Engineering & Cloud
 :::
 ::: {.skills-container}
-[Apache Spark]{.skill-tag .skill-tag-expert}
-[Databricks]{.skill-tag .skill-tag-advanced}
-[AWS]{.skill-tag .skill-tag-advanced}
+[Apache Spark]{.skill-tag .skill-tag-advanced}
+[ETL Pipelines]{.skill-tag .skill-tag-advanced}
+[Databricks]{.skill-tag .skill-tag-intermediate}
+[AWS]{.skill-tag .skill-tag-intermediate}
 [Docker]{.skill-tag .skill-tag-intermediate}
 [PostgreSQL]{.skill-tag .skill-tag-intermediate}
-[ETL Pipelines]{.skill-tag .skill-tag-advanced}
-[Cloudera]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 
@@ -127,7 +121,7 @@ Data Engineering & Cloud
 Domain Expertise
 :::
 ::: {.skills-container}
-[Transportation Analytics]{.skill-tag .skill-tag-expert}
+[Transportation Analytics]{.skill-tag .skill-tag-advanced}
 [Financial Risk Modeling]{.skill-tag .skill-tag-advanced}
 [Earth Observation]{.skill-tag .skill-tag-advanced}
 [Geospatial Analysis]{.skill-tag .skill-tag-advanced}

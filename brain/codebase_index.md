@@ -1,9 +1,9 @@
 # Content & Codebase Index
 
-> Last updated: 2026-01-25 22:05
+> Last updated: 2026-01-26 13:00
 > Total pages: 4
-> Total assets: 1 (profile photo)
-> Content status: index.qmd & about.qmd complete with improved visuals
+> Total assets: 2 (profile photos: professional + friendly)
+> Content status: index.qmd & about.qmd complete with simplified 2-level skills
 
 ---
 
@@ -22,22 +22,24 @@
 
 ### `index.qmd` — Landing Page
 
-**Purpose:** First impression for recruiters. Hero section with professional photo, headline, and brief bio.
+**Purpose:** First impression for recruiters. Hero section with friendly photo, headline, and brief bio.
 
 **Current State:**
 - ✓ YAML front matter (title: Daniel Huencho)
 - ✓ Hero section with neural network animation
 - ✓ Professional headline (MSc AI @ UCL)
 - ✓ Bio paragraph in info-card
-- ✓ Skills section with legend (Expert/Advanced/Intermediate)
-- ✓ Industry-standard skill categories
-- ✓ Professional photo
+- ✓ Skills section with legend (Advanced/Intermediate — 2 levels)
+- ✓ Industry-standard skill categories (no Scala, no Cloudera)
+- ✓ Friendly photo (`my_photo_friendly.jpeg`)
 - ✓ Timeline highlights section
 - ✓ Improved text contrast (WCAG AA)
 - ✓ Title block hidden (no text over hero)
 - ✓ Dark-only theme (no light mode toggle)
+- ✓ Ensemble Models replaces XGBoost
+- ✓ Databricks moved to Intermediate
 
-**Status:** `Complete` — fully functional landing page with polished visuals
+**Status:** `Complete` — fully functional landing page with simplified skills
 
 ---
 
@@ -51,8 +53,9 @@
 - ✓ Summary paragraph
 - ✓ Education section (UCL, PUC MSc, PUC Engineering)
 - ✓ Professional Experience timeline (4 positions)
-- ✓ Technical Skills section with legend (Expert/Advanced/Intermediate)
-- ✓ Industry-standard skill categories
+- ✓ Technical Skills section with legend (Advanced/Intermediate — 2 levels)
+- ✓ Industry-standard skill categories (no Scala, no Cloudera)
+- ✓ Ensemble Models replaces XGBoost, Databricks moved to Intermediate
 - ✓ Statistical Methods section
 - ✓ Languages section
 - ✓ Conferences & Events section
@@ -60,7 +63,7 @@
 - ✓ Improved text contrast (WCAG AA)
 - ✓ Dark-only theme applied
 
-**Status:** `Complete` — fully styled and organized with polished visuals
+**Status:** `Complete` — fully styled and organized with simplified skills
 
 ---
 
@@ -128,7 +131,8 @@
 
 | File | Purpose | Status |
 |------|---------|--------|
-| my_photo_professional.jpeg | Professional headshot | ✓ Added |
+| my_photo_professional.jpeg | Professional headshot (about.qmd) | ✓ Added |
+| my_photo_friendly.jpeg | Friendly photo (index.qmd hero) | ✓ Added |
 | hero-bg.jpg | Hero section background | Optional |
 | project-*.png | Project screenshots | Missing |
 
