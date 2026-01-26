@@ -1,0 +1,541 @@
+---
+title: "UNICON Dataset: Exploratory Data Analysis"
+description: "Exploring the UNICON open dataset — electricity, gas, and water consumption across La Trobe University's five campuses (2018–2021). Schema discovery, temporal analysis, and weather correlations."
+author: Daniel Huencho
+date: 2026-01-26
+categories: [Python, EDA, Energy, Time Series]
+image: unicon-daily-consumption.png
+toc: true
+code-fold: true
+execute:
+  warning: false
+---
+
+## Introduction
+
+[UNICON](https://github.com/CDAC-lab/UNICON) (UNIversity CONsumption) is a large-scale open dataset of electricity, gas, and water consumption from **La Trobe University**, Victoria, Australia. It covers **5 campuses**, **71 buildings**, and spans **2018–2021** — capturing the full COVID-19 pandemic period.
+
+This EDA explores the dataset structure, data quality, temporal patterns, and weather correlations — establishing a foundation for probabilistic energy consumption modelling.
+
+**Key features:**
+
+- Three utility types: electricity (15-min), gas (hourly), water (daily)
+- Hierarchical metering: campus NMI → building → submeter
+- Weather data at 1-minute granularity from 5 stations
+- Academic calendar and energy conservation event annotations
+
+```{python}
+#| label: setup
+#| echo: false
+#| output: false
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+import seaborn as sns
+import zipfile
+import os
+from pathlib import Path
+
+# Set global plot style — dark ocean blue theme
+sns.set_theme(style="darkgrid", palette="muted")
+plt.rcParams.update({
+    'figure.facecolor': '#1b2838',
+    'axes.facecolor': '#0d1b2a',
+    'axes.edgecolor': '#4a5568',
+    'axes.labelcolor': '#cbd5e1',
+    'text.color': '#cbd5e1',
+    'xtick.color': '#94a3b8',
+    'ytick.color': '#94a3b8',
+    'grid.color': '#2d3748',
+    'legend.facecolor': '#1b2838',
+    'legend.edgecolor': '#4a5568',
+    'font.size': 11,
+    'axes.titlesize': 13,
+    'axes.labelsize': 11,
+    'figure.dpi': 100,
+})
+
+# Colour palette for utilities
+COLORS = {
+    'electricity': '#63b3ed',
+    'gas': '#fc8181',
+    'water': '#68d391',
+    'accent': '#f6ad55',
+    'muted': '#4a5568',
+}
+
+# Paths
+PROJECT_DIR = Path(".")
+DATA_DIR = Path("../../data/raw")
+EXTRACT_DIR = DATA_DIR / "unicon"
+ZIP_PATH = DATA_DIR / "archive.zip"
+```
+
+## Data Extraction
+
+The dataset is distributed as a single zip archive (~142 MB compressed, ~950 MB uncompressed) containing 11 CSV files. We extract idempotently — skipping extraction if the files already exist.
+
+```{python}
+#| label: extract-zip
+
+if not EXTRACT_DIR.exists():
+    print(f"Extracting {ZIP_PATH} to {EXTRACT_DIR}...")
+    with zipfile.ZipFile(ZIP_PATH, 'r') as zf:
+        zf.extractall(EXTRACT_DIR)
+    print("Done.")
+else:
+    print(f"Data already extracted at {EXTRACT_DIR}")
+
+extracted_files = sorted(EXTRACT_DIR.glob("*.csv"))
+print(f"\nFound {len(extracted_files)} CSV files:")
+for f in extracted_files:
+    size_mb = f.stat().st_size / (1024 * 1024)
+    print(f"  {f.name:45s} {size_mb:>8.1f} MB")
+```
+
+## Schema Discovery
+
+We load each file and inspect its structure — columns, data types, row counts, null values, and date ranges where applicable.
+
+```{python}
+#| label: load-metadata
+#| output: false
+
+# Load small metadata files fully
+campus_meta = pd.read_csv(EXTRACT_DIR / "campus_meta.csv")
+building_meta = pd.read_csv(EXTRACT_DIR / "building_meta.csv")
+nmi_meta = pd.read_csv(EXTRACT_DIR / "nmi_meta.csv")
+calendar = pd.read_csv(EXTRACT_DIR / "calender.csv", parse_dates=["date"])
+events = pd.read_csv(EXTRACT_DIR / "events.csv", parse_dates=["date"])
+
+# Load consumption files with optimized dtypes
+gas = pd.read_csv(
+    EXTRACT_DIR / "gas_consumption.csv",
+    parse_dates=["timestamp"],
+    dtype={"campus_id": "float32", "consumption": "float32"},
+)
+water = pd.read_csv(
+    EXTRACT_DIR / "water_consumption.csv",
+    parse_dates=["timestamp"],
+    dtype={"campus_id": "float32", "meter_id": "float32", "consumption": "float32"},
+)
+
+# For large files, load with optimized dtypes
+# Note: some columns have NAs so we use float types to handle nullable values
+building_consumption = pd.read_csv(
+    EXTRACT_DIR / "building_consumption.csv",
+    parse_dates=["timestamp"],
+    dtype={"campus_id": "float32", "meter_id": "float32", "consumption": "float32"},
+)
+nmi_consumption = pd.read_csv(
+    EXTRACT_DIR / "nmi_consumption.csv",
+    parse_dates=["timestamp"],
+    dtype={"campus_id": "float32", "meter_id": "float32", "consumption": "float32", "demand_kW": "float32", "demand_kVA": "float32"},
+)
+submeter = pd.read_csv(
+    EXTRACT_DIR / "building_submeter_consumption.csv",
+    parse_dates=["timestamp"],
+    dtype={
+        "id": "float32", "building_id": "float32", "campus_id": "float32",
+        "consumption": "float32", "current": "float32",
+        "voltage": "float32", "power": "float32", "power_factor": "float32",
+    },
+)
+weather = pd.read_csv(
+    EXTRACT_DIR / "weather_data.csv",
+    parse_dates=["timestamp"],
+    dtype={
+        "campus_id": "float32",
+        "apparent_temperature": "float32", "air_temperature": "float32",
+        "dew_point_temperature": "float32", "relative_humidity": "float32",
+        "wind_speed": "float32", "wind_direction": "float32",
+    },
+)
+```
+
+### Metadata Files
+
+```{python}
+#| label: tbl-campus
+#| tbl-cap: "Campus metadata — La Trobe University's 5 campuses"
+
+campus_meta
+```
+
+```{python}
+#| label: tbl-buildings
+#| tbl-cap: "Building metadata — 71 buildings across all campuses"
+
+building_meta.head(15)
+```
+
+```{python}
+#| label: tbl-nmi
+#| tbl-cap: "NMI (National Metering Identifier) metadata — primary campus electricity meters"
+
+nmi_meta
+```
+
+```{python}
+#| label: tbl-calendar
+#| tbl-cap: "Academic calendar — first and last 5 entries"
+
+pd.concat([calendar.head(5), calendar.tail(5)])
+```
+
+```{python}
+#| label: tbl-events
+#| tbl-cap: "Energy conservation events — sample entries"
+
+events.head(10)
+```
+
+### Building Categories
+
+```{python}
+#| label: tbl-building-categories
+#| tbl-cap: "Buildings by category and campus"
+
+building_cats = building_meta.groupby(["campus_id", "category"]).size().unstack(fill_value=0)
+building_cats.loc["Total"] = building_cats.sum()
+building_cats
+```
+
+### Consumption Data Schemas
+
+```{python}
+#| label: schema-summary
+
+def schema_report(df, name):
+    """Generate a concise schema report for a dataframe."""
+    info = pd.DataFrame({
+        "dtype": df.dtypes.astype(str),
+        "non_null": df.count(),
+        "null_count": df.isnull().sum(),
+        "null_pct": (df.isnull().sum() / len(df) * 100).round(2),
+    })
+
+    ts_col = "timestamp" if "timestamp" in df.columns else ("date" if "date" in df.columns else None)
+    date_range = ""
+    if ts_col and pd.api.types.is_datetime64_any_dtype(df[ts_col]):
+        date_range = f"{df[ts_col].min()} → {df[ts_col].max()}"
+
+    print(f"{'='*60}")
+    print(f"  {name}")
+    print(f"  Rows: {len(df):,}  |  Columns: {len(df.columns)}  |  Memory: {df.memory_usage(deep=True).sum() / 1e6:.1f} MB")
+    if date_range:
+        print(f"  Date range: {date_range}")
+    print(f"{'='*60}")
+    return info
+
+datasets = {
+    "NMI Consumption (campus electricity)": nmi_consumption,
+    "Building Consumption": building_consumption,
+    "Submeter Consumption": submeter,
+    "Gas Consumption": gas,
+    "Water Consumption": water,
+    "Weather Data": weather,
+}
+
+schema_frames = {}
+for name, df in datasets.items():
+    schema_frames[name] = schema_report(df, name)
+```
+
+```{python}
+#| label: tbl-schemas
+#| tbl-cap: "Schema detail for all consumption and weather files"
+
+for name, info in schema_frames.items():
+    print(f"\n--- {name} ---")
+    display(info)
+```
+
+## Dataset Overview
+
+### Metering Hierarchy
+
+The dataset follows a hierarchical metering structure:
+
+```
+University (La Trobe)
+├── Campus (5 campuses)
+│   ├── NMI Meters (14 primary meters — campus-level electricity)
+│   ├── Building Meters (71 buildings — building-level electricity)
+│   │   └── Submeters (9 submeters — panel-level electricity)
+│   ├── Gas Meters (2 meters — Bundoora & Bendigo)
+│   └── Water Meters (3 meters — Bundoora only)
+└── Weather Stations (5 — one per campus)
+```
+
+### Temporal Coverage
+
+```{python}
+#| label: tbl-temporal
+#| tbl-cap: "Temporal coverage and granularity for each data source"
+
+temporal_data = []
+for name, df in datasets.items():
+    ts_col = "timestamp"
+    if ts_col in df.columns and pd.api.types.is_datetime64_any_dtype(df[ts_col]):
+        diffs = df[ts_col].sort_values().diff().dropna()
+        median_freq = diffs.median()
+        temporal_data.append({
+            "Dataset": name,
+            "Start": df[ts_col].min().strftime("%Y-%m-%d"),
+            "End": df[ts_col].max().strftime("%Y-%m-%d"),
+            "Records": f"{len(df):,}",
+            "Median Interval": str(median_freq),
+        })
+
+pd.DataFrame(temporal_data)
+```
+
+### Descriptive Statistics
+
+```{python}
+#| label: tbl-elec-stats
+#| tbl-cap: "Electricity consumption (building-level) — summary statistics by campus"
+
+building_consumption.groupby("campus_id")["consumption"].describe().round(2)
+```
+
+```{python}
+#| label: tbl-gas-stats
+#| tbl-cap: "Gas consumption — summary statistics by campus"
+
+gas.groupby("campus_id")["consumption"].describe().round(2)
+```
+
+```{python}
+#| label: tbl-water-stats
+#| tbl-cap: "Water consumption — summary statistics by campus"
+
+water.groupby("campus_id")["consumption"].describe().round(2)
+```
+
+```{python}
+#| label: tbl-weather-stats
+#| tbl-cap: "Weather data — summary statistics"
+
+weather.describe().round(2)
+```
+
+### Data Quality Assessment
+
+```{python}
+#| label: fig-missing
+#| fig-cap: "Missing value percentage across all datasets"
+
+missing_data = []
+for name, df in datasets.items():
+    for col in df.columns:
+        pct = df[col].isnull().sum() / len(df) * 100
+        if pct > 0:
+            missing_data.append({"Dataset": name, "Column": col, "Missing %": pct})
+
+if missing_data:
+    missing_df = pd.DataFrame(missing_data)
+    fig, ax = plt.subplots(figsize=(10, max(4, len(missing_df) * 0.4)))
+    missing_df = missing_df.sort_values("Missing %", ascending=True)
+    labels = missing_df["Dataset"] + " → " + missing_df["Column"]
+    ax.barh(range(len(missing_df)), missing_df["Missing %"],
+            color=COLORS["accent"], edgecolor='#2d3748', height=0.6)
+    ax.set_yticks(range(len(missing_df)))
+    ax.set_yticklabels(labels, fontsize=9)
+    ax.set_xlabel("Missing %", fontweight="bold")
+    ax.set_title("Missing Values Across Datasets", fontweight="bold", pad=15)
+    for i, v in enumerate(missing_df["Missing %"]):
+        ax.text(v + 0.3, i, f"{v:.1f}%", va="center", color="#cbd5e1", fontsize=9)
+    plt.tight_layout()
+    plt.savefig("unicon-missing-values.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+else:
+    print("No missing values found across any dataset.")
+```
+
+## Key Visualisations
+
+### Daily Electricity Consumption
+
+```{python}
+#| label: fig-daily-consumption
+#| fig-cap: "Daily total electricity consumption (building-level) by campus, 2018–2021"
+
+daily_elec = (
+    building_consumption
+    .assign(date=building_consumption["timestamp"].dt.date)
+    .groupby(["campus_id", "date"])["consumption"]
+    .sum()
+    .reset_index()
+)
+daily_elec["date"] = pd.to_datetime(daily_elec["date"])
+
+campus_names = campus_meta.set_index("id")["name"].to_dict()
+
+fig, ax = plt.subplots(figsize=(14, 6))
+campus_colors = ['#63b3ed', '#fc8181', '#68d391', '#f6ad55', '#b794f4']
+
+for i, (campus_id, group) in enumerate(daily_elec.groupby("campus_id")):
+    label = campus_names.get(campus_id, f"Campus {campus_id}")
+    color = campus_colors[i % len(campus_colors)]
+    # Resample to weekly for readability
+    weekly = group.set_index("date")["consumption"].resample("W").mean()
+    ax.plot(weekly.index, weekly.values, label=label, color=color, linewidth=1.2, alpha=0.85)
+
+# Mark COVID-19 shutdown
+ax.axvline(pd.Timestamp("2020-03-20"), color="#fc8181", linestyle="--", alpha=0.7, linewidth=1.5)
+ax.text(pd.Timestamp("2020-04-01"), ax.get_ylim()[1] * 0.95, "COVID-19\nShutdown",
+        color="#fc8181", fontsize=9, fontweight="bold", va="top")
+
+ax.set_xlabel("Date", fontweight="bold")
+ax.set_ylabel("Daily Consumption (kWh)", fontweight="bold")
+ax.set_title("Weekly Average Electricity Consumption by Campus", fontweight="bold", pad=15)
+ax.legend(loc="upper right", fontsize=9)
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m"))
+ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("unicon-daily-consumption.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+### Consumption Distributions by Utility
+
+```{python}
+#| label: fig-distributions
+#| fig-cap: "Consumption distributions by utility type (log scale)"
+
+fig, axes = plt.subplots(1, 3, figsize=(14, 5))
+
+# Electricity (building-level)
+axes[0].hist(building_consumption["consumption"].dropna().clip(upper=building_consumption["consumption"].quantile(0.99)),
+             bins=80, color=COLORS["electricity"], edgecolor="#2d3748", alpha=0.85)
+axes[0].set_title("Electricity (kWh)", fontweight="bold")
+axes[0].set_xlabel("Consumption (kWh)")
+axes[0].set_ylabel("Frequency")
+axes[0].set_yscale("log")
+
+# Gas
+axes[1].hist(gas["consumption"].dropna().clip(upper=gas["consumption"].quantile(0.99)),
+             bins=60, color=COLORS["gas"], edgecolor="#2d3748", alpha=0.85)
+axes[1].set_title("Gas (kJ)", fontweight="bold")
+axes[1].set_xlabel("Consumption (kJ)")
+axes[1].set_yscale("log")
+
+# Water
+axes[2].hist(water["consumption"].dropna().clip(upper=water["consumption"].quantile(0.99)),
+             bins=60, color=COLORS["water"], edgecolor="#2d3748", alpha=0.85)
+axes[2].set_title("Water (kL)", fontweight="bold")
+axes[2].set_xlabel("Consumption (kL)")
+axes[2].set_yscale("log")
+
+plt.suptitle("Consumption Distributions (clipped at 99th percentile)", fontweight="bold", y=1.02)
+plt.tight_layout()
+plt.savefig("unicon-distributions.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+### Weather vs Electricity Correlation
+
+```{python}
+#| label: fig-weather-correlation
+#| fig-cap: "Correlation between weather features and daily electricity consumption (Bundoora campus)"
+
+# Aggregate building consumption to daily per campus
+daily_elec_campus = (
+    building_consumption[building_consumption["campus_id"] == 1]
+    .assign(date=building_consumption.loc[building_consumption["campus_id"] == 1, "timestamp"].dt.date)
+    .groupby("date")["consumption"]
+    .sum()
+    .reset_index()
+)
+daily_elec_campus["date"] = pd.to_datetime(daily_elec_campus["date"])
+
+# Aggregate weather to daily
+daily_weather = (
+    weather[weather["campus_id"] == 1]
+    .assign(date=weather.loc[weather["campus_id"] == 1, "timestamp"].dt.date)
+    .groupby("date")[["air_temperature", "apparent_temperature", "relative_humidity", "wind_speed"]]
+    .mean()
+    .reset_index()
+)
+daily_weather["date"] = pd.to_datetime(daily_weather["date"])
+
+# Merge
+merged = daily_elec_campus.merge(daily_weather, on="date", how="inner")
+
+# Correlation matrix
+weather_cols = ["consumption", "air_temperature", "apparent_temperature", "relative_humidity", "wind_speed"]
+corr = merged[weather_cols].corr()
+
+fig, ax = plt.subplots(figsize=(8, 6))
+mask = np.triu(np.ones_like(corr, dtype=bool))
+cmap = sns.diverging_palette(220, 20, as_cmap=True)
+
+labels = ["Electricity\n(kWh)", "Air Temp\n(°C)", "Apparent\nTemp (°C)", "Humidity\n(%)", "Wind Speed\n(m/s)"]
+
+sns.heatmap(
+    corr, mask=mask, annot=True, fmt=".2f", cmap=cmap,
+    center=0, square=True, linewidths=2, linecolor="#2d3748",
+    cbar_kws={"shrink": 0.8, "label": "Correlation"},
+    ax=ax, vmin=-1, vmax=1,
+    annot_kws={"size": 12, "weight": "bold"},
+    xticklabels=labels, yticklabels=labels,
+)
+ax.set_title("Weather–Electricity Correlation (Bundoora)", fontweight="bold", pad=15)
+plt.tight_layout()
+plt.savefig("unicon-weather-correlation.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+### Temperature vs Consumption Scatter
+
+```{python}
+#| label: fig-temp-scatter
+#| fig-cap: "Daily electricity consumption vs air temperature — Bundoora campus (coloured by year)"
+
+fig, ax = plt.subplots(figsize=(10, 6))
+merged["year"] = merged["date"].dt.year
+year_colors = {2018: '#63b3ed', 2019: '#68d391', 2020: '#fc8181', 2021: '#f6ad55'}
+
+for year, group in merged.groupby("year"):
+    ax.scatter(
+        group["air_temperature"], group["consumption"],
+        color=year_colors.get(year, '#4a5568'), label=str(year),
+        alpha=0.5, s=15, edgecolor="none"
+    )
+
+ax.set_xlabel("Mean Daily Air Temperature (°C)", fontweight="bold")
+ax.set_ylabel("Daily Electricity Consumption (kWh)", fontweight="bold")
+ax.set_title("Temperature vs Electricity Consumption", fontweight="bold", pad=15)
+ax.legend(title="Year", fontsize=9)
+plt.tight_layout()
+plt.savefig("unicon-temp-scatter.png", dpi=150, bbox_inches="tight", facecolor="#1b2838")
+```
+
+## Summary
+
+| Aspect | Finding |
+|--------|---------|
+| **Dataset scope** | 5 campuses, 71 buildings, 14 NMIs, 3 utilities (electricity, gas, water) |
+| **Time span** | 2018–2021 (4 years), capturing the full COVID-19 period |
+| **Temporal resolution** | Electricity: 15-min, Gas: hourly, Water: daily |
+| **Total records** | ~950 MB across 11 CSV files |
+| **COVID-19 impact** | Clear consumption drop after March 2020 shutdown — natural experiment for causal inference |
+| **Seasonal patterns** | Strong seasonal cycles in electricity and gas; electricity correlates with temperature |
+| **Weather correlation** | Air temperature shows meaningful correlation with daily electricity consumption |
+| **Building diversity** | 7 categories (Teaching, Library, Admin, Residential, Mixed-Use, Sports, Other) |
+| **ECM events** | Annotated LED retrofits and HVAC upgrades enable intervention impact analysis |
+
+### Next Steps: Probabilistic Modelling
+
+This dataset is well-suited for several probabilistic modelling approaches:
+
+1. **Gaussian Process regression** for building-level consumption forecasting with uncertainty quantification
+2. **Bayesian structural time series** for causal impact analysis of COVID-19 and ECM interventions
+3. **Hierarchical models** exploiting the campus → building → submeter structure
+4. **Normalizing flows** or **VAEs** for learning multi-modal consumption distributions
+5. **Change-point detection** for identifying consumption regime shifts
+
+---
+
+*Dataset source: [UNICON — An Open Dataset of Electricity, Gas and Water Consumption](https://github.com/CDAC-lab/UNICON), La Trobe University, Australia.*
