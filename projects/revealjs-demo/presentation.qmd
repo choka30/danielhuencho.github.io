@@ -19,7 +19,7 @@ format:
     logo: ../../assets/images/favicon.ico
     width: 1280
     height: 720
-    margin: 0.08
+    margin: 0.04
     auto-animate-duration: 0.6
     auto-animate-easing: ease-out
     preview-links: auto
@@ -132,7 +132,7 @@ title-slide-attributes:
   "We are enhancing models for capability, not for intelligence"
   <span class="quote-source">— Oxford Professor</span>
 </div>
-<p style="color: #cbd5e1; font-size: 0.82em; margin-top: 0.4em;">
+<p style="color: #cbd5e1; font-size: 0.75em; margin-top: 0.15em; margin-bottom: 0;">
   This is why I am drawn to <strong style="color: #f1f5f9;">compositional kernel methods</strong> and <strong style="color: #f1f5f9;">Gaussian Processes</strong> — interpretable, uncertainty-aware, and decomposable into meaningful components.
 </p>
 ```
@@ -232,13 +232,13 @@ title-slide-attributes:
 ```{=html}
 <div class="highlight-box">
   <strong style="color: #f1f5f9;">UNICON GP Demo</strong> — Compositional Gaussian Process modelling on university energy data:
-  <ul class="icon-list" style="margin-top: 0.5em;">
+  <ul class="icon-list" style="margin-top: 0.3em;">
     <li>6-component additive kernel (trend, annual, weekly, weather, calendar, events)</li>
     <li>8 building categories, anomaly detection, cross-building comparison</li>
     <li>Kernel decomposition into interpretable components</li>
   </ul>
-  <div style="margin-top: 0.8em;">
-    <a href="https://danielhuencho.com/projects/unicon-eda/#model-evaluation-and-discussion" class="cta-btn" target="_blank">
+  <div style="margin-top: 0.4em;">
+    <a href="https://danielhuencho.com/projects/unicon-eda/" class="cta-btn" target="_blank">
       View Live Demo &rarr;
     </a>
   </div>
@@ -285,12 +285,12 @@ title-slide-attributes:
 ::: {.fragment .fade-in}
 
 ```{=html}
-<div id="kernel-animation" style="text-align: center; margin-top: 0.6em; min-height: 60px;">
+<div id="kernel-animation" style="text-align: center; margin-top: 0.3em; min-height: 40px;">
   <p id="kernel-eq" style="color: #63b3ed; font-family: 'Inter', monospace; font-size: 0.7em; letter-spacing: 0.02em;"></p>
 </div>
 
-<div style="text-align: center; margin-top: 0.3em;">
-  <p style="color: #cbd5e1; font-size: 0.7em;">
+<div style="text-align: center; margin-top: 0.15em;">
+  <p style="color: #cbd5e1; font-size: 0.65em; margin: 0;">
     <strong style="color: #63b3ed;">daniel.mardini.25@ucl.ac.uk</strong>
     &nbsp;&bull;&nbsp; <a href="https://danielhuencho.com" style="color: #90cdf4;">danielhuencho.com</a>
     &nbsp;&bull;&nbsp; <a href="https://github.com/choka30" style="color: #90cdf4;">github.com/choka30</a>
