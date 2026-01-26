@@ -1,57 +1,403 @@
 ---
-title: "Demo Presentation"
-subtitle: "An introduction to Revealjs with Quarto"
-author: "Daniel Huencho"
-date: 2026-01-25
+title: "Daniel Huencho Mardini"
+subtitle: "Research Assistant — Grand Challenges Living Lab"
+author: "MSc AI for Sustainable Development | UCL"
+date: 2026-01-26
 format:
   revealjs:
-    theme: moon
-    transition: slide
-    transition-speed: default
-    slide-number: true
+    theme: [default, presentation-theme.scss]
+    transition: fade
+    transition-speed: fast
+    slide-number: c/t
     controls: true
+    progress: true
+    history: true
+    center: false
+    hash-type: number
     highlight-style: github-dark
-    footer: "Daniel Huencho | Demo Presentation"
+    footer: "Daniel Huencho | UCL Grand Challenges Living Lab"
     logo: ../../assets/images/favicon.ico
+    width: 1280
+    height: 720
+    margin: 0.04
+    auto-animate-duration: 0.6
+    auto-animate-easing: ease-out
+    preview-links: auto
+    embed-resources: false
+title-slide-attributes:
+  data-background-gradient: "linear-gradient(135deg, #0d1b2a 0%, #1b2838 40%, #2c5282 100%)"
 ---
 
-## Welcome
+## Technical Knowledge {background-color="#0d1b2a"}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+```{=html}
+<div class="path-timeline">
+  <div class="path-node">
+    <span class="path-year">2011–2018</span>
+    <span class="path-dot"></span>
+    <span class="path-label">Civil Engineering<br>PUC Chile</span>
+  </div>
+  <div class="path-connector"></div>
+  <div class="path-node">
+    <span class="path-year">2019–2020</span>
+    <span class="path-dot"></span>
+    <span class="path-label">MSc Statistics<br>PUC Chile</span>
+  </div>
+  <div class="path-connector"></div>
+  <div class="path-node path-current">
+    <span class="path-year">2025</span>
+    <span class="path-dot"></span>
+    <span class="path-label">MSc AI for Sustainable<br>Development — UCL</span>
+  </div>
+</div>
+```
 
-- Nisi ut aliquip ex ea commodo consequat
-- Duis aute irure dolor in reprehenderit
-- Excepteur sint occaecat cupidatat non proident
+:::: {.columns}
 
-::: {.notes}
-Speaker notes: This is the first slide of the demo presentation.
+::: {.column width="50%"}
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div class="fade-card">
+  <h3>Probabilistic Modelling</h3>
+  <ul class="icon-list">
+    <li>Deep Kernel Learning (DKL) for dissertation</li>
+    <li>Bayesian modelling &amp; uncertainty quantification</li>
+    <li><a href="https://gpss.cc/">Gaussian Process Summer School</a> (gpss.cc)</li>
+  </ul>
+</div>
+```
+
 :::
 
-## Core Concepts
+:::
 
-Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+::: {.column width="50%"}
 
-### Key Points
+::: {.fragment .fade-in}
 
-1. **Integer** in mauris eu nibh euismod gravida
-2. **Duis** ac tellus et risus vulputate vehicula
-3. **Donec** lobortis risus a elit
+```{=html}
+<div class="fade-card">
+  <h3>Tools &amp; Frameworks</h3>
+  <ul class="icon-list">
+    <li>Python, PyTorch, GPyTorch, scikit-learn</li>
+    <li>Time series analysis &amp; forecasting</li>
+    <li>Probabilistic ML pipelines</li>
+  </ul>
+</div>
+```
 
-> "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+:::
 
-## Summary & Next Steps
+:::
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+::::
 
-### What We Covered
+::: {.notes}
+- Walk through the education path: started in Industrial/Civil Engineering at PUC Chile — strong mathematical foundation in calculus, linear algebra, probability, operational research.
+- Then MSc in Statistics at PUC Chile — ranked 2nd in cohort, GPA 3.75/4.0. Thesis on multinomial logit models. Modules in Bayesian Statistics, Time Series, GLMs, ML Applications.
+- Currently at UCL doing MSc AI for Sustainable Development — modules in Probabilistic Modelling, Deep Representations and Learning.
+- For the dissertation: exploring Deep Kernel Learning (DKL) — combines deep neural networks with Gaussian Process priors. Interested in the trade-offs of uncertainty quantification.
+- Actively studying from GP Summer School (gpss.cc) to deepen understanding of kernel methods.
+:::
 
-- Lorem ipsum dolor sit amet
-- Consectetur adipiscing elit
-- Sed do eiusmod tempor incididunt
 
-### Resources
+## Passion for Applicable Knowledge {background-color="#0d1b2a"}
 
-- [Quarto Revealjs Docs](https://quarto.org/docs/reference/formats/presentations/revealjs.html)
-- [Reveal.js Official](https://revealjs.com/)
+::: {.fragment .fade-in}
 
-**Thank you!**
+```{=html}
+<div class="highlight-box">
+  <strong>I defined my own dissertation project</strong> — I connected Professor Carmine Galasso (IRDR) with Professor Benjamin Guedj (Computer Science) to create a cross-departmental research project combining structural engineering with probabilistic ML.
+</div>
+```
+
+:::
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div class="highlight-box">
+  <strong>Research connections</strong> — Attended Henry Moss's talk <em>"Experimental Design in the Age of Generative Models"</em> (constraints in optimisation of generative models). Met PhD student Daniel Giles there. Worked with Max Harris on next-token generation for customisation (Knowledge Management lecture project).
+</div>
+```
+
+:::
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div class="slide-quote">
+  "We are enhancing models for capability, not for intelligence"
+  <span class="quote-source">— Oxford Professor</span>
+</div>
+<p style="color: #cbd5e1; font-size: 0.75em; margin-top: 0.15em; margin-bottom: 0;">
+  This is why I am drawn to <strong style="color: #f1f5f9;">compositional kernel methods</strong> and <strong style="color: #f1f5f9;">Gaussian Processes</strong> — interpretable, uncertainty-aware, and decomposable into meaningful components.
+</p>
+```
+
+:::
+
+::: {.notes}
+- Key message: I don't just study what I'm told — I actively seek and create research opportunities.
+- Dissertation story: I identified the gap between structural risk (Galasso's domain) and probabilistic ML (Guedj's domain). I approached both professors independently and proposed the project that became my dissertation.
+- Henry Moss's talk was about how we need constraints and structure in the optimisation of generative models — not just scaling. This resonated with my interest in interpretability.
+- Daniel Giles is a PhD student I connected with at these events — building my research network.
+- Max Harris collaboration on next-token generation was a lecture project for Knowledge Management and Education module.
+- The Oxford professor quote captures why I care about GPs: we need models where we understand what the components mean, not just models that predict well.
+- Compositional kernels and GPs are not just a tool for me — they are a core research interest directly aligned with this role.
+:::
+
+
+## Engineering & Collaboration {background-color="#0d1b2a"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div class="fade-card">
+  <h3>Production ML at Scale</h3>
+  <ul class="icon-list">
+    <li>SCADA energy data pipeline at Metro de Santiago</li>
+    <li>AWS: S3, Glue, Athena, Lambda, EC2, CodePipeline</li>
+    <li>Anomaly detection on real sensor data</li>
+    <li>Predictive maintenance for ticket machines</li>
+    <li>CI/CD, agile framework, testing discipline</li>
+  </ul>
+</div>
+```
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div class="fade-card">
+  <h3>Interdisciplinary Teamwork</h3>
+  <ul class="icon-list">
+    <li>Led team of 5 data scientists &amp; engineers</li>
+    <li>Bridged engineering, operations, and executive teams</li>
+    <li>Value diverse perspectives for real-world solutions</li>
+  </ul>
+</div>
+```
+
+:::
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div class="fade-card">
+  <h3>Personal Stake in UCL Energy</h3>
+  <ul class="icon-list">
+    <li><strong style="color: #90cdf4;">SRA at Ramsay Hall</strong> — I see UCL's energy usage patterns daily</li>
+    <li>This project is personal, not just professional</li>
+  </ul>
+</div>
+```
+
+:::
+
+:::
+
+::::
+
+::: {.notes}
+- Left column: Talk about the Metro de Santiago experience as Head of Data Science. Real engineering, not just notebooks.
+- The SCADA energy pipeline handled high-frequency sensor data across overlapping electrical zones. Had to deal with data quality, spatial-temporal challenges, and production reliability.
+- AWS stack: S3 for storage, Glue for ETL, Athena for queries, Lambda for serverless, EC2 for compute, CodePipeline for CI/CD. Real production architecture, not prototypes.
+- Working with sensors requires caution and robustness — data drift detection, anomaly detection, thinking about the final user.
+- Right column: Emphasise the interdisciplinary nature. At Metro, I worked with operations teams, electrical engineers, executives — not just data people.
+- The SRA (Student Residence Adviser) point is key: I live in UCL accommodation, I see the energy usage first-hand. This makes the Grand Challenges Living Lab project personal.
+- Mention collaboration style: connected Galasso with Guedj, worked with Nicole Paul, Daniel Giles, Chloe — I build bridges between disciplines.
+:::
+
+
+## I Built Exactly What You Need {background-color="#0d1b2a"}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div class="highlight-box">
+  <strong style="color: #f1f5f9;">UNICON GP Demo</strong> — Compositional Gaussian Process modelling on university energy data:
+  <ul class="icon-list" style="margin-top: 0.3em;">
+    <li>6-component additive kernel (trend, annual, weekly, weather, calendar, events)</li>
+    <li>8 building categories, anomaly detection, cross-building comparison</li>
+    <li>Kernel decomposition into interpretable components</li>
+  </ul>
+  <div style="margin-top: 0.4em;">
+    <a href="https://danielhuencho.com/projects/unicon-eda/" class="cta-btn" target="_blank">
+      View Live Demo &rarr;
+    </a>
+  </div>
+</div>
+```
+
+:::
+
+:::
+
+::: {.column width="45%"}
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div class="stat-row">
+  <div class="stat-card">
+    <span class="stat-value">8</span>
+    <span class="stat-label">Building Categories</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-value">6</span>
+    <span class="stat-label">Kernel Components</span>
+  </div>
+</div>
+<div class="stat-row">
+  <div class="stat-card">
+    <span class="stat-value">16</span>
+    <span class="stat-label">Visualisations</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-value" style="font-size: 1.3em;">GP</span>
+    <span class="stat-label">Compositional</span>
+  </div>
+</div>
+```
+
+:::
+
+:::
+
+::::
+
+::: {.fragment .fade-in}
+
+```{=html}
+<div id="kernel-animation" style="text-align: center; margin-top: 0.3em; min-height: 40px;">
+  <p id="kernel-eq" style="color: #63b3ed; font-family: 'Inter', monospace; font-size: 0.7em; letter-spacing: 0.02em;"></p>
+</div>
+
+<div style="text-align: center; margin-top: 0.15em;">
+  <p style="color: #cbd5e1; font-size: 0.65em; margin: 0;">
+    <strong style="color: #63b3ed;">daniel.mardini.25@ucl.ac.uk</strong>
+    &nbsp;&bull;&nbsp; <a href="https://danielhuencho.com" style="color: #90cdf4;">danielhuencho.com</a>
+    &nbsp;&bull;&nbsp; <a href="https://github.com/choka30" style="color: #90cdf4;">github.com/choka30</a>
+  </p>
+</div>
+
+<script>
+// Kernel equation typing animation
+(function() {
+  const components = [
+    { text: "k_trend", color: "#63b3ed" },
+    { text: "k_annual", color: "#90cdf4" },
+    { text: "k_weekly", color: "#bee3f8" },
+    { text: "k_weather", color: "#63b3ed" },
+    { text: "k_calendar", color: "#90cdf4" },
+    { text: "k_events", color: "#bee3f8" }
+  ];
+
+  const el = document.getElementById('kernel-eq');
+  if (!el) return;
+
+  function buildEquation() {
+    el.innerHTML = '';
+    let prefix = document.createElement('span');
+    prefix.style.color = '#94a3b8';
+    prefix.textContent = 'k_total = ';
+    el.appendChild(prefix);
+
+    let i = 0;
+    function addComponent() {
+      if (i >= components.length) {
+        // Add noise term
+        setTimeout(() => {
+          let noise = document.createElement('span');
+          noise.style.color = '#94a3b8';
+          noise.style.opacity = '0';
+          noise.style.transition = 'opacity 0.4s ease';
+          noise.textContent = ' + \u03B5';
+          el.appendChild(noise);
+          requestAnimationFrame(() => noise.style.opacity = '1');
+        }, 300);
+        return;
+      }
+
+      if (i > 0) {
+        let plus = document.createElement('span');
+        plus.style.color = '#4a5568';
+        plus.textContent = ' + ';
+        el.appendChild(plus);
+      }
+
+      let span = document.createElement('span');
+      span.style.color = components[i].color;
+      span.style.opacity = '0';
+      span.style.transform = 'translateY(8px)';
+      span.style.display = 'inline-block';
+      span.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      span.style.fontWeight = '600';
+      span.textContent = components[i].text;
+      el.appendChild(span);
+
+      requestAnimationFrame(() => {
+        span.style.opacity = '1';
+        span.style.transform = 'translateY(0)';
+      });
+
+      i++;
+      setTimeout(addComponent, 350);
+    }
+
+    setTimeout(addComponent, 200);
+  }
+
+  // Run animation when this slide becomes active
+  const observer = new MutationObserver(() => {
+    const slide = el.closest('section');
+    if (slide && slide.classList.contains('present')) {
+      buildEquation();
+      observer.disconnect();
+    }
+  });
+
+  // Observe the reveal slides container
+  const target = document.querySelector('.reveal .slides');
+  if (target) {
+    observer.observe(target, { attributes: true, subtree: true, attributeFilter: ['class'] });
+  }
+
+  // Also run if already on this slide
+  setTimeout(() => {
+    const slide = el.closest('section');
+    if (slide && slide.classList.contains('present')) {
+      buildEquation();
+    }
+  }, 500);
+})();
+</script>
+```
+
+:::
+
+::: {.notes}
+- This slide is the proof. Don't just talk about skills — show the work.
+- The UNICON demo is a full compositional GP modelling pipeline on real university energy data (La Trobe University, Australia). This is directly analogous to what the Grand Challenges Living Lab project needs for UCL estates.
+- Walk through the 6-component kernel: trend (long-term baseline), annual seasonality (climate-driven), weekly periodicity (occupancy), weather response (nonlinear), calendar effects (academic year), events (interventions like COVID, LED installations).
+- 8 building categories modelled independently — enables cross-building comparison of how GPs capture different building physics. This is exactly the "generalisation across locations" the role description asks for.
+- Anomaly detection using standardised GP residuals — higher use than expected from similar locations.
+- The demo is live at danielhuencho.com — encourage them to explore it.
+- Close with contact information and express genuine enthusiasm for the role.
+:::

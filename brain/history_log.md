@@ -2,7 +2,7 @@
 
 > Project started: 2026-01-25
 > Last entry: 2026-01-27
-> Total sessions: 5
+> Total sessions: 7
 
 ---
 
@@ -52,6 +52,49 @@ This file maintains a chronological record of all development sessions. Each ses
 
 ---
 
+### Session: 20260127_PRESENTATION_VIEWPORT_FIX
+
+**Summary**
+- **Date:** 2026-01-27
+- **Branch:** `pw_presentation`
+- **Scope:** Fix presentation viewport overflow and brain sync
+
+**Tasks Completed**
+
+| # | Task | Commits |
+|---|------|---------|
+| 1 | Fix slide 5 link (remove anchor fragment) | `5fa1a60` |
+| 2 | Reduce SCSS dimensions to fit 1280x720 viewport | `5fa1a60` |
+| 3 | Reduce QMD YAML margin + render and iterate | `5fa1a60` |
+| 4 | Update brain files + add reference assets | `e7ba961` |
+
+**Key Decisions**
+
+1. **Decision:** Reduce root font from 38px to 30px (SCSS-only approach)
+   - **Rationale:** All em-based sizes scale proportionally, avoiding per-component changes. 30px keeps text readable at presentation scale while fitting dense content.
+2. **Decision:** Reduce YAML margin from 8% to 4%
+   - **Rationale:** Recovers ~50px per edge, giving ~1229x691px usable area instead of ~1178x662px
+3. **Decision:** Tighten component spacing uniformly (highlight-box, fade-card, stat-card, slide-quote, icon-list)
+   - **Rationale:** Cumulative padding/margin savings across multiple components per slide prevents overflow without removing content
+
+**Files Changed**
+
+- Modified: `projects/revealjs-demo/presentation-theme.scss` (sizing/spacing reductions across 12 selectors)
+- Modified: `projects/revealjs-demo/presentation.qmd` (margin 0.08->0.04, link fix, inline style tightening)
+- Modified: `brain/plan.md` (new session plan, all 4 tasks complete)
+- Modified: `brain/codebase_index.md` (viewport fix details, new asset entries)
+- Modified: `brain/general_index.md` (directory tree, recent changes, key paths)
+- Added: `assets/Research Assistant - Grand Challenges Living Lab .pdf`
+- Added: `assets/images/Gemini_Generated_Image_3q3ek13q3ek13q3e.png`
+
+**Notes**
+
+- Multi-agent pixel budget analysis confirmed all 5 slides fit 1280x720
+- No content or design changes — sizing/spacing only
+- Two atomic commits: one for the fix, one for brain sync + assets
+
+---
+
 ### Session: 20260126_AI_SUSTAINABILITY_ESSAY
 
 **Summary**
@@ -91,6 +134,49 @@ This file maintains a chronological record of all development sessions. Each ses
 
 ---
 
+### Session: 20260126_UCL_PRESENTATION
+
+**Summary**
+- **Date:** 2026-01-26
+- **Branch:** `pw_presentation`
+- **Scope:** Transform revealjs-demo into UCL RA application presentation + fix false claims
+
+**Tasks Completed**
+
+| # | Task | Commits |
+|---|------|---------|
+| 1 | Fix false "15% energy cost reduction" claim in index.qmd | `80bb8b5` |
+| 2 | Create custom Revealjs SCSS theme (ocean blue) | `e1b9214` |
+| 3 | Build all 5 slides in presentation.qmd | `e1b9214` |
+| 4 | Add interactive JS elements (kernel typing animation) | `e1b9214` |
+| 5 | Update index page + validate + brain sync | `e6d510b`, `737f5cc` |
+
+**Key Decisions**
+
+1. **Decision:** Follow `assets/presentation.md` strictly for all content — creative freedom only for format/layout/interactivity
+   - **Rationale:** User specified no invented claims; all slide text sourced from presentation notes
+2. **Decision:** 5-slide structure mapping to 5 pillars from presentation notes
+   - **Rationale:** One pillar per slide keeps content sparse and focused
+3. **Decision:** Vanilla JS kernel typing animation on slide 5
+   - **Rationale:** MutationObserver triggers animation when fragment becomes visible; no external dependencies
+4. **Decision:** Custom SCSS theme with stat-cards, path-timeline, fade-cards, icon-lists
+   - **Rationale:** Reusable component classes matching the site's ocean blue palette
+
+**Files Changed**
+
+- Modified: `index.qmd` (removed false claim)
+- Modified: `projects/revealjs-demo/presentation.qmd` (complete rewrite — 5 slides with speaker notes)
+- Modified: `projects/revealjs-demo/index.qmd` (updated metadata for application presentation)
+- Created: `projects/revealjs-demo/presentation-theme.scss` (custom Revealjs theme)
+- Modified: brain files (plan, codebase_index, general_index)
+
+**Notes**
+
+- CV fact-check audit performed before presentation work — `about.qmd` was clean, `index.qmd` had one fabricated metric
+- Full site render validated (7 pages, no errors)
+
+---
+
 ### Session: 20260126_GP_MODELLING
 
 **Summary**
@@ -108,7 +194,7 @@ This file maintains a chronological record of all development sessions. Each ses
 | 4 | Train ExactGP models for all 8 building categories | Complete |
 | 5 | Kernel decomposition: 6-panel additive components + periodicities | Complete |
 | 6 | Weather response + COVID-19 CUSUM + ECM counterfactual impact | Complete |
-| 7 | Anomaly detection (2.5σ) + 8-category cross-building comparison | Complete |
+| 7 | Anomaly detection (2.5sigma) + 8-category cross-building comparison | Complete |
 | 8 | Model evaluation: RMSE/MAE/MAPE/coverage, calibration diagram, hypothesis discussion | Complete |
 | 9 | Validate render, freeze outputs, update brain | Complete |
 
@@ -116,8 +202,8 @@ This file maintains a chronological record of all development sessions. Each ses
 
 1. **Decision:** 8 independent ExactGPs (one per building category) rather than hierarchical multi-output GP
    - **Rationale:** Enables direct hyperparameter comparison across categories while keeping implementation tractable
-2. **Decision:** Daily aggregation (15-min → daily) for ExactGP tractability
-   - **Rationale:** Reduces n from ~140K to ~1,500 per building, making O(n³) feasible at ~15s per model
+2. **Decision:** Daily aggregation (15-min to daily) for ExactGP tractability
+   - **Rationale:** Reduces n from ~140K to ~1,500 per building, making O(n^3) feasible at ~15s per model
 3. **Decision:** Pre-COVID training / COVID-era testing split
    - **Rationale:** Tests out-of-distribution generalisation under structural break
 4. **Decision:** Used `torch.linalg.solve` instead of GPyTorch `inv_matmul`
@@ -280,9 +366,9 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 6 |
-| Total tasks completed | 33 |
-| Total commits | 5 |
+| Total sessions | 7 |
+| Total tasks completed | 38 |
+| Total commits | 10 |
 
 ### Sessions by Type
 
@@ -291,6 +377,7 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 | content/ | 3 |
 | style/ | 1 |
 | modelling/ | 1 |
+| presentation/ | 2 |
 | config/ | 0 |
 | fix/ | 0 |
 
@@ -301,4 +388,4 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 - **Archive frequency:** Every 10 sessions
 - **Merge behavior:** Concatenate chronologically from all worktrees
 - **Never delete:** This file is append-only
-- **Project restructured:** 2026-01-25 (ML → Quarto Portfolio)
+- **Project restructured:** 2026-01-25 (ML to Quarto Portfolio)
