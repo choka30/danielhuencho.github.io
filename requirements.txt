@@ -2,10 +2,8 @@ jupyter
 numpy
 pandas
 matplotlib
-plotly
 scipy
 scikit-learn
 seaborn
 torch
 gpytorch
-linear_operator
