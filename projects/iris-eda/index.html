@@ -360,8 +360,10 @@ Table&nbsp;1: First 10 rows of the Iris dataset
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'species'</span>).describe().T.<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2593/2432499185.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-  df.groupby('species').describe().T.round(2)</code></pre>
+<pre><code>/tmp/ipykernel_348982/2432499185.py:1: FutureWarning:
+
+The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+</code></pre>
 </div>
 <div id="tbl-stats" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -613,26 +615,34 @@ Table&nbsp;2: Summary statistics by species
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'iris-violin.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>, facecolor<span class="op">=</span><span class="st">'#1b2838'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2593/4012254396.py:6: FutureWarning: 
+<pre><code>/tmp/ipykernel_348982/4012254396.py:6: FutureWarning:
+
+
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
-  sns.violinplot(
-/tmp/ipykernel_2593/4012254396.py:6: FutureWarning: 
+
+/tmp/ipykernel_348982/4012254396.py:6: FutureWarning:
+
+
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
-  sns.violinplot(
-/tmp/ipykernel_2593/4012254396.py:6: FutureWarning: 
+
+/tmp/ipykernel_348982/4012254396.py:6: FutureWarning:
+
+
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
-  sns.violinplot(
-/tmp/ipykernel_2593/4012254396.py:6: FutureWarning: 
+
+/tmp/ipykernel_348982/4012254396.py:6: FutureWarning:
+
+
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
-  sns.violinplot(</code></pre>
+</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div id="fig-violin" class="quarto-float quarto-figure quarto-figure-center anchored">
