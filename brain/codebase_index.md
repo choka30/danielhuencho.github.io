@@ -35,7 +35,7 @@
 - Hero section with neural network animation
 - Professional headline (MSc AI @ UCL)
 - Hero summary aligned with about.qmd (predictive maintenance, anomaly detection, GenAI)
-- Bio paragraph in info-card — aligned with about.qmd (no fabricated claims)
+- Bio paragraph in info-card — aligned with about.qmd (no fabricated claims) + research interests (DKL, earth observation, disaster risk)
 - Skills section with legend (Advanced/Intermediate — 2 levels)
 - Skills now identical to about.qmd: Programming, ML/DL, Data Engineering, Statistical Methods
 - Friendly photo (`my_photo_friendly.jpeg`)

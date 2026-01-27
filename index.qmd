@@ -49,7 +49,7 @@ format:
 ## About
 
 ::: {.info-card}
-With over seven years of experience delivering impactful data-driven solutions in finance and transportation, I specialize in designing AI systems for predictive maintenance, anomaly detection, and generative AI applications. Currently pursuing my **MSc in AI for Sustainable Development at University College London (UCL)**, I am passionate about leveraging data and technology to innovate complex systems and create measurable societal value.
+With over seven years of experience delivering impactful data-driven solutions in finance and transportation, I specialize in designing AI systems for predictive maintenance, anomaly detection, and generative AI applications. Currently pursuing my **MSc in AI for Sustainable Development at University College London (UCL)**, I am passionate about leveraging data and technology to innovate complex systems and create measurable societal value. My research interests lie at the intersection of deep learning and earth observation, particularly using methods like Deep Kernel Learning (DKL) for disaster risk assessment and urban resilience.
 
 Most recently, I served as **Head of Data Science at Metro de Santiago**, where I led a team of 5 data scientists and data engineers to design and deploy AI-driven solutions, architecting an end-to-end big data pipeline for high-frequency SCADA energy data and implementing generative AI agents for operations. Prior to that, I worked as an **Analytics Translator at BCI** and a **Senior Risk Management Analyst at Banco de Chile**, bridging the gap between business strategy and technical implementation.
 :::
