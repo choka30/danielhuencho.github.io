@@ -34,19 +34,19 @@
 - YAML front matter (title: Daniel Huencho)
 - Hero section with neural network animation
 - Professional headline (MSc AI @ UCL)
-- Bio paragraph in info-card
+- Hero summary aligned with about.qmd (predictive maintenance, anomaly detection, GenAI)
+- Bio paragraph in info-card — aligned with about.qmd (no fabricated claims) + research interests (DKL, earth observation, disaster risk)
 - Skills section with legend (Advanced/Intermediate — 2 levels)
-- Industry-standard skill categories (no Scala, no Cloudera)
+- Skills now identical to about.qmd: Programming, ML/DL, Data Engineering, Statistical Methods
 - Friendly photo (`my_photo_friendly.jpeg`)
-- Timeline highlights section
+- Timeline highlights section — dates and descriptions match about.qmd
+- Timeline: UCL (2025–Present), Metro (2023–2025), BCI (2022–2023)
+- Company links: Metro de Santiago (metro.cl), BCI (bci.cl)
 - Improved text contrast (WCAG AA)
 - Title block hidden via `body-classes: hide-title-block` (scoped, not global)
 - Dark-only theme (no light mode toggle)
-- Ensemble Models replaces XGBoost
-- Databricks moved to Intermediate
-- Fixed false "15% energy cost reduction" claim — now uses CV-accurate wording
 
-**Status:** `Complete` — fully functional landing page with simplified skills, fact-checked
+**Status:** `Complete` — fully aligned with about.qmd, fact-checked, company links added
 
 ---
 
@@ -67,10 +67,11 @@
 - Languages section
 - Conferences & Events section
 - Downloadable CV link
+- Company links: Metro de Santiago (metro.cl), BCI (bci.cl) in timeline subtitles
 - Improved text contrast (WCAG AA)
 - Dark-only theme applied
 
-**Status:** `Complete` — fully styled and organized with simplified skills
+**Status:** `Complete` — fully styled, company links added
 
 ---
 
