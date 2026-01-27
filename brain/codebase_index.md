@@ -80,6 +80,7 @@
 
 **Current State:**
 - Quarto native `listing` with `type: grid`
+- `contents`: `*/index.qmd` with `!iris-eda/index.qmd` exclusion
 - `filter-ui: true` — search bar for text filtering
 - `categories: true` — sidebar tag filtering
 - `sort-ui: true` — sort dropdown
@@ -115,8 +116,9 @@
 - All text readable on dark background (CSS overrides for tables, cell output, captions)
 - Plots render correctly — removed `matplotlib.use('Agg')` and `plt.show()` (Quarto captures figures via Jupyter inline backend)
 - `plt.savefig()` retained for listing card thumbnails
+- **Hidden from projects listing** via glob exclusion in `projects/index.qmd` (page still renders and is accessible by direct URL)
 
-**Status:** `Complete`
+**Status:** `Complete` (hidden from listing)
 
 ---
 

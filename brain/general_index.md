@@ -114,7 +114,7 @@
 | CV/About | `about.qmd` | Complete |
 | Custom styles | `custom.scss` | Complete (ocean blue theme + listing cards + dark tables/forms) |
 | Projects listing | `projects/index.qmd` | Complete (grid + search + tags) |
-| Iris EDA demo | `projects/iris-eda/index.qmd` | Complete |
+| Iris EDA demo | `projects/iris-eda/index.qmd` | Complete (hidden from listing) |
 | Revealjs presentation | `projects/revealjs-demo/` | Complete (UCL application presentation, 5 slides + custom SCSS + JS) |
 | UNICON EDA+GP | `projects/unicon-eda/index.qmd` | Complete (EDA + GP modelling, 39 cells, 16 figures) |
 | AI Sustainability Essay | `projects/ai-sustainability-essay/index.qmd` | Complete (COMP0173 coursework, CoastSat + SDGs) |
@@ -211,6 +211,7 @@ To reach target state:
 | 2026-01-27 | Pixel budget verified via multi-agent analysis — all 5 slides fit 1280x720 | `projects/revealjs-demo/` |
 | 2026-01-27 | Added UCL job description PDF to assets | `assets/Research Assistant - Grand Challenges Living Lab .pdf` |
 | 2026-01-27 | Added Gemini-generated image to assets | `assets/images/Gemini_Generated_Image_3q3ek13q3ek13q3e.png` |
+| 2026-01-27 | Hidden iris-eda from projects listing (glob exclusion) | `projects/index.qmd` |
 
 ---
 

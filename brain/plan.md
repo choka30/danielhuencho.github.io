@@ -1,6 +1,25 @@
 # Session Plan
 
-> No active session. Run `/plan` to start a new session.
+> Created: 2026-01-27
+> Request: "Hide the iris-eda project from the projects listing page"
+> Branch: pw_cleanSite
+
+## Tasks
+
+### Task 1: Hide iris-eda from projects listing
+- **Status:** Complete
+- **Approach:** Added glob exclusion `!iris-eda/index.qmd` to listing contents in `projects/index.qmd` (not `listing: false` — that controls outgoing listings, not incoming)
+- **Acceptance Criteria:**
+  - [x] `projects/index.qmd` excludes iris-eda via glob negation
+  - [x] `quarto render` succeeds (all 8 pages)
+  - [x] Iris EDA does not appear in the projects listing grid (verified in HTML output)
+
+### Task 2: Update brain files
+- **Status:** Complete
+- **Acceptance Criteria:**
+  - [x] `brain/general_index.md` updated
+  - [x] `brain/codebase_index.md` updated
+  - [x] `brain/plan.md` marked complete
 
 ---
 
