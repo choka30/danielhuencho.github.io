@@ -2,7 +2,7 @@
 
 > Project started: 2026-01-25
 > Last entry: 2026-01-27
-> Total sessions: 7
+> Total sessions: 8
 
 ---
 
@@ -19,6 +19,38 @@ This file maintains a chronological record of all development sessions. Each ses
 ## Recent Sessions
 
 <!-- New sessions are prepended here by /session-end -->
+
+### Session: 20260127_HIDE_IRIS_EDA
+
+**Summary**
+- **Date:** 2026-01-27
+- **Branch:** `pw_cleanSite`
+- **Scope:** Hide iris-eda project from the projects listing page
+
+**Tasks Completed**
+
+| # | Task | Commits |
+|---|------|---------|
+| 1 | Hide iris-eda from projects listing (glob exclusion) | `1ebc674` |
+| 2 | Update brain files | `1ebc674` |
+
+**Key Decisions**
+
+1. **Decision:** Use glob exclusion `!iris-eda/index.qmd` in listing contents rather than `listing: false` in the project's front matter
+   - **Rationale:** `listing: false` controls whether a page *shows* a listing, not whether it *appears* in another page's listing. Glob negation is the correct Quarto mechanism for excluding from listings.
+
+**Files Changed**
+
+- Modified: `projects/index.qmd` (added `!iris-eda/index.qmd` exclusion to listing contents)
+- Modified: `_freeze/projects/iris-eda/index/execute-results/html.json` (re-frozen after initial YAML change)
+- Modified: `brain/codebase_index.md`, `brain/general_index.md`, `brain/plan.md`
+
+**Notes**
+
+- The iris-eda page still renders and is accessible by direct URL, just hidden from the listing grid
+- Full site `quarto render` validated (all 8 pages, 0 warnings)
+
+---
 
 ### Session: 20260127_ESSAY_THUMBNAIL
 
@@ -366,9 +398,9 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 7 |
-| Total tasks completed | 38 |
-| Total commits | 10 |
+| Total sessions | 8 |
+| Total tasks completed | 40 |
+| Total commits | 11 |
 
 ### Sessions by Type
 
@@ -378,7 +410,7 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 | style/ | 1 |
 | modelling/ | 1 |
 | presentation/ | 2 |
-| config/ | 0 |
+| config/ | 1 |
 | fix/ | 0 |
 
 ---
