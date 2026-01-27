@@ -1,36 +1,6 @@
 # Session Plan
 
-> Created: 2026-01-27
-> Request: "Fix misplaced research interests sentence — move from about.qmd to index.qmd About section"
-> Branch: pw_cleanPages
-
-## Tasks
-
-### Task 1: Revert about.qmd — remove research interests sentence
-- **Status:** Complete
-- **Changes:**
-  - Remove the appended sentence from `about.qmd` line 17 hero summary
-  - Restore paragraph to end at: "...create measurable societal value."
-- **Acceptance Criteria:**
-  - [ ] about.qmd hero summary matches its pre-edit state
-  - [ ] `quarto preview` renders correctly
-
-### Task 2: Add research interests sentence to index.qmd About section
-- **Status:** Complete
-- **Changes:**
-  - Append to end of first paragraph in `.info-card` (line 52):
-    `"My research interests lie at the intersection of deep learning and earth observation, particularly using methods like Deep Kernel Learning (DKL) for disaster risk assessment and urban resilience."`
-- **Acceptance Criteria:**
-  - [ ] Sentence appended to first paragraph of About info-card in index.qmd
-  - [ ] `quarto preview` renders correctly
-
-### Task 3: Update brain files
-- **Status:** Complete
-- **Changes:**
-  - Revert `brain/codebase_index.md` about.qmd note
-  - Add research interests note to index.qmd section in codebase_index.md
-- **Acceptance Criteria:**
-  - [ ] Brain files reflect correct state
+> No active session. Run `/session-start` to begin.
 
 ---
 

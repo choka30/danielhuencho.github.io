@@ -2,7 +2,7 @@
 
 > Project started: 2026-01-25
 > Last entry: 2026-01-27
-> Total sessions: 9
+> Total sessions: 10
 
 ---
 
@@ -19,6 +19,44 @@ This file maintains a chronological record of all development sessions. Each ses
 ## Recent Sessions
 
 <!-- New sessions are prepended here by /session-end -->
+
+### Session: 20260127_ORCHESTRATOR_MERGE_2
+
+**Summary**
+- **Date:** 2026-01-27
+- **Branch:** `main`
+- **Scope:** Orchestrator merge — merge pw_cleanPages worktree into main
+
+**Tasks Completed**
+
+| # | Task | Commits |
+|---|------|---------|
+| 1 | Merge pw_cleanPages into main (--no-ff) | `05ab1e5` |
+
+**Key Decisions**
+
+1. **Decision:** Direct --no-ff merge (no conflict resolution needed)
+   - **Rationale:** Only 2 commits, 6 files changed, no overlapping modifications with main
+
+**Files Changed**
+
+- Merged: `index.qmd` (rewrote About section, updated skills, aligned timeline with about.qmd)
+- Merged: `about.qmd` (added company links for Metro de Santiago and BCI)
+- Merged: `_freeze/projects/iris-eda/index/execute-results/html.json`
+- Merged: `brain/codebase_index.md`, `brain/general_index.md`, `brain/plan.md`
+
+**Cleanup**
+
+- Removed worktree: `.trees/pw_cleanPages`
+- Deleted local branch: `pw_cleanPages`
+
+**Notes**
+
+- Content alignment: index.qmd now matches about.qmd as source of truth
+- Research interests sentence moved to index.qmd About section
+- Company names now link to investor/annual report pages
+
+---
 
 ### Session: 20260127_ORCHESTRATOR_MERGE
 
@@ -435,9 +473,9 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 9 |
-| Total tasks completed | 41 |
-| Total commits | 12 |
+| Total sessions | 10 |
+| Total tasks completed | 42 |
+| Total commits | 13 |
 
 ### Sessions by Type
 
@@ -448,7 +486,7 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 | modelling/ | 1 |
 | presentation/ | 2 |
 | config/ | 1 |
-| merge/ | 1 |
+| merge/ | 2 |
 | fix/ | 0 |
 
 ---
