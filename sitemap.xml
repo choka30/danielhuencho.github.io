@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://danielhuencho.com/projects/unicon-eda/index.html</loc>
-    <lastmod>2026-01-26T22:22:55.766Z</lastmod>
-  </url>
-  <url>
-    <loc>https://danielhuencho.com/projects/revealjs-demo/index.html</loc>
-    <lastmod>2026-01-26T22:22:55.766Z</lastmod>
-  </url>
-  <url>
-    <loc>https://danielhuencho.com/projects/index.html</loc>
-    <lastmod>2026-01-26T22:22:55.762Z</lastmod>
-  </url>
-  <url>
-    <loc>https://danielhuencho.com/index.html</loc>
-    <lastmod>2026-01-26T22:22:55.762Z</lastmod>
-  </url>
-  <url>
-    <loc>https://danielhuencho.com/about.html</loc>
-    <lastmod>2026-01-26T22:22:55.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://danielhuencho.com/projects/iris-eda/index.html</loc>
-    <lastmod>2026-01-26T22:22:55.762Z</lastmod>
+    <loc>https://danielhuencho.com/projects/ai-sustainability-essay/index.html</loc>
+    <lastmod>2026-01-27T00:04:58.725Z</lastmod>
   </url>
   <url>
     <loc>https://danielhuencho.com/projects/revealjs-demo/presentation.html</loc>
-    <lastmod>2026-01-26T22:22:55.766Z</lastmod>
+    <lastmod>2026-01-27T00:04:58.729Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/projects/iris-eda/index.html</loc>
+    <lastmod>2026-01-27T00:04:58.725Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/about.html</loc>
+    <lastmod>2026-01-27T00:04:58.675Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/index.html</loc>
+    <lastmod>2026-01-27T00:04:58.724Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/projects/index.html</loc>
+    <lastmod>2026-01-27T00:04:58.725Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/projects/revealjs-demo/index.html</loc>
+    <lastmod>2026-01-27T00:04:58.729Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielhuencho.com/projects/unicon-eda/index.html</loc>
+    <lastmod>2026-01-27T00:04:58.729Z</lastmod>
   </url>
 </urlset>
