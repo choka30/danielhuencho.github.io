@@ -7,6 +7,19 @@
 ## Completed Sessions
 
 <details>
+<summary>Session 2026-01-27 — main — Orchestrator Merge (pw_cleanSite)</summary>
+
+> Created: 2026-01-27
+> Request: "Merge pw_cleanSite worktree into main"
+> Branch: main
+
+- [x] Task 1: Merge pw_cleanSite into main (--no-ff, no conflicts)
+- [x] Task 2: Remove worktree and delete branch
+- [x] Task 3: Update brain files
+
+</details>
+
+<details>
 <summary>Session 2026-01-27 — pw_cleanSite — Hide iris-eda from projects listing</summary>
 
 > Created: 2026-01-27

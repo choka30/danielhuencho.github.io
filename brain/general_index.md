@@ -212,6 +212,7 @@ To reach target state:
 | 2026-01-27 | Added UCL job description PDF to assets | `assets/Research Assistant - Grand Challenges Living Lab .pdf` |
 | 2026-01-27 | Added Gemini-generated image to assets | `assets/images/Gemini_Generated_Image_3q3ek13q3ek13q3e.png` |
 | 2026-01-27 | Hidden iris-eda from projects listing (glob exclusion) | `projects/index.qmd` |
+| 2026-01-27 | Orchestrator merge: pw_cleanSite -> main, worktree removed | `main` |
 
 ---
 

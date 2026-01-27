@@ -2,7 +2,7 @@
 
 > Project started: 2026-01-25
 > Last entry: 2026-01-27
-> Total sessions: 8
+> Total sessions: 9
 
 ---
 
@@ -19,6 +19,43 @@ This file maintains a chronological record of all development sessions. Each ses
 ## Recent Sessions
 
 <!-- New sessions are prepended here by /session-end -->
+
+### Session: 20260127_ORCHESTRATOR_MERGE
+
+**Summary**
+- **Date:** 2026-01-27
+- **Branch:** `main`
+- **Scope:** Orchestrator merge — merge pw_cleanSite worktree into main
+
+**Tasks Completed**
+
+| # | Task | Commits |
+|---|------|---------|
+| 1 | Merge pw_cleanSite into main (--no-ff) | `fcb686f` |
+
+**Key Decisions**
+
+1. **Decision:** Direct --no-ff merge (no conflict resolution needed)
+   - **Rationale:** Only 2 commits, 6 files changed, no overlapping modifications with main
+
+**Files Changed**
+
+- Merged: `projects/index.qmd` (iris-eda glob exclusion)
+- Merged: `_freeze/projects/iris-eda/index/execute-results/html.json` (updated hash)
+- Merged: `brain/codebase_index.md`, `brain/general_index.md`, `brain/plan.md`, `brain/history_log.md`
+
+**Cleanup**
+
+- Removed worktree: `.trees/pw_cleanSite`
+- Deleted local branch: `pw_cleanSite`
+- Stale remote branches noted: `pw_cw_sustainability`, `pw_presentation`
+
+**Notes**
+
+- All worktrees now merged — no remaining worktrees
+- Main branch is the sole working directory
+
+---
 
 ### Session: 20260127_HIDE_IRIS_EDA
 
@@ -398,9 +435,9 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 
 | Metric | Value |
 |--------|-------|
-| Total sessions | 8 |
-| Total tasks completed | 40 |
-| Total commits | 11 |
+| Total sessions | 9 |
+| Total tasks completed | 41 |
+| Total commits | 12 |
 
 ### Sessions by Type
 
@@ -411,6 +448,7 @@ This session was from the previous ML project (Deep Kernel Building Damage Asses
 | modelling/ | 1 |
 | presentation/ | 2 |
 | config/ | 1 |
+| merge/ | 1 |
 | fix/ | 0 |
 
 ---
