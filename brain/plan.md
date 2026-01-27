@@ -7,6 +7,18 @@
 ## Completed Sessions
 
 <details>
+<summary>Session 2026-01-27 — pw_cleanSite — Hide iris-eda from projects listing</summary>
+
+> Created: 2026-01-27
+> Request: "Hide the iris-eda project from the projects listing page"
+> Branch: pw_cleanSite
+
+- [x] Task 1: Hide iris-eda from projects listing (glob exclusion in `projects/index.qmd`)
+- [x] Task 2: Update brain files
+
+</details>
+
+<details>
 <summary>Session 2026-01-27 — pw_cw_sustainability — Add listing thumbnail to AI sustainability essay</summary>
 
 > Created: 2026-01-27

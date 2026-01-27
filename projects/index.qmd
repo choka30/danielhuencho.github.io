@@ -3,7 +3,9 @@ title: "Projects"
 description: "A collection of data science and AI projects showcasing research and applied work."
 listing:
   id: project-listing
-  contents: "*/index.qmd"
+  contents:
+    - "*/index.qmd"
+    - "!iris-eda/index.qmd"
   type: grid
   sort: "date desc"
   categories: true
