@@ -20,8 +20,9 @@ format:
     <h1 class="hero-name">Daniel Huencho</h1>
     <p class="hero-headline">AI Engineer | MSc AI for Sustainable Development @ UCL</p>
     <p class="hero-summary">
-      Bridging cutting-edge AI research with real-world impact. 7+ years leading data science initiatives
-      in transportation and finance, now focused on deep learning for disaster risk and earth observation.
+      With over seven years of experience delivering impactful data-driven solutions in finance and transportation,
+      I specialize in designing AI systems for predictive maintenance, anomaly detection, and generative AI applications.
+      Currently pursuing my Master's at UCL, passionate about leveraging data and technology to create measurable societal value.
     </p>
     <div class="social-links">
       <a href="https://github.com/choka30" class="social-link" target="_blank" rel="noopener">
@@ -48,11 +49,9 @@ format:
 ## About
 
 ::: {.info-card}
-I'm a data scientist and AI engineer with a passion for applying machine learning to solve complex, real-world challenges. Currently pursuing my **MSc in AI for Sustainable Development at University College London (UCL)**, I bring over seven years of experience leading data science teams across transportation and financial services.
+With over seven years of experience delivering impactful data-driven solutions in finance and transportation, I specialize in designing AI systems for predictive maintenance, anomaly detection, and generative AI applications. Currently pursuing my **MSc in AI for Sustainable Development at University College London (UCL)**, I am passionate about leveraging data and technology to innovate complex systems and create measurable societal value.
 
-Most recently, I served as **Head of Data Science at Metro de Santiago**, where I led a team of five data scientists building GenAI agents for operations and deploying Big Data pipelines that improved energy efficiency through SCADA analytics. Prior to that, I worked as an Analytics Translator at BCI and a Senior Risk Analyst at Banco de Chile, bridging the gap between business strategy and technical implementation.
-
-My research interests lie at the intersection of **deep learning and earth observation**, particularly using methods like Deep Kernel Learning (DKL), Variational Autoencoders (VAEs), and Graph Neural Networks (GNNs) for disaster risk assessment and urban resilience.
+Most recently, I served as **Head of Data Science at Metro de Santiago**, where I led a team of 5 data scientists and data engineers to design and deploy AI-driven solutions, architecting an end-to-end big data pipeline for high-frequency SCADA energy data and implementing generative AI agents for operations. Prior to that, I worked as an **Analytics Translator at BCI** and a **Senior Risk Management Analyst at Banco de Chile**, bridging the gap between business strategy and technical implementation.
 :::
 
 [View Full Background](about.qmd){.btn-secondary}
@@ -91,15 +90,12 @@ Machine Learning & Deep Learning
 :::
 ::: {.skills-container}
 [PyTorch]{.skill-tag .skill-tag-advanced}
-[Deep Learning]{.skill-tag .skill-tag-advanced}
 [Scikit-learn]{.skill-tag .skill-tag-advanced}
+[Deep Learning]{.skill-tag .skill-tag-advanced}
 [TensorFlow]{.skill-tag .skill-tag-advanced}
-[Graph Neural Networks]{.skill-tag .skill-tag-advanced}
 [Ensemble Models]{.skill-tag .skill-tag-advanced}
-[Bayesian Modeling]{.skill-tag .skill-tag-advanced}
-[Computer Vision]{.skill-tag .skill-tag-intermediate}
-[NLP]{.skill-tag .skill-tag-intermediate}
 [Generative AI]{.skill-tag .skill-tag-intermediate}
+[MLlib]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 
@@ -111,23 +107,21 @@ Data Engineering & Cloud
 [Apache Spark]{.skill-tag .skill-tag-advanced}
 [ETL Pipelines]{.skill-tag .skill-tag-advanced}
 [Databricks]{.skill-tag .skill-tag-intermediate}
-[AWS]{.skill-tag .skill-tag-intermediate}
+[AWS (EC2, S3, Glue, Athena)]{.skill-tag .skill-tag-intermediate}
 [Docker]{.skill-tag .skill-tag-intermediate}
-[PostgreSQL]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 
 ::: {.skill-category}
 ::: {.skill-category-title}
-Domain Expertise
+Statistical Methods
 :::
 ::: {.skills-container}
-[Transportation Analytics]{.skill-tag .skill-tag-advanced}
-[Financial Risk Modeling]{.skill-tag .skill-tag-advanced}
-[Earth Observation]{.skill-tag .skill-tag-advanced}
-[Geospatial Analysis]{.skill-tag .skill-tag-advanced}
-[Energy Optimization]{.skill-tag .skill-tag-intermediate}
-[Disaster Risk Assessment]{.skill-tag .skill-tag-intermediate}
+[Bayesian Statistics]{.skill-tag .skill-tag-advanced}
+[Time Series Analysis]{.skill-tag .skill-tag-advanced}
+[Generalized Linear Models]{.skill-tag .skill-tag-advanced}
+[A/B Testing]{.skill-tag .skill-tag-intermediate}
+[Survival Analysis]{.skill-tag .skill-tag-intermediate}
 :::
 :::
 
@@ -136,7 +130,7 @@ Domain Expertise
 ::: {.timeline}
 ::: {.timeline-item}
 ::: {.timeline-date}
-2024 – Present
+2025 – Present
 :::
 ::: {.timeline-title}
 MSc AI for Sustainable Development
@@ -151,16 +145,16 @@ Research focus on deep learning methods for building damage assessment using sat
 
 ::: {.timeline-item}
 ::: {.timeline-date}
-2023 – 2024
+2023 – 2025
 :::
 ::: {.timeline-title}
 Head of Data Science
 :::
 ::: {.timeline-subtitle}
-Metro de Santiago
+[Metro de Santiago](https://www.metro.cl/gobierno-corporativo/inversionistas/#informacionrelevante){target="_blank" rel="noopener"}
 :::
 ::: {.timeline-content}
-Led team of 5 data scientists. Deployed GenAI agents for operational efficiency. Architected Big Data pipeline for high-frequency SCADA energy data, identifying key drivers of efficiency through anomaly detection.
+Led a team of 5 data scientists and data engineers to design and deploy AI-driven solutions. Architected end-to-end big data pipeline for high-frequency SCADA energy data. Implemented generative AI agents for Operations Control Center and Maintenance tasks.
 :::
 :::
 
@@ -172,10 +166,10 @@ Led team of 5 data scientists. Deployed GenAI agents for operational efficiency.
 Analytics Translator
 :::
 ::: {.timeline-subtitle}
-BCI (Banco de Crédito e Inversiones)
+[BCI (Banco de Crédito e Inversiones)](https://www.bci.cl/investor-relations/informacion-financiera/memorias-anuales/memoria-anual-2024){target="_blank" rel="noopener"}
 :::
 ::: {.timeline-content}
-Bridged business and technical teams. Implemented customer journey optimization using Databricks and Spark. Drove data-informed decision making across the organization.
+Bridged technical data science expertise with business operations. Led data-driven profitability initiative using behavioral and financial clustering. Designed optimized customer journey with A/B testing validation.
 :::
 :::
 :::

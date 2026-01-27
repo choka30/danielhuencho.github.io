@@ -1,6 +1,92 @@
 # Session Plan
 
-> No active session. Run `/plan` to start a new session.
+> Created: 2026-01-27
+> Request: "Fix index.qmd to match about.qmd (source of truth) — dates, skills, descriptions, job titles. Add links to Metro de Santiago and BCI titles in both pages."
+> Branch: pw_cleanPages
+
+## Discrepancies Found
+
+### Dates
+| Item | index.qmd (WRONG) | about.qmd (CORRECT) |
+|------|-------------------|---------------------|
+| UCL MSc | 2024 – Present | 2025 - Present |
+| Metro de Santiago | 2023 – 2024 | 2023 - 2025 |
+
+### Job Titles & Descriptions
+| Item | index.qmd (WRONG) | about.qmd (CORRECT) |
+|------|-------------------|---------------------|
+| Banco de Chile title | "Senior Risk Analyst" | "Senior Risk Management Analyst" |
+| Metro description | "improved energy efficiency through SCADA analytics" | No efficiency improvement claim — focuses on "spatial-temporal challenges" |
+| Metro description | "building GenAI agents for operations" | "Implemented Generative AI agents to assist Operations Control Center and Maintenance tasks" |
+| BCI description | "Implemented customer journey optimization using Databricks and Spark" | "Led data-driven profitability initiative using behavioral and financial clustering" + A/B testing |
+
+### Skills (index.qmd has items NOT in about.qmd)
+- `Graph Neural Networks` (advanced) — NOT in about.qmd
+- `Bayesian Modeling` (advanced) — about.qmd has "Bayesian Statistics" under Statistical Methods
+- `Computer Vision` (intermediate) — NOT in about.qmd
+- `NLP` (intermediate) — NOT in about.qmd
+- `PostgreSQL` (intermediate) — NOT in about.qmd
+- `AWS` → should be `AWS (EC2, S3, Glue, Athena)` to match about.qmd
+
+### Skills (about.qmd has items NOT in index.qmd)
+- `MLlib` (intermediate) — NOT in index.qmd
+- Entire **Statistical Methods** category missing from index.qmd
+
+### Skills Categories
+- index.qmd has **Domain Expertise** — about.qmd does not
+- about.qmd has **Statistical Methods** — index.qmd does not
+
+## Tasks
+
+### Task 1: Fix timeline dates in index.qmd
+- **Status:** Complete
+- **Changes:**
+  - UCL: "2024 – Present" → "2025 – Present"
+  - Metro: "2023 – 2024" → "2023 – 2025"
+- **Acceptance Criteria:**
+  - [ ] Dates match about.qmd exactly
+
+### Task 2: Fix About section & timeline descriptions in index.qmd
+- **Status:** Complete
+- **Changes:**
+  - Fix Banco de Chile title: "Senior Risk Analyst" → "Senior Risk Management Analyst"
+  - Rewrite About info-card to align with about.qmd summary (no fabricated claims)
+  - Rewrite Metro timeline description to match about.qmd bullets
+  - Rewrite BCI timeline description to match about.qmd bullets
+  - Update hero summary to align with about.qmd tone
+- **Acceptance Criteria:**
+  - [ ] No claims in index.qmd that aren't supported by about.qmd
+  - [ ] Job titles match exactly
+
+### Task 3: Fix skills section in index.qmd to match about.qmd
+- **Status:** Complete
+- **Changes:**
+  - Remove from ML/DL: `Graph Neural Networks`, `Bayesian Modeling`, `Computer Vision`, `NLP`
+  - Add to ML/DL: `MLlib` (intermediate)
+  - Keep `Generative AI` (intermediate) — already in both
+  - Fix Data Engineering: `AWS` → `AWS (EC2, S3, Glue, Athena)`, remove `PostgreSQL`
+  - Replace **Domain Expertise** category with **Statistical Methods** category matching about.qmd
+- **Acceptance Criteria:**
+  - [ ] Skills sections in both pages have identical items and proficiency levels
+
+### Task 4: Add company links to Metro de Santiago and BCI in both pages
+- **Status:** Complete
+- **Changes:**
+  - In index.qmd: Add link to "Metro de Santiago" → `https://www.metro.cl/gobierno-corporativo/inversionistas/#informacionrelevante`
+  - In index.qmd: Add link to "BCI" → `https://www.bci.cl/investor-relations/informacion-financiera/memorias-anuales/memoria-anual-2024`
+  - In about.qmd: Add link to "Metro de Santiago" (both entries) → same Metro URL
+  - In about.qmd: Add link to "BCI" → same BCI URL
+- **Acceptance Criteria:**
+  - [ ] Links open in new tab (target="_blank" for raw HTML, or standard Quarto link syntax)
+  - [ ] Links appear on company names in timeline subtitles
+
+### Task 5: Validate with quarto preview and update brain
+- **Status:** Complete
+- **Acceptance Criteria:**
+  - [ ] `quarto render` completes with no errors
+  - [ ] Both pages render correctly
+  - [ ] Links work
+  - [ ] Brain files updated
 
 ---
 

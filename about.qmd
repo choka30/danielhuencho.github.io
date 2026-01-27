@@ -79,7 +79,7 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 
 [Head of Data Science]{.timeline-title}
 
-[Metro de Santiago, Chile]{.timeline-subtitle}
+[[Metro de Santiago](https://www.metro.cl/gobierno-corporativo/inversionistas/#informacionrelevante){target="_blank" rel="noopener"}, Chile]{.timeline-subtitle}
 
 ::: {.timeline-content}
 - Led a team of 5 Data Scientists and Data Engineers to design and deploy AI-driven solutions using cloud services
@@ -94,7 +94,7 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 
 [Analytics Translator]{.timeline-title}
 
-[Banco de Crédito e Inversiones (BCI), Chile]{.timeline-subtitle}
+[[Banco de Crédito e Inversiones (BCI)](https://www.bci.cl/investor-relations/informacion-financiera/memorias-anuales/memoria-anual-2024){target="_blank" rel="noopener"}, Chile]{.timeline-subtitle}
 
 ::: {.timeline-content}
 - Bridged technical data science expertise with business operations, developing strategies for digital banking ecosystem
@@ -123,7 +123,7 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 
 [Data Analyst, Planning and Development]{.timeline-title}
 
-[Metro de Santiago, Chile]{.timeline-subtitle}
+[[Metro de Santiago](https://www.metro.cl/gobierno-corporativo/inversionistas/#informacionrelevante){target="_blank" rel="noopener"}, Chile]{.timeline-subtitle}
 
 ::: {.timeline-content}
 - Developed ML models to describe and forecast user behavior with R (Rcpp) and Python
