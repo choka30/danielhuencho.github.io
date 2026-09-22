@@ -133,13 +133,6 @@
     "text": "Publications & Research\n\n2025 | XXII Congreso Chileno de Ingeniería de Transporte\nResearch on Urban Quality of Life Index focusing on environmental and social dynamics surrounding Metro stations.\n\n\n2018-2019 | Mobile Phone Antenna Data Research\nSupported academic research with Eduardo Graells-Garrido on large-scale mobility patterns. arXiv:2204.09482"
   },
   {
-    "objectID": "about.html#download-cv",
-    "href": "about.html#download-cv",
-    "title": "About",
-    "section": "Download CV",
-    "text": "Download CV\n Download Full CV (PDF)"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Daniel Huencho",
@@ -172,21 +165,7 @@
     "href": "projects/index.html",
     "title": "Projects",
     "section": "",
-    "text": "Explore my portfolio of data science, machine learning, and AI projects. Use the search bar to filter by text or click on tags to browse by category.\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nApplication: UCL Grand Challenges Living Lab\n\n\n\nPresentation\n\nGaussian Processes\n\nEnergy\n\nUCL\n\n\n\nA formal 5-slide presentation for the Research Assistant position at UCL’s Grand Challenges Living Lab — predictive energy modelling using compositional Gaussian Processes.\n\n\n\nJan 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nUNICON Dataset: Exploratory Data Analysis\n\n\n\nPython\n\nEDA\n\nEnergy\n\nTime Series\n\nGaussian Processes\n\nProbabilistic ML\n\nPyTorch\n\n\n\nExploring the UNICON open dataset — electricity, gas, and water consumption across La Trobe University’s five campuses (2018–2021). Schema discovery, temporal analysis, and…\n\n\n\nJan 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalysing the Broader Impact of AI\n\n\n\nAI\n\nSustainability\n\nSDGs\n\nCoastal Management\n\nEssay\n\nUCL\n\n\n\nA critical analysis of CoastSat — an ML-powered shoreline monitoring toolkit — through the lens of the UN Sustainable Development Goals, examining synergies, risks, and…\n\n\n\nNov 5, 2025\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "projects/revealjs-demo/index.html",
-    "href": "projects/revealjs-demo/index.html",
-    "title": "Application: UCL Grand Challenges Living Lab",
-    "section": "",
-    "text": "A formal application presentation for the Research Assistant — Grand Challenges Living Lab position at UCL. The role involves developing predictive models of energy usage across UCL estates using compositional kernel methods (Gaussian Processes), supervised by Prof. Speekenbrink, Prof. Guedj, and Dr. Ciliberto.\n\n\n\nTitle — Identity and purpose\nTechnical Knowledge — Education path, probabilistic modelling expertise, GP Summer School\nPassion for Applicable Knowledge — Self-directed research, interdisciplinary connections, interpretability philosophy\nEngineering & Collaboration — Production ML at Metro de Santiago, AWS architecture, interdisciplinary teamwork, personal stake as SRA at Ramsay Hall\nLive Demo — UNICON compositional GP modelling pipeline on university energy data\n\n\n\n\n\nAnimated education timeline with pulsing current position\nProgressive fragment reveals building the narrative\nKernel equation typing animation on the final slide\nStat cards with hover effects\nSpeaker notes with full talking points (press S to view)\n\n\n\n\n\n Open Presentation → \n\n\n\n\n\nQuarto Revealjs — Markdown-based slide framework\nCustom SCSS theme matching the portfolio’s ocean blue palette\nVanilla JavaScript for interactive animations"
-  },
-  {
-    "objectID": "projects/revealjs-demo/index.html#about-this-presentation",
-    "href": "projects/revealjs-demo/index.html#about-this-presentation",
-    "title": "Application: UCL Grand Challenges Living Lab",
-    "section": "",
-    "text": "A formal application presentation for the Research Assistant — Grand Challenges Living Lab position at UCL. The role involves developing predictive models of energy usage across UCL estates using compositional kernel methods (Gaussian Processes), supervised by Prof. Speekenbrink, Prof. Guedj, and Dr. Ciliberto.\n\n\n\nTitle — Identity and purpose\nTechnical Knowledge — Education path, probabilistic modelling expertise, GP Summer School\nPassion for Applicable Knowledge — Self-directed research, interdisciplinary connections, interpretability philosophy\nEngineering & Collaboration — Production ML at Metro de Santiago, AWS architecture, interdisciplinary teamwork, personal stake as SRA at Ramsay Hall\nLive Demo — UNICON compositional GP modelling pipeline on university energy data\n\n\n\n\n\nAnimated education timeline with pulsing current position\nProgressive fragment reveals building the narrative\nKernel equation typing animation on the final slide\nStat cards with hover effects\nSpeaker notes with full talking points (press S to view)\n\n\n\n\n\n Open Presentation → \n\n\n\n\n\nQuarto Revealjs — Markdown-based slide framework\nCustom SCSS theme matching the portfolio’s ocean blue palette\nVanilla JavaScript for interactive animations"
+    "text": "Explore my portfolio of data science, machine learning, and AI projects. Use the search bar to filter by text or click on tags to browse by category.\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nUNICON Dataset: Exploratory Data Analysis\n\n\n\nPython\n\nEDA\n\nEnergy\n\nTime Series\n\nGaussian Processes\n\nProbabilistic ML\n\nPyTorch\n\n\n\nExploring the UNICON open dataset — electricity, gas, and water consumption across La Trobe University’s five campuses (2018–2021). Schema discovery, temporal analysis, and…\n\n\n\nJan 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalysing the Broader Impact of AI\n\n\n\nAI\n\nSustainability\n\nSDGs\n\nCoastal Management\n\nEssay\n\nUCL\n\n\n\nA critical analysis of CoastSat — an ML-powered shoreline monitoring toolkit — through the lens of the UN Sustainable Development Goals, examining synergies, risks, and…\n\n\n\nNov 5, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/unicon-eda/index.html",
