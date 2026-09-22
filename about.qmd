@@ -243,7 +243,3 @@ Modules: Calculus, Differential Equations, Linear Algebra, Probability & Statist
 
 [Supported academic research with Eduardo Graells-Garrido on large-scale mobility patterns. [arXiv:2204.09482](https://arxiv.org/pdf/2204.09482)]{.event-description}
 :::
-
-## Download CV
-
-[{{< fa file-pdf >}} Download Full CV (PDF)](./assets/CV%20DHM%2020251222.pdf){.btn-download}

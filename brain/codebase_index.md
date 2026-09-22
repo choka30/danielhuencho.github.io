@@ -233,8 +233,8 @@
 - `format: revealjs` with custom ocean blue theme (`presentation-theme.scss`)
 - Title slide with gradient background (auto-generated from YAML)
 - Slide 2: Technical Knowledge — education timeline (animated path nodes), probabilistic modelling card, tools card
-- Slide 3: Passion for Applicable Knowledge — dissertation story (Galasso + Guedj), research connections (Henry Moss, Daniel Giles, Max Harris), philosophy quote, compositional kernels
-- Slide 4: Engineering & Collaboration — Metro SCADA pipeline + AWS stack, interdisciplinary teamwork, SRA at Ramsay Hall personal stake
+- Slide 3: Passion for Applicable Knowledge — dissertation story, research connections, philosophy quote, compositional kernels
+- Slide 4: Engineering & Collaboration — Metro SCADA pipeline + AWS stack, interdisciplinary teamwork
 - Slide 5: UNICON GP Demo — live demo link, stat cards (8 categories, 6 kernels, 16 visualisations), kernel equation typing animation (JS), contact info CTA
 - Speaker notes on all 4 content slides with detailed talking points from presentation.md
 - Fade transitions, fragment reveals, columns layout

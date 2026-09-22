@@ -14,7 +14,7 @@
 * **References:** https://quarto.org/docs/websites/
 
 ## 3. User & Content Context (The "Persona")
-* **Author:** Daniel Huencho (Student ID: 25168452).
+* **Author:** Daniel Huencho.
 * **Current Role:** MSc AI for Sustainable Development @ UCL (University College London).
 * **Professional Background (7+ Years Experience):**
     * **Head of Data Science @ Metro de Santiago (2023-2025):** Led a team of 5, designed GenAI agents for operations, and built end-to-end Big Data pipelines for energy efficiency (SCADA).

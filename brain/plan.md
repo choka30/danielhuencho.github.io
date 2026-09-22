@@ -7,6 +7,16 @@
 ## Completed Sessions
 
 <details>
+<summary>Session 2026-09-22 — pw_privacy — Privacy cleanup (hide presentation, remove CV/private files)</summary>
+
+- [x] Task 1: Stop publishing revealjs-demo project
+- [x] Task 2: Remove CV download and untrack private files
+- [x] Task 3: Remove student ID and contact names from docs/brain
+- [x] Task 4: Clean render + leak scan, push, verify CI
+
+</details>
+
+<details>
 <summary>Session 2026-01-27 — pw_cleanPages — Align index.qmd with about.qmd + company links</summary>
 
 > Created: 2026-01-27

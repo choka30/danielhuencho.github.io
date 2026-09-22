@@ -20,6 +20,24 @@ This file maintains a chronological record of all development sessions. Each ses
 
 <!-- New sessions are prepended here by /session-end -->
 
+### Session: 20260922_PRIVACY_CLEANUP
+
+**Summary**
+- **Date:** 2026-09-22
+- **Branch:** `pw_privacy`
+- **Work:** Remove private information from the published site and public repo
+
+**Changes**
+- Stopped rendering `projects/revealjs-demo/` (removed from `_quarto.yml`, excluded from listing) — deck named private contacts
+- Removed "Download CV" section from `about.qmd` — CV PDF exposed phone number and home address
+- Untracked (kept locally, gitignored): CV PDF, job advert PDF, `assets/presentation.md`
+- Removed student ID from `project_context.md`; scrubbed contact names from `brain/codebase_index.md`
+
+**Decisions**
+1. **Decision:** Do not rewrite git history — files remain in old commits; accepted by user
+2. **Decision:** Presentation source kept in repo but not published
+
+
 ### Session: 20260127_ORCHESTRATOR_MERGE_2
 
 **Summary**
